@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+{% block bodyclass %}about{% endblock %}
+{% block content %}  
+{% endblock %}
+{% block sidebar %}
+<ul class="subnavilist">
+	<li><a href="/messages/inbox">&raquo;&nbsp;Inbox</a></li>
+	<li><a href="/messages/outbox/">&raquo;&nbsp;Sent Messages</a></li>
+	<li><a href="/messages/compose/">&raquo;&nbsp;New Message</a></li>
+	<li><a href="/messages/trash/">&raquo;&nbsp;Trash</a></li>
+</ul>
+{% endblock %}

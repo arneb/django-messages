@@ -1,0 +1,22 @@
+{% extends "messages/base.html" %} 
+
+{% block content %} 
+<h1>Sent Messages</h1>
+<table class="messages">
+	<thead>
+		<tr><th>Recipient</th><th>Subject</th><th>Sent</th><th>Action</th></tr>
+	</thead>
+	<tbody>
+{% for message in message_list %} 
+	<tr>
+		<td>{{ message.recipient }}</td>
+		<td>
+		<a href="{{message.get_absolute_url }}">{{ message.subject }}</a>
+		</td>
+		<td>{{ message.sent_at|date:"d.m.Y - H:i" }}</td>
+		<td><a href="/messages/delete/{{ message.id }}/?next=/messages/outbox/">delete</a></td>
+	</tr>
+{% endfor %}
+ 	</tbody>
+</table>
+{% endblock %}

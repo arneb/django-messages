@@ -1,0 +1,21 @@
+{% extends "messages/base.html" %} 
+
+{% block content %}
+<h1>View Message</h1>
+<dl class="message-headers">
+	<dt>Subject</dt>
+	<dd><strong>{{ message.subject }}</strong></dd>
+	<dt>Sender</dt>
+	<dd>{{ message.sender }}</dd>
+	<dt>Date</dt>
+	<dd>{{ message.sent_at|date:"d.m.Y - H:i"}}</dd>
+	<dt>Recipient</dt>
+	<dd>{{ message.recipient }}</dd>
+</dl>
+{{ message.body|linebreaksbr }}<br /><br />
+
+{% ifequal message.recipient user %}
+<a href="/messages/reply/{{ message.id }}/">Reply</a>
+{% endifequal %}
+<a href="/messages/delete/{{ message.id }}/">Delete</a>
+{% endblock %}
