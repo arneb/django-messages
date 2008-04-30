@@ -14,7 +14,7 @@
 		{{ message.subject }}
 		</td>
 		<td>{{ message.sent_at|date:"d.m.Y - H:i" }}</td>
-		<td><a href="/messages/undelete/{{ message.id }}/">{% trans "undelete" %}</a></td>
+		<td><a href="{% url messages.views.undelete message.id %}">{% trans "undelete" %}</a></td>
 	</tr>
 {% endfor %}
  	</tbody>
