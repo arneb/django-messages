@@ -1,10 +1,10 @@
 {% extends "messages/base.html" %} 
-
+{% load i18n %} 
 {% block content %} 
-<h1>Deleted Messages</h1>
+<h1>{% trans "Deleted Messages" %}</h1>
 <table class="messages">
 	<thead>
-		<tr><th>Sender</th><th>Subject</th><th>Date</th><th>Action</th></tr>
+		<tr><th>{% trans "Sender" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Date" %}</th><th>{% trans "Action" %}</th></tr>
 	</thead>
 	<tbody>
 {% for message in message_list %} 
@@ -14,11 +14,11 @@
 		{{ message.subject }}
 		</td>
 		<td>{{ message.sent_at|date:"d.m.Y - H:i" }}</td>
-		<td><a href="/messages/undelete/{{ message.id }}/">undelete</a></td>
+		<td><a href="/messages/undelete/{{ message.id }}/">{% trans "undelete" %}</a></td>
 	</tr>
 {% endfor %}
  	</tbody>
 </table>
 <br />
-<p>Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage.</p>
+<p>{% trans "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage." %}</p>
 {% endblock %}

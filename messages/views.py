@@ -70,7 +70,7 @@ def compose(request, recipient=None, form_class=ComposeForm, template_name='mess
                 body = body,
             )
             msg.save()
-            request.user.message_set.create(message="Message successfully sent.")
+            request.user.message_set.create(message=_(u"Message successfully sent."))
             #FIXME: for django trunk use named url patterns
             return HttpResponseRedirect(success_url)
     else:
@@ -110,7 +110,7 @@ def reply(request, message_id, form_class=ComposeForm, template_name='messages/c
             msg.save()
             parent.replied_at = now
             parent.save()
-            request.user.message_set.create(message="Message successfully sent.")
+            request.user.message_set.create(message=_(u"Message successfully sent."))
             #FIXME: for django trunk use named url patterns
             return HttpResponseRedirect(success_url)
     else:
@@ -148,7 +148,7 @@ def delete(request, message_id, success_url='/messages/inbox/'):
         deleted = True
     if deleted:
         message.save()
-        user.message_set.create(message="Message successfully deleted.")
+        user.message_set.create(message=_(u"Message successfully deleted."))
         return HttpResponseRedirect(success_url)
     raise Http404
 
@@ -171,7 +171,7 @@ def undelete(request, message_id, success_url='/messages/inbox/'):
         undeleted = True
     if undeleted:
         message.save()
-        user.message_set.create(message="Message successfully recovered.")
+        user.message_set.create(message=_(u"Message successfully recovered."))
         return HttpResponseRedirect(success_url)
     raise Http404
     

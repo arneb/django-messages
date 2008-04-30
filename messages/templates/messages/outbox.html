@@ -1,10 +1,10 @@
 {% extends "messages/base.html" %} 
-
+{% load i18n %} 
 {% block content %} 
-<h1>Sent Messages</h1>
+<h1>{% trans "Sent Messages" %}</h1>
 <table class="messages">
 	<thead>
-		<tr><th>Recipient</th><th>Subject</th><th>Sent</th><th>Action</th></tr>
+		<tr><th>{% trans "Recipient" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Sent" %}</th><th>{% trans "Action" %}</th></tr>
 	</thead>
 	<tbody>
 {% for message in message_list %} 
@@ -14,7 +14,7 @@
 		<a href="{{message.get_absolute_url }}">{{ message.subject }}</a>
 		</td>
 		<td>{{ message.sent_at|date:"d.m.Y - H:i" }}</td>
-		<td><a href="/messages/delete/{{ message.id }}/?next=/messages/outbox/">delete</a></td>
+		<td><a href="/messages/delete/{{ message.id }}/?next=/messages/outbox/">{% trans "delete" %}</a></td>
 	</tr>
 {% endfor %}
  	</tbody>

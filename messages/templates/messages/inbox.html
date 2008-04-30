@@ -1,10 +1,10 @@
 {% extends "messages/base.html" %} 
-
+{% load i18n %} 
 {% block content %}
-	<h1>Inbox</h1>
+	<h1>{% trans "Inbox" %}</h1>
 	<table class="messages">
 		<thead>
-			<tr><th>Sender</th><th>Subject</th><th>Received</th><th>Action</th></tr>
+			<tr><th>{% trans "Sender" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Received" %}</th><th>{% trans "Action" %}</th></tr>
 		</thead>
 		<tbody>
 	{% for message in message_list %} 
@@ -17,7 +17,7 @@
 				{% if message.replied %}</em>{% endif %} 
 				{% if message.new %}</strong>{% endif %}</td>
 			<td>{{ message.sent_at|date:"d.m.Y - H:i" }}</td>
-			<td><a href="/messages/delete/{{ message.id }}/">delete</a></td>
+			<td><a href="/messages/delete/{{ message.id }}/">{% trans "delete" %}</a></td>
 		</tr>
 	{% endfor %}
 	 	</tbody>

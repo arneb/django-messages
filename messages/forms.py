@@ -4,6 +4,6 @@ class ComposeForm(forms.Form):
     """
     A simple default form for private messages.
     """
-    recipient = forms.CharField()
-    subject = forms.CharField()
-    body = forms.CharField(widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
+    recipient = forms.CharField(label=_(u"Recipient"))
+    subject = forms.CharField(label=_(u"Subject"))
+    body = forms.CharField(label=_(u"Body"), widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
