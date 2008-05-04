@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 15:41+0200\n"
+"POT-Creation-Date: 2008-05-04 13:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,13 +60,17 @@ msgstr "Absender hat gelöscht am"
 msgid "Recipient deleted at"
 msgstr "Empfänger hat gelöscht am"
 
-#: models.py:105
+#: models.py:107
 msgid "Message"
 msgstr "Nachricht"
 
-#: models.py:106
+#: models.py:108
 msgid "Messages"
 msgstr "Nachrichten"
+
+#: utils.py:18
+msgid "New Message:"
+msgstr "Neue Nachricht:"
 
 #: views.py:73 views.py:113
 msgid "Message successfully sent."

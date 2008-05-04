@@ -56,23 +56,25 @@ class Message(models.Model):
     subject = models.CharField(_("Subject"), maxlength=120)
     body = models.TextField(_("Body"))
     sender = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("Sender"))
-    recipient = models.ForeignKey(User, related_name='received_messages', null=True,blank=True, verbose_name=_("Recipient"))
-    parent_msg = models.ForeignKey('self', related_name='next_messages', null=True,blank=True, verbose_name=_("Parent message"))
-    sent_at = models.DateTimeField(_("sent at"), null=True,blank=True)
-    read_at = models.DateTimeField(_("read at"), null=True,blank=True)
-    replied_at = models.DateTimeField(_("replied at"), null=True,blank=True)
-    sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True,blank=True)
-    recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True,blank=True)
+    recipient = models.ForeignKey(User, related_name='received_messages', null=True, blank=True, verbose_name=_("Recipient"))
+    parent_msg = models.ForeignKey('self', related_name='next_messages', null=True, blank=True, verbose_name=_("Parent message"))
+    sent_at = models.DateTimeField(_("sent at"), null=True, blank=True)
+    read_at = models.DateTimeField(_("read at"), null=True, blank=True)
+    replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
+    sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
+    recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
     
     objects = MessageManager()
     trash = models.Manager() #TODO: write a real trash manager
     
     def new(self):
+        """returns whether the recipient has read the message or not"""
         if self.read_at is not None:
             return False
         return True
         
     def replied(self):
+        """returns whether the recipient has written a reply to this message"""
         if self.replied_at is not None:
             return True
         return False

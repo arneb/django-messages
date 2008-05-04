@@ -15,7 +15,7 @@ def format_quote(text):
         lines[i] = "> %s" % line
     return '\n'.join(lines)
     
-def new_message_email(sender, instance, signal, subject_prefix='Neue Nachricht:', template_name="mails/new_message.txt", *args, **kwargs):
+def new_message_email(sender, instance, signal, subject_prefix=_(u'New Message:'), template_name="mails/new_message.txt", *args, **kwargs):
     """
     This function sends an email and is called via django's dispatcher framework.
     Optional arguments:
