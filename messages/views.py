@@ -60,16 +60,7 @@ def compose(request, recipient=None, form_class=ComposeForm, template_name='mess
         sender = request.user
         form = form_class(request.POST)
         if form.is_valid():
-            recipient = User.objects.get(username=form.clean_data['recipient'])
-            subject = form.clean_data['subject']
-            body = form.clean_data['body']
-            msg = Message(
-                sender = sender,
-                recipient = recipient,
-                subject = subject,
-                body = body,
-            )
-            msg.save()
+            form.save(sender=request.user)
             request.user.message_set.create(message=_(u"Message successfully sent."))
             #FIXME: for django trunk use named url patterns
             return HttpResponseRedirect(success_url)
@@ -92,24 +83,11 @@ def reply(request, message_id, form_class=ComposeForm, template_name='messages/c
     ``messages.utils`` to pre-format the quote.
     """
     parent = get_object_or_404(Message, id=message_id)
-    now = datetime.datetime.now()
     if request.method == "POST":
         sender = request.user
         form = form_class(request.POST)
         if form.is_valid():
-            recipient = User.objects.get(username=form.clean_data['recipient'])
-            subject = form.clean_data['subject']
-            body = form.clean_data['body']
-            msg = Message(
-                sender = sender,
-                recipient = recipient,
-                subject = subject,
-                body = body,
-                parent_msg = parent
-            )
-            msg.save()
-            parent.replied_at = now
-            parent.save()
+            form.save(sender=request.user, parent_msg=parent)
             request.user.message_set.create(message=_(u"Message successfully sent."))
             #FIXME: for django trunk use named url patterns
             return HttpResponseRedirect(success_url)
