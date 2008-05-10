@@ -33,5 +33,5 @@ def new_message_email(sender, instance, signal, subject_prefix=_(u'New Message:'
             message = message_template.render(message_context)
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [instance.recipient.email,])
         except:
-            raise
+            pass
     
