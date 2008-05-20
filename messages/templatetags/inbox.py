@@ -1,6 +1,4 @@
 from django.template import Library, Node
-from django.contrib.auth.models import User
-from messages.models import Message
 
 class InboxOutput(Node):
     def render(self, context):

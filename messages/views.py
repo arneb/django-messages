@@ -5,6 +5,8 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.dispatch import dispatcher
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 from messages.models import Message
 from messages.forms import ComposeForm
 from messages.utils import format_quote
@@ -46,7 +48,7 @@ def trash(request, template_name='messages/trash.html'):
     return render_to_response(template_name, {'message_list': message_list}, context_instance=RequestContext(request))
 
 @login_required    
-def compose(request, recipient=None, form_class=ComposeForm, template_name='messages/compose.html', success_url='/messages/inbox/'):
+def compose(request, recipient=None, form_class=ComposeForm, template_name='messages/compose.html', success_url=None):
     """
     Displays and handles the ``form_class`` form to compose new messages.
     Required Arguments: None
@@ -60,18 +62,10 @@ def compose(request, recipient=None, form_class=ComposeForm, template_name='mess
         sender = request.user
         form = form_class(request.POST)
         if form.is_valid():
-            recipient = User.objects.get(username=form.clean_data['recipient'])
-            subject = form.clean_data['subject']
-            body = form.clean_data['body']
-            msg = Message(
-                sender = sender,
-                recipient = recipient,
-                subject = subject,
-                body = body,
-            )
-            msg.save()
-            request.user.message_set.create(message="Message successfully sent.")
-            #FIXME: for django trunk use named url patterns
+            form.save(sender=request.user)
+            request.user.message_set.create(message=_(u"Message successfully sent."))
+            if success_url is None:
+                success_url = reverse('messages.views.inbox')
             return HttpResponseRedirect(success_url)
     else:
         if recipient is not None:
@@ -85,33 +79,21 @@ def compose(request, recipient=None, form_class=ComposeForm, template_name='mess
     return render_to_response(template_name, {'form': form}, context_instance=RequestContext(request))
 
 @login_required
-def reply(request, message_id, form_class=ComposeForm, template_name='messages/compose.html', success_url='/messages/inbox/'):
+def reply(request, message_id, form_class=ComposeForm, template_name='messages/compose.html', success_url=None):
     """
     Prepares the ``form_class`` form for writing a reply to a given message
     (specified via ``message_id``). Uses the ``format_quote`` helper from
     ``messages.utils`` to pre-format the quote.
     """
     parent = get_object_or_404(Message, id=message_id)
-    now = datetime.datetime.now()
     if request.method == "POST":
         sender = request.user
         form = form_class(request.POST)
         if form.is_valid():
-            recipient = User.objects.get(username=form.clean_data['recipient'])
-            subject = form.clean_data['subject']
-            body = form.clean_data['body']
-            msg = Message(
-                sender = sender,
-                recipient = recipient,
-                subject = subject,
-                body = body,
-                parent_msg = parent
-            )
-            msg.save()
-            parent.replied_at = now
-            parent.save()
-            request.user.message_set.create(message="Message successfully sent.")
-            #FIXME: for django trunk use named url patterns
+            form.save(sender=request.user, parent_msg=parent)
+            request.user.message_set.create(message=_(u"Message successfully sent."))
+            if success_url is None:
+                success_url = reverse('messages.views.inbox')
             return HttpResponseRedirect(success_url)
     else:
         form = form_class({
@@ -122,7 +104,7 @@ def reply(request, message_id, form_class=ComposeForm, template_name='messages/c
     return render_to_response(template_name, {'form': form}, context_instance=RequestContext(request))
 
 @login_required        
-def delete(request, message_id, success_url='/messages/inbox/'):
+def delete(request, message_id, success_url=None):
     """
     Marks a message as deleted by sender or recipient. The message is not
     really removed from the database, because two users must delete a message
@@ -138,6 +120,8 @@ def delete(request, message_id, success_url='/messages/inbox/'):
     now = datetime.datetime.now()
     message = get_object_or_404(Message, id=message_id)
     deleted = False
+    if success_url is None:
+        success_url = reverse('messages.views.inbox')
     if request.GET.has_key('next'):
         success_url = request.GET['next']
     if message.sender == user:
@@ -148,12 +132,12 @@ def delete(request, message_id, success_url='/messages/inbox/'):
         deleted = True
     if deleted:
         message.save()
-        user.message_set.create(message="Message successfully deleted.")
+        user.message_set.create(message=_(u"Message successfully deleted."))
         return HttpResponseRedirect(success_url)
     raise Http404
 
 @login_required
-def undelete(request, message_id, success_url='/messages/inbox/'):
+def undelete(request, message_id, success_url=None):
     """
     Recovers a message from trash. This is achieved by removing the
     ``(sender|recipient)_deleted_at`` from the model.
@@ -161,6 +145,8 @@ def undelete(request, message_id, success_url='/messages/inbox/'):
     user = request.user
     message = get_object_or_404(Message, id=message_id)
     undeleted = False
+    if success_url is None:
+        success_url = reverse('messages.views.inbox')
     if request.GET.has_key('next'):
         success_url = request.GET['next']
     if message.sender == user:
@@ -171,7 +157,7 @@ def undelete(request, message_id, success_url='/messages/inbox/'):
         undeleted = True
     if undeleted:
         message.save()
-        user.message_set.create(message="Message successfully recovered.")
+        user.message_set.create(message=_(u"Message successfully recovered."))
         return HttpResponseRedirect(success_url)
     raise Http404
     

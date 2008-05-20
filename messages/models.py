@@ -1,9 +1,10 @@
 import datetime
 from django.dispatch import dispatcher
 from django.db import models
-from django.db.models import signals
+from django.db.models import signals, permalink
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 from messages.utils import new_message_email
 
 class HideDeletedQuerySet(QuerySet):
@@ -52,26 +53,28 @@ class Message(models.Model):
     """
     A private message from user to user
     """
-    subject = models.CharField(maxlength=120)
-    body = models.TextField()
-    sender = models.ForeignKey(User, related_name='sent_messages')
-    recipient = models.ForeignKey(User, related_name='received_messages', null=True,blank=True)
-    parent_msg = models.ForeignKey('self', related_name='next_messages', null=True,blank=True)
-    sent_at = models.DateTimeField(null=True,blank=True)
-    read_at = models.DateTimeField(null=True,blank=True)
-    replied_at = models.DateTimeField(null=True,blank=True)
-    sender_deleted_at = models.DateTimeField(null=True,blank=True)
-    recipient_deleted_at = models.DateTimeField(null=True,blank=True)
+    subject = models.CharField(_("Subject"), max_length=120)
+    body = models.TextField(_("Body"))
+    sender = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("Sender"))
+    recipient = models.ForeignKey(User, related_name='received_messages', null=True, blank=True, verbose_name=_("Recipient"))
+    parent_msg = models.ForeignKey('self', related_name='next_messages', null=True, blank=True, verbose_name=_("Parent message"))
+    sent_at = models.DateTimeField(_("sent at"), null=True, blank=True)
+    read_at = models.DateTimeField(_("read at"), null=True, blank=True)
+    replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
+    sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
+    recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
     
     objects = MessageManager()
     trash = models.Manager() #TODO: write a real trash manager
     
     def new(self):
+        """returns whether the recipient has read the message or not"""
         if self.read_at is not None:
             return False
         return True
         
     def replied(self):
+        """returns whether the recipient has written a reply to this message"""
         if self.replied_at is not None:
             return True
         return False
@@ -79,8 +82,9 @@ class Message(models.Model):
     def __str__(self):
         return "%s: %s " % (self.sender, self.subject)
     
+    @permalink
     def get_absolute_url(self):
-        return "/messages/view/%s/" % self.id
+        return ('messages.views.view', [self.id])
     
     def save(self):
         '''
@@ -101,5 +105,7 @@ class Message(models.Model):
         
     class Meta:
         ordering = ['-sent_at']
+        verbose_name = _("Message")
+        verbose_name_plural = _("Messages")
         
 #dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save) #only useable with trunk
