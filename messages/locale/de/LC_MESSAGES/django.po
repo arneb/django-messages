@@ -8,28 +8,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-04 13:30+0200\n"
+"POT-Creation-Date: 2008-05-29 00:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:7 models.py:59 templates/messages/outbox.html:7
+#: forms.py:17 models.py:59 templates/messages/outbox.html:7
 #: templates/messages/view.html:12
 msgid "Recipient"
 msgstr "Empfänger"
 
-#: forms.py:8 models.py:56 templates/messages/inbox.html:7
+#: forms.py:18 models.py:56 templates/messages/inbox.html:7
 #: templates/messages/outbox.html:7 templates/messages/trash.html:7
 #: templates/messages/view.html:6
 msgid "Subject"
 msgstr "Betreff"
 
-#: forms.py:9 models.py:57
+#: forms.py:19 models.py:57
 msgid "Body"
 msgstr "Inhalt"
+
+#: forms.py:26
+msgid "There is no user with this username."
+msgstr "Kein Benutzer mit diesem Namen gefunden."
+
+#: management.py:10
+msgid "Message Received"
+msgstr "Nachricht erhalten"
+
+#: management.py:10
+msgid "you have received a message"
+msgstr "Du hast eine Nachricht erhalten"
+
+#: management.py:11
+msgid "Message Sent"
+msgstr "Nachricht gesendet"
+
+#: management.py:11
+msgid "you have sent a message"
+msgstr "Du hast eine Nachricht gesendet"
+
+#: management.py:12
+msgid "Message Replied"
+msgstr "Nachricht beantwortet"
+
+#: management.py:12
+msgid "you have replied to a message"
+msgstr "Du hast eine Nachricht beantwortet"
+
+#: management.py:13
+msgid "Reply Received"
+msgstr "Antwort empfangen"
+
+#: management.py:13
+msgid "you have received a reply to a message"
+msgstr "Du hast eine Antwort auf eine Nachricht erhalten"
+
+#: management.py:14
+msgid "Message Deleted"
+msgstr "Nachricht gelöscht"
+
+#: management.py:14
+msgid "you have deleted a message"
+msgstr "Du hast eine Nachricht gelöscht"
+
+#: management.py:15
+msgid "Message Recovered"
+msgstr "Nachricht wiederhergestellt"
+
+#: management.py:15
+msgid "you have undelete a message"
+msgstr "Du hast eine Nachricht wiederhergestellt"
 
 #: models.py:58 templates/messages/inbox.html:7
 #: templates/messages/trash.html:7 templates/messages/view.html:8
@@ -60,29 +112,51 @@ msgstr "Absender hat gelöscht am"
 msgid "Recipient deleted at"
 msgstr "Empfänger hat gelöscht am"
 
-#: models.py:107
+#: models.py:99
 msgid "Message"
 msgstr "Nachricht"
 
-#: models.py:108
+#: models.py:100
 msgid "Messages"
 msgstr "Nachrichten"
 
-#: utils.py:18
+#: utils.py:25
 msgid "New Message:"
 msgstr "Neue Nachricht:"
 
-#: views.py:73 views.py:113
+#: views.py:82 views.py:114
 msgid "Message successfully sent."
 msgstr "Nachricht erfolgreich gesendet."
 
-#: views.py:151
+#: views.py:120
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+
+#: views.py:124
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Re: %(subject)s"
+
+#: views.py:160
 msgid "Message successfully deleted."
 msgstr "Nachricht erfolgreich gelöscht."
 
-#: views.py:174
+#: views.py:163
+#, python-format
+msgid "you have deleted the message %s."
+msgstr "Du hast die Nachricht %s wiederhergestellt."
+
+#: views.py:189
 msgid "Message successfully recovered."
 msgstr "Nachricht erfolgreich wiederhergestellt."
+
+#: views.py:192
+#, python-format
+msgid "you have recovered the message %s."
+msgstr "Du hast die Nachricht %s wiederhergestellt."
 
 #: templates/messages/base.html:8 templates/messages/inbox.html:4
 msgid "Inbox"
@@ -117,9 +191,19 @@ msgstr "Erhalten"
 msgid "Action"
 msgstr "Aktion"
 
+#: templates/messages/inbox.html:19 templates/messages/outbox.html:16
+#: templates/messages/trash.html:16 templates/messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr ""
+
 #: templates/messages/inbox.html:20 templates/messages/outbox.html:17
 msgid "delete"
 msgstr "löschen"
+
+#: templates/messages/new_message.html:4
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Gesendet von %(site_url)s"
 
 #: templates/messages/outbox.html:7
 msgid "Sent"
