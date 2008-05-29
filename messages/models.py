@@ -5,7 +5,6 @@ from django.db.models import signals
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from messages.utils import new_message_email
 
 class HideDeletedQuerySet(QuerySet):
     """
@@ -106,4 +105,11 @@ def inbox_count_for(user):
     """
     return Message.objects.filter(recipient=user, read_at__isnull=True).count()
 
-dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save)
+# fallback for email notification if django-notification could not be found
+try:
+    from notification import models as notification
+    from messages.utils import new_message_email
+
+    dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save)
+except ImportError:
+    pass
