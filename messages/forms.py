@@ -1,6 +1,6 @@
 import datetime
 import django.newforms as forms
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext_noop
 
 from django.contrib.auth.models import User
