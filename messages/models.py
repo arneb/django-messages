@@ -108,8 +108,6 @@ def inbox_count_for(user):
 # fallback for email notification if django-notification could not be found
 try:
     from notification import models as notification
-    from messages.utils import new_message_email
-
-    dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save)
 except ImportError:
-    pass
+    from messages.utils import new_message_email
+    dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save)
