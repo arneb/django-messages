@@ -90,9 +90,6 @@ class Message(models.Model):
             self.sent_at = datetime.datetime.now()
         super(Message, self).save() 
     
-    class Admin:
-        pass
-        
     class Meta:
         ordering = ['-sent_at']
         verbose_name = _("Message")
