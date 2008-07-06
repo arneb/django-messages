@@ -45,23 +45,19 @@ class ComposeForm(forms.Form):
         msg.save()
         if notification:
             if parent_msg is not None:
-                notification.send([sender], "messages_replied",
-                    ugettext_noop("you have replied to %(message)s from %(recipient)s."), {
-                        'message': parent_msg,
-                        'recipient': recipient,
-                        })
-                notification.send([recipient], "messages_reply_received",
-                    ugettext_noop("%(sender)s has sent you a reply to %(message)s."), {
-                        'sender': sender,
-                        'message': parent_msg,
-                        })
+                notification.send(sender, "messages_replied", {
+                    'message': parent_msg,
+                    'recipient': recipient,
+                })
+                notification.send(recipient, "messages_reply_received", {
+                    'sender': sender,
+                    'message': parent_msg,
+                })
             else:
-                notification.send([sender], "messages_sent",
-                    ugettext_noop("you have sent a message to %(recipient)s."), {
-                        'recipient': recipient,
-                        })
-                notification.send([recipient], "messages_received",
-                    ugettext_noop("you have received a message from %(sender)s."), {
-                        'sender': sender,
-                        })
+                notification.send(sender, "messages_sent", {
+                    'recipient': recipient,
+                })
+                notification.send(recipient, "messages_received", {
+                    'sender': sender,
+                })
         return msg
