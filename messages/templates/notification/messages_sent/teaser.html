@@ -1,0 +1,2 @@
+{% load i18n captureas_tag %}{% captureas recipient_url %}{% url profile_detail username=message.recipient.username %}{% endcaptureas %}
+{% blocktrans %}You have sent the message <a href="{{ message.get_absolute_url }}">{{ message }}</a> to <a href="{{ recipient_url }}">{{ message.recipient }}</a>.{% endblocktrans %}

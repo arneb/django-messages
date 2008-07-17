@@ -1,1 +1,1 @@
-{% load i18n %}{% blocktrans %}You have recovered the message "{{ message }}".{% endblocktrans %}
+{% load i18n %}{% blocktrans %}You have recovered the message '{{ message }}'.{% endblocktrans %}
