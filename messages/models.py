@@ -4,8 +4,7 @@ from django.db import models
 from django.db.models import signals
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
-from django.utils.translation import gettext_lazy as _
-from messages.utils import new_message_email
+from django.utils.translation import ugettext_lazy as _
 
 class HideDeletedQuerySet(QuerySet):
     """
@@ -53,7 +52,7 @@ class Message(models.Model):
     """
     A private message from user to user
     """
-    subject = models.CharField(_("Subject"), maxlength=120)
+    subject = models.CharField(_("Subject"), max_length=120)
     body = models.TextField(_("Body"))
     sender = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("Sender"))
     recipient = models.ForeignKey(User, related_name='received_messages', null=True, blank=True, verbose_name=_("Recipient"))
@@ -79,32 +78,33 @@ class Message(models.Model):
             return True
         return False
     
-    def __str__(self):
-        return "%s: %s " % (self.sender, self.subject)
+    def __unicode__(self):
+        return self.subject
     
     def get_absolute_url(self):
-        return "/messages/view/%s/" % self.id
+        return ('messages_detail', [self.id])
+    get_absolute_url = models.permalink(get_absolute_url)
     
     def save(self):
-        '''
-        workaround for django 0.96, if you use trunk delete the 1., 3. and last line
-        in this save() method and uncomment the last line in this file to use djangos
-        dispatcher framework for this.
-        '''
-        created = False
         if not self.id:
-            created = True
             self.sent_at = datetime.datetime.now()
         super(Message, self).save() 
-        new_message_email(self.__class__, self, signals.post_save, created=created)
-        
     
-    class Admin:
-        pass
-        
     class Meta:
         ordering = ['-sent_at']
         verbose_name = _("Message")
         verbose_name_plural = _("Messages")
         
-#dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save) #only useable with trunk
+def inbox_count_for(user):
+    """
+    returns the number of unread messages for the given user but does not
+    mark them seen
+    """
+    return Message.objects.filter(recipient=user, read_at__isnull=True).count()
+
+# fallback for email notification if django-notification could not be found
+try:
+    from notification import models as notification
+except ImportError:
+    from messages.utils import new_message_email
+    dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save)

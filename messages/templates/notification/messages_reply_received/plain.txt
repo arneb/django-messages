@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans %}{{ message.sender }} has sent you a reply to '{{ message.parent_msg }}'.{% endblocktrans %}

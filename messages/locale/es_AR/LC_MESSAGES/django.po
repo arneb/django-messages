@@ -1,14 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# django-messages in Spanish Argentina.
+# django-messages en Español Argentina.
+# Copyright (C) 2008
+# This file is distributed under the same license as the django-messages package.
+# Cecilia Lorena Puccinelli <ceciliapuccinelli@gmail.com>, 2008.
+# Juan José Conti <jjconti@gnu.org>, 2008.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 01:48+0200\n"
+"POT-Creation-Date: 2008-06-28 19:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,144 +18,145 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:19 models.py:59 templates/messages/outbox.html:7
+#: forms.py:19 models.py:58 templates/messages/outbox.html:7
 #: templates/messages/view.html:12
 msgid "Recipient"
-msgstr "Empfänger"
+msgstr "Destinatario"
 
-#: forms.py:20 models.py:56 templates/messages/inbox.html:7
+#: forms.py:20 models.py:55 templates/messages/inbox.html:7
 #: templates/messages/outbox.html:7 templates/messages/trash.html:7
 #: templates/messages/view.html:6
 msgid "Subject"
-msgstr "Betreff"
+msgstr "Asunto"
 
-#: forms.py:21 models.py:57
+#: forms.py:21 models.py:56
 msgid "Body"
-msgstr "Inhalt"
+msgstr "Cuerpo"
 
 #: forms.py:28
 msgid "There is no user with this username."
-msgstr "Kein Benutzer mit diesem Namen gefunden."
+msgstr "No hay ningún usuario con ese nombre."
 
 #: forms.py:49
 #, python-format
-msgid "you have replied to %s from %s."
-msgstr "Du hast auf %s von %s geantwortet."
+msgid "you have replied to %(message)s from %(recipient)s."
+msgstr "ha respondido a %(message)s de %(recipient)s."
 
-#: forms.py:53
+#: forms.py:54
 #, python-format
-msgid "%s has sent you a reply to %s."
-msgstr "%s hat dir eine Antwort auf %s gesendet."
+msgid "%(sender)s has sent you a reply to %(message)s."
+msgstr "%(sender)s le ha enviado una respuesta a %(message)s."
 
-#: forms.py:58
+#: forms.py:60
 #, python-format
-msgid "you have sent a message to %s."
-msgstr "Du hast eine Nachricht an %s gesendet."
+msgid "you have sent a message to %(recipient)s."
+msgstr "ha enviado un mensaje a %(recipient)s."
 
-#: forms.py:62
+#: forms.py:64
 #, python-format
-msgid "you have received a message from %s."
-msgstr "Du hast eine Nachricht von %s erhalten."
+msgid "you have received a message from %(sender)s."
+msgstr "ha recibido un mensaje de %(sender)s."
 
 #: management.py:10
 msgid "Message Received"
-msgstr "Nachricht erhalten"
+msgstr "Mensaje Recibido"
 
 #: management.py:10
 msgid "you have received a message"
-msgstr "Du hast eine Nachricht erhalten"
+msgstr "ha recibido un mensaje"
 
 #: management.py:11
 msgid "Message Sent"
-msgstr "Nachricht gesendet"
+msgstr "Mensaje Enviado"
 
 #: management.py:11
 msgid "you have sent a message"
-msgstr "Du hast eine Nachricht gesendet"
+msgstr "ha enviado un mensaje"
 
 #: management.py:12
 msgid "Message Replied"
-msgstr "Nachricht beantwortet"
+msgstr "Mensaje Respondido"
 
 #: management.py:12
 msgid "you have replied to a message"
-msgstr "Du hast eine Nachricht beantwortet"
+msgstr "ha respondido un mensaje"
 
 #: management.py:13
 msgid "Reply Received"
-msgstr "Antwort erhalten"
+msgstr "Respuesta Recibida"
 
 #: management.py:13
 msgid "you have received a reply to a message"
-msgstr "Du hast eine Antwort auf eine Nachricht erhalten"
+msgstr "ha recibido una respuesta a un mensaje"
 
 #: management.py:14
 msgid "Message Deleted"
-msgstr "Nachricht gelöscht"
+msgstr "Mensaje Eliminado"
 
 #: management.py:14
 msgid "you have deleted a message"
-msgstr "Du hast eine Nachricht gelöscht"
+msgstr "ha eliminado un mensaje"
 
 #: management.py:15
 msgid "Message Recovered"
-msgstr "Nachricht wiederhergestellt"
+msgstr "Mensaje Recuperado"
 
 #: management.py:15
 msgid "you have undelete a message"
-msgstr "Du hast eine Nachricht wiederhergestellt"
+msgstr "ha recuperado un mensaje"
 
-#: models.py:58 templates/messages/inbox.html:7
+#: models.py:57 templates/messages/inbox.html:7
 #: templates/messages/trash.html:7 templates/messages/view.html:8
 msgid "Sender"
-msgstr "Absender"
+msgstr "Emisor"
+
+#: models.py:59
+msgid "Parent message"
+msgstr "Mensaje padre"
 
 #: models.py:60
-msgid "Parent message"
-msgstr "Übergeordnete Nachricht"
+msgid "sent at"
+msgstr "enviado"
 
 #: models.py:61
-msgid "sent at"
-msgstr "gesendet am"
+msgid "read at"
+msgstr "leído"
 
 #: models.py:62
-msgid "read at"
-msgstr "gelesen am"
+msgid "replied at"
+msgstr "respondido"
 
 #: models.py:63
-msgid "replied at"
-msgstr "beantwortet am"
+msgid "Sender deleted at"
+msgstr "Emisor borrado"
 
 #: models.py:64
-msgid "Sender deleted at"
-msgstr "Absender hat gelöscht am"
-
-#: models.py:65
 msgid "Recipient deleted at"
-msgstr "Empfänger hat gelöscht am"
+msgstr "Destinatario borrado"
+
+#: models.py:98
+msgid "Message"
+msgstr "Mensaje"
 
 #: models.py:99
-msgid "Message"
-msgstr "Nachricht"
-
-#: models.py:100
 msgid "Messages"
-msgstr "Nachrichten"
+msgstr "Mensajes"
 
 #: utils.py:25
 msgid "New Message:"
-msgstr "Neue Nachricht:"
+msgstr "Mensaje Nuevo"
 
 #: views.py:82 views.py:114
 msgid "Message successfully sent."
-msgstr "Nachricht erfolgreich gesendet."
+msgstr "Se envió con éxito el mensaje."
 
 #: views.py:120
 #, python-format
 msgid ""
 "%(sender)s wrote:\n"
 "%(body)s"
-msgstr ""
+msgstr "%(sender)s escribió:\n"
+"%(body)s"
 
 #: views.py:124
 #, python-format
@@ -162,54 +165,54 @@ msgstr "Re: %(subject)s"
 
 #: views.py:160
 msgid "Message successfully deleted."
-msgstr "Nachricht erfolgreich gelöscht."
+msgstr "Se eliminó con éxito el mensaje."
 
 #: views.py:163
 #, python-format
-msgid "you have deleted the message %s."
-msgstr "Du hast die Nachricht %s gelöscht."
+msgid "you have deleted the message %(message)s."
+msgstr "ha eliminado el mensaje %(message)s."
 
-#: views.py:189
+#: views.py:190
 msgid "Message successfully recovered."
-msgstr "Nachricht erfolgreich wiederhergestellt."
+msgstr "Se recuperó con éxito el mensaje."
 
-#: views.py:192
+#: views.py:193
 #, python-format
-msgid "you have recovered the message %s."
-msgstr "Du hast die Nachricht %s wiederhergestellt."
+msgid "you have recovered the message %(message)s."
+msgstr "ha recuperado el mensaje %(message)s."
 
 #: templates/messages/base.html:8 templates/messages/inbox.html:4
 msgid "Inbox"
-msgstr "Posteingang"
+msgstr "Bandeja de entrada"
 
 #: templates/messages/base.html:9 templates/messages/outbox.html:4
 msgid "Sent Messages"
-msgstr "Gesendete Nachrichten"
+msgstr "Mensajes Enviados"
 
 #: templates/messages/base.html:10
 msgid "New Message"
-msgstr "Neue Nachricht"
+msgstr "Nuevo Mensaje"
 
 #: templates/messages/base.html:11
 msgid "Trash"
-msgstr "Papierkorb"
+msgstr "Papelera"
 
 #: templates/messages/compose.html:4
 msgid "Compose Message"
-msgstr "Nachricht verfassen"
+msgstr "Redactar Mensaje"
 
 #: templates/messages/compose.html:9
 msgid "Send"
-msgstr "Senden"
+msgstr "Enviar"
 
 #: templates/messages/inbox.html:7
 msgid "Received"
-msgstr "Erhalten"
+msgstr "Recibido"
 
 #: templates/messages/inbox.html:7 templates/messages/outbox.html:7
 #: templates/messages/trash.html:7
 msgid "Action"
-msgstr "Aktion"
+msgstr "Acción"
 
 #: templates/messages/inbox.html:19 templates/messages/outbox.html:16
 #: templates/messages/trash.html:16 templates/messages/view.html:11
@@ -218,45 +221,44 @@ msgstr ""
 
 #: templates/messages/inbox.html:20 templates/messages/outbox.html:17
 msgid "delete"
-msgstr "löschen"
+msgstr "eliminar"
 
 #: templates/messages/new_message.html:4
 #, python-format
 msgid "Sent from %(site_url)s"
-msgstr "Gesendet von %(site_url)s"
+msgstr "Enviado desde %(site_url)s"
 
 #: templates/messages/outbox.html:7
 msgid "Sent"
-msgstr "Gesendet"
+msgstr "Enviado"
 
 #: templates/messages/trash.html:4
 msgid "Deleted Messages"
-msgstr "Gelöschte Nachrichten"
+msgstr "Mensajes Eliminados"
 
 #: templates/messages/trash.html:7 templates/messages/view.html:10
 msgid "Date"
-msgstr "Datum"
+msgstr "Fecha"
 
 #: templates/messages/trash.html:17
 msgid "undelete"
-msgstr "wiederherstellen"
+msgstr "recuperar"
 
 #: templates/messages/trash.html:23
 msgid ""
 "Deleted Messages are removed from the trash at unregular intervals, don't "
 "rely on this feature for long-time storage."
 msgstr ""
-"Gelöschte Nachrichten werden in unregelmäßigen Intervallen entfernt, verlass "
-"dich nicht drauf, dass diese Nachrichten hier lange gespeichert werden."
-
+"Los Mensajes Eliminados son borrados de la Papelera a intérvalos irregulares,"
+"no se confíe en esta característica para almacenamiento a largo plazo."
 #: templates/messages/view.html:4
 msgid "View Message"
-msgstr "Nachrichtendetails"
+msgstr "Ver Mensaje"
 
 #: templates/messages/view.html:18
 msgid "Reply"
-msgstr "Antworten"
+msgstr "Responder"
 
 #: templates/messages/view.html:20
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Eliminar"

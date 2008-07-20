@@ -1,8 +1,14 @@
 from django.utils.text import wrap
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
 from django.template import Context, loader
 from django.conf import settings
 
+# favour django-mailer but fall back to django.core.mail
+try:
+    from mailer import send_mail
+except ImportError:
+    from django.core.mail import send_mail
 
 def format_quote(text):
     """
@@ -15,23 +21,25 @@ def format_quote(text):
         lines[i] = "> %s" % line
     return '\n'.join(lines)
     
-def new_message_email(sender, instance, signal, subject_prefix=_(u'New Message:'), template_name="mails/new_message.txt", *args, **kwargs):
+def new_message_email(sender, instance, signal, 
+        subject_prefix=_(u'New Message:'),
+        template_name="messages/new_message.html", *args, **kwargs):
     """
-    This function sends an email and is called via django's dispatcher framework.
+    This function sends an email and is called via Django's signal framework.
     Optional arguments:
         ``template_name``: the template to use
         ``subject_prefix``: prefix for the email subject.
     """
-    if 'created' in kwargs and kwargs['created']: #only works with django-trunk
+
+    if 'created' in kwargs and kwargs['created']:
         try:
-            from django.core.mail import send_mail
             current_domain = Site.objects.get_current().domain
             subject = "%s %s" % (subject_prefix, instance.subject)
-            message_template = loader.get_template(template_name)
-            message_context = Context({ 'site_url': 'http://%s/' % current_domain,
-                                        'message': instance })
-            message = message_template.render(message_context)
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [instance.recipient.email,])
+            message = render_to_string(template_name, {
+                'site_url': 'http://%s/' % current_domain,
+                'message': instance,
+            })
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL,
+                [instance.recipient.email,])
         except:
             pass
-    
