@@ -84,14 +84,9 @@ def compose(request, recipient=None, form_class=ComposeForm,
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
     else:
+        form = form_class()
         if recipient is not None:
-            form = form_class({
-                'body': " ",
-                'subject': " ",
-                'recipient': get_object_or_404(User, username=recipient)
-            })
-        else:
-            form = form_class()
+            form.fields['recipient'].initial = get_object_or_404(User, username=recipient)
     return render_to_response(template_name, {
         'form': form,
     }, context_instance=RequestContext(request))
