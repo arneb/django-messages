@@ -23,8 +23,7 @@ def inbox(request, template_name='messages/inbox.html'):
     Optional Arguments:
         ``template_name``: name of the template to use.
     """
-    user = request.user
-    message_list = user.received_messages.all()
+    message_list = Message.objects.inbox_for(request.user)
     return render_to_response(template_name, {
         'message_list': message_list,
     }, context_instance=RequestContext(request))
@@ -36,8 +35,7 @@ def outbox(request, template_name='messages/outbox.html'):
     Optional arguments:
         ``template_name``: name of the template to use.
     """
-    user = request.user
-    message_list = user.sent_messages.all()
+    message_list = Message.objects.outbox_for(request.user)
     return render_to_response(template_name, {
         'message_list': message_list,
     }, context_instance=RequestContext(request))
@@ -51,11 +49,7 @@ def trash(request, template_name='messages/trash.html'):
     Hint: A Cron-Job could periodicly clean up old messages, which are deleted
     by sender and recipient.
     """
-    user = request.user
-    message_list = Message.trash.filter(
-        recipient=user,
-        recipient_deleted_at__isnull=False
-    )
+    message_list = Message.objects.trash_for(request.user)
     return render_to_response(template_name, {
         'message_list': message_list,
     }, context_instance=RequestContext(request))

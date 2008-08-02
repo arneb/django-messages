@@ -6,46 +6,40 @@ from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-class HideDeletedQuerySet(QuerySet):
-    """
-    Subclasses the model manager's QuerySet to exclude deleted messages
-    Taken from: http://django-pm.googlecode.com/svn/trunk/myproject/pm/models.py
-    """
-    def _filter_or_exclude(self, mapper, *args, **kwargs):
-        if 'sender__pk' in kwargs:
-            kwargs['sender_deleted_at__isnull'] = True
-        if 'recipient__pk' in kwargs:
-            kwargs['recipient_deleted_at__isnull'] = True
-        return super(HideDeletedQuerySet, self)._filter_or_exclude(mapper, *args, **kwargs)
-
 class MessageManager(models.Manager):
-    """
-    Hides deleted Messages from sender or recipient.
-    Taken from: http://django-pm.googlecode.com/svn/trunk/myproject/pm/models.py
-    TODO: is this stuff really needed?
-    """
-    def get_accessor_name(self):
-        "Returns the messagebox related manager name"
-        if not hasattr(self, 'core_filters'):
-            raise AttributeError, "Method is only accessible through RelatedManager instances"
-        if self.core_filters.has_key('recipient__pk'):
-            return 'inbox'
-        elif self.core_filters.has_key('sender__pk'):
-            if self.model == Message:
-                return 'outbox'
-            else:
-                return 'drafts'
-        elif self.core_filters.has_key('previous_message__pk'):
-            return 'next_messages'
-        raise AttributeError, "Method not available for this RelatedManager"
-    
-    def get_query_set(self):
-        try:
-            self.get_accessor_name()
-            return HideDeletedQuerySet(self.model)
-        except AttributeError:
-            return QuerySet(self.model)
-            
+
+    def inbox_for(self, user):
+        """
+        Returns all messages that were received by the given user and are not
+        marked as deleted.
+        """
+        return self.filter(
+            recipient=user,
+            recipient_deleted_at__isnull=True,
+        )
+
+    def outbox_for(self, user):
+        """
+        Returns all messages that were sent by the given user and are not
+        marked as deleted.
+        """
+        return self.filter(
+            sender=user,
+            sender_deleted_at__isnull=True,
+        )
+
+    def trash_for(self, user):
+        """
+        Returns all messages that were either received or sent by the given
+        user and are marked as deleted.
+        """
+        return self.filter(
+            recipient=user,
+            recipient_deleted_at__isnull=False,
+        ) | self.filter(
+            sender=user,
+            sender_deleted_at__isnull=False,
+        )
 
 
 class Message(models.Model):
@@ -64,7 +58,6 @@ class Message(models.Model):
     recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
     
     objects = MessageManager()
-    trash = models.Manager() #TODO: write a real trash manager
     
     def new(self):
         """returns whether the recipient has read the message or not"""
