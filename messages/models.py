@@ -100,4 +100,4 @@ try:
     from notification import models as notification
 except ImportError:
     from messages.utils import new_message_email
-    dispatcher.connect(new_message_email, sender=Message, signal=signals.post_save)
+    signals.post_save.connect(new_message_email, sender=Message)
