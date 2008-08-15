@@ -37,10 +37,12 @@ def new_message_email(sender, instance, signal,
             current_domain = Site.objects.get_current().domain
             subject = subject_prefix % {'subject': instance.subject}
             message = render_to_string(template_name, {
-                'site_url': 'http://%s/' % current_domain,
+                'site_url': 'http://%s' % current_domain,
                 'message': instance,
             })
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL,
-                [instance.recipient.email,])
-        except:
-            pass
+            if instance.recipient.email != "":
+                send_mail(subject, message, settings.DEFAULT_FROM_EMAIL,
+                    [instance.recipient.email,])
+        except Exception, e:
+            #print e
+            pass #fail silently
