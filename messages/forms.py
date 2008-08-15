@@ -1,5 +1,6 @@
 import datetime
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext_noop
 
@@ -7,6 +8,8 @@ from django.contrib.auth.models import User
 
 try:
     from notification import models as notification
+    if not 'notification' in settings.INSTALLED_APPS:
+        raise ImportError
 except ImportError:
     notification = None
 
@@ -22,12 +25,6 @@ class ComposeForm(forms.Form):
     body = forms.CharField(label=_(u"Body"),
         widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
     
-    #def clean_recipient(self):
-    #    try:
-    #        User.objects.get(username__exact=self.cleaned_data['recipient'])
-    #    except User.DoesNotExist:
-    #        raise forms.ValidationError(_("There is no user with this username."))
-    #    return self.cleaned_data['recipient']
         
     def save(self, sender, parent_msg=None):
         recipients = self.cleaned_data['recipient']
@@ -50,8 +47,8 @@ class ComposeForm(forms.Form):
             if notification:
                 if parent_msg is not None:
                     notification.send([sender], "messages_replied", {'message': msg,})
-                    notification.send([recipient], "messages_reply_received", {'message': msg,})
+                    notification.send(recipients, "messages_reply_received", {'message': msg,})
                 else:
                     notification.send([sender], "messages_sent", {'message': msg,})
-                    notification.send([recipient], "messages_received", {'message': msg,})
+                    notification.send(recipients, "messages_received", {'message': msg,})
         return message_list

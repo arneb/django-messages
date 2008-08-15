@@ -1,5 +1,5 @@
 """
-Bases on http://www.djangosnippets.org/snippets/595/
+Based on http://www.djangosnippets.org/snippets/595/
 by sopelkin
 """
 

@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.conf import settings
 from django.db.models import signals
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
@@ -97,6 +98,8 @@ def inbox_count_for(user):
 # fallback for email notification if django-notification could not be found
 try:
     from notification import models as notification
+    if not 'notification' in settings.INSTALLED_APPS:
+        raise ImportError
 except ImportError:
     from messages.utils import new_message_email
     signals.post_save.connect(new_message_email, sender=Message)
