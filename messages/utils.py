@@ -2,6 +2,7 @@ from django.utils.text import wrap
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
 from django.template import Context, loader
+from django.template.loader import render_to_string
 from django.conf import settings
 
 # favour django-mailer but fall back to django.core.mail
@@ -22,7 +23,7 @@ def format_quote(text):
     return '\n'.join(lines)
     
 def new_message_email(sender, instance, signal, 
-        subject_prefix=_(u'New Message:'),
+        subject_prefix=_(u'New Message: %(subject)s'),
         template_name="messages/new_message.html", *args, **kwargs):
     """
     This function sends an email and is called via Django's signal framework.
@@ -34,7 +35,7 @@ def new_message_email(sender, instance, signal,
     if 'created' in kwargs and kwargs['created']:
         try:
             current_domain = Site.objects.get_current().domain
-            subject = "%s %s" % (subject_prefix, instance.subject)
+            subject = subject_prefix % {'subject': instance.subject}
             message = render_to_string(template_name, {
                 'site_url': 'http://%s/' % current_domain,
                 'message': instance,
