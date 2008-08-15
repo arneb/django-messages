@@ -3,15 +3,15 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext_noop
-
+from django.db.models import get_app
+from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth.models import User
 
 try:
-    from notification import models as notification
-    if not 'notification' in settings.INSTALLED_APPS:
-        raise ImportError
-except ImportError:
+    notification = get_app('notification')
+except ImproperlyConfigured:
     notification = None
+
 
 from messages.models import Message
 from messages.fields import CommaSeparatedUserField
