@@ -23,7 +23,7 @@ for dirpath, dirnames, filenames in os.walk('messages'):
             data_files.append(os.path.join(prefix, f))
 
 setup(name='messages',
-      version='0.2.5',
+      version='0.3',
       description='User-to-user messaging system for Django',
       author='Arne Brodowski',
       author_email='mail@arnebrodowski.de',

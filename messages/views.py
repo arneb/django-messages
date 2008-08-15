@@ -61,7 +61,8 @@ def compose(request, recipient=None, form_class=ComposeForm,
     Required Arguments: None
     Optional Arguments:
         ``recipient``: username of a `django.contrib.auth` User, who should
-                       receive the message
+                       receive the message, optionally multiple usernames
+                       could be separated by a '+'
         ``form_class``: the form-class to use
         ``template_name``: the template to use
         ``success_url``: where to redirect after successfull submission
@@ -79,7 +80,8 @@ def compose(request, recipient=None, form_class=ComposeForm,
     else:
         form = form_class()
         if recipient is not None:
-            form.fields['recipient'].initial = get_object_or_404(User, username=recipient)
+            recipients = [u for u in User.objects.filter(username__in=[r.strip().lower() for r in recipient.split('+')])]
+            form.fields['recipient'].initial = recipients
     return render_to_response(template_name, {
         'form': form,
     }, context_instance=RequestContext(request))
