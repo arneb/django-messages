@@ -3,7 +3,7 @@ from django.template import Library, Node
 class InboxOutput(Node):
     def render(self, context):
         user = context['user']
-        count = user.received_messages.filter(read_at__isnull=True).count()
+        count = user.received_messages.filter(read_at__isnull=True, recipient_deleted_at__isnull=True).count()
         return "%s" % (count)        
         
 def do_print_inbox_count(parser, token):
