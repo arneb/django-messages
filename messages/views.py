@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_noop
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ImproperlyConfigured
@@ -77,7 +77,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
         if form.is_valid():
             form.save(sender=request.user)
             request.user.message_set.create(
-                message= "%s" % _(u"Message successfully sent."))
+                message=_(u"Message successfully sent."))
             if success_url is None:
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
@@ -105,7 +105,7 @@ def reply(request, message_id, form_class=ComposeForm,
         if form.is_valid():
             form.save(sender=request.user, parent_msg=parent)
             request.user.message_set.create(
-                message="%s" % _(u"Message successfully sent."))
+                message=_(u"Message successfully sent."))
             if success_url is None:
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
@@ -151,7 +151,7 @@ def delete(request, message_id, success_url=None):
         deleted = True
     if deleted:
         message.save()
-        user.message_set.create(message="%s" % _(u"Message successfully deleted."))
+        user.message_set.create(message=_(u"Message successfully deleted."))
         if notification:
             notification.send([user], "messages_deleted", {'message': message,})
         return HttpResponseRedirect(success_url)
@@ -178,7 +178,7 @@ def undelete(request, message_id, success_url=None):
         undeleted = True
     if undeleted:
         message.save()
-        user.message_set.create(message="%s"%_(u"Message successfully recovered."))
+        user.message_set.create(message=_(u"Message successfully recovered."))
         if notification:
             notification.send([user], "messages_recovered", {'message': message,})
         return HttpResponseRedirect(success_url)
