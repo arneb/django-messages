@@ -2,7 +2,7 @@ To install it, run the following command inside this directory:
 
     python setup.py install
 
-Or if you'd prefer you can simply place the included ``dbtemplates``
+Or if you'd prefer you can simply place the included ``messages``
 directory somewhere on your Python path, or symlink to it from
 somewhere on your Python path; this is useful if you're working from a
 Subversion checkout.
