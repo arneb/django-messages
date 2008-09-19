@@ -31,10 +31,10 @@ class CommaSeparatedUserField(forms.Field):
         if isinstance(value, (list, tuple)):
             return value
         
-        names = set(value.lower().split(','))
-        names_set = set([name.strip().lower() for name in names])
+        names = set(value.split(','))
+        names_set = set([name.strip() for name in names])
         users = list(User.objects.filter(username__in=names_set))
-        unknown_names = names_set ^ set([user.username.lower() for user in users])
+        unknown_names = names_set ^ set([user.username for user in users])
         if unknown_names:
             raise forms.ValidationError(_(u"The following usernames are incorrect: %(users)s") % {'users': ', '.join(unknown_names)})
         
