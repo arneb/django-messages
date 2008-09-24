@@ -4,11 +4,14 @@ from django.contrib.sites.models import Site
 from django.template import Context, loader
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.db.models import get_app
+from django.core.exceptions import ImproperlyConfigured
 
 # favour django-mailer but fall back to django.core.mail
 try:
+    mailer = get_app("mailer")
     from mailer import send_mail
-except ImportError:
+except ImproperlyConfigured:
     from django.core.mail import send_mail
 
 def format_quote(text):
