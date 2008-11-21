@@ -1,6 +1,5 @@
-include README
+include AUTHORS
 include LICENSE
 include INSTALL
-include MANIFEST.in
-include messages/templates/messages/*.html
 recursive-include messages/locale *
+recursive-include messages/templates/ *
