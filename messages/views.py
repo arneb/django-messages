@@ -80,6 +80,8 @@ def compose(request, recipient=None, form_class=ComposeForm,
                 message=_(u"Message successfully sent."))
             if success_url is None:
                 success_url = reverse('messages_inbox')
+            if request.GET.has_key('next'):
+                success_url = request.GET['next']
             return HttpResponseRedirect(success_url)
     else:
         form = form_class()
