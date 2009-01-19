@@ -1,15 +1,9 @@
-import itertools
-from django.contrib import admin
-from django.utils.itercompat import is_iterable
-
 from django import forms
-from django.contrib import admin
-from django.db.models import get_app
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ImproperlyConfigured
+from django.contrib import admin
 from django.contrib.auth.models import User, Group
 
-from messages.models import Message 
+from messages.models import Message
 
 class MessageAdminForm(forms.ModelForm):
     """
