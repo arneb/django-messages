@@ -1,9 +1,8 @@
 import datetime
 from django.db import models
 from django.conf import settings
-from django.db.models import signals, get_app
+from django.db.models import signals
 from django.db.models.query import QuerySet
-from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
@@ -97,8 +96,6 @@ def inbox_count_for(user):
     return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()
 
 # fallback for email notification if django-notification could not be found
-try:
-    notification = get_app('notification')
-except ImproperlyConfigured:
+if "notification" not in settings.INSTALLED_APPS:
     from messages.utils import new_message_email
     signals.post_save.connect(new_message_email, sender=Message)

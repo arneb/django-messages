@@ -7,18 +7,16 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_noop
 from django.core.urlresolvers import reverse
-from django.core.exceptions import ImproperlyConfigured
-from django.db.models import get_app
+from django.conf import settings
 
 from messages.models import Message
 from messages.forms import ComposeForm
 from messages.utils import format_quote
 
-try:
-    notification = get_app('notification')
-except ImproperlyConfigured:
+if "notification" in settings.INSTALLED_APPS:
+    from notification import models as notification
+else:
     notification = None
-
 
 def inbox(request, template_name='messages/inbox.html'):
     """
