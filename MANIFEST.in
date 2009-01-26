@@ -1,5 +1,8 @@
 include AUTHORS
 include LICENSE
 include INSTALL
+include README
 recursive-include messages/locale *
 recursive-include messages/templates/ *
+include docs/*
+exclude docs/conf.py
