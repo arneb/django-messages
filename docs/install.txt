@@ -1,0 +1,90 @@
+.. _ref-messages-install:
+
+==========================
+Installing django-messages
+==========================
+
+Basically all you have to do is get the ``messages`` folder somewhere on the 
+Python path. There are multiple ways to achive this.
+
+Quickstart
+----------
+
+If you already downloaded the package change into the ``django-messages`` 
+directory and run::
+
+    python setup.py install
+
+Otherwise you will find more information in the remainder of this document.
+    
+Django-messages is available via PyPi, so the following command will download
+and install django-messages on your system in one step::
+
+    easy_install django-messages
+    
+If you prefer using pip, you may achieve the same result by running::
+
+    pip install django-messages
+
+
+Download
+---------
+
+You will always find and download the latest packaged version at: 
+http://code.google.com/p/django-messages/downloads/list
+
+If you prefer to use the current developement version to get earlier access to
+new features you can checkout the code from the SVN repository::
+
+    svn checkout http://django-messages.googlecode.com/svn/trunk/ django-messages
+    
+
+Install
+-------
+
+If you downloaded the tar-ball extract it with (change the version number if
+required)::
+
+    tar -xcvf django-messages-0.4.tar.gz
+
+After extracting the tar-ball or checking out the code from the repository, 
+change into the ``django-messages`` directory and install the code::
+
+    cd django-messages
+    python setup.py install
+    
+
+Manual Install
+--------------
+
+Instead of using ``setup.py install`` it is also possible to copy or symlink
+the ``messages`` folder inside the toplevel ``django-messages`` folder to 
+your Python path. This will be enough to make djano-messages available to your
+system.
+
+
+Dependencies
+------------
+
+Django-messages has no external dependencies except for Django. Starting with
+version 0.3 Django 1.0 or later is required. If you have to use Django 0.96.x
+you might still use version 0.2 (unsupported).
+
+Django-messages has some features which may use an external app if it is 
+present in the current Django project. Please note, that these apps have to
+be listed in ``INSTALLED_APPS`` to be used by django-messages.
+
+* If you use `django-notification`_ django-messages will use it for sending
+  notifications to users about new messages instead of using the built-in
+  mechanism
+  
+* If `django-mailer`_ is used the built-in messages sending code will use it
+  instead of the django built-in ``send_mail`` function.
+
+Please note that we try to support Python 2.4, but as we develop django-messages
+on Python 2.5 sometimes code might slip in which breaks Python 2.4 compatibility.
+This can be considered a bug and you can help us by reporting the incompytibility.
+
+
+.. _`django-notification`: http://code.google.com/p/django-notification/
+.. _`django-mailer`: http://code.google.com/p/django-mailer/

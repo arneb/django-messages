@@ -1,0 +1,50 @@
+=====================
+Using django-messages
+=====================
+
+To enable django-messages in your Django project make sure it is 
+:ref:`installed <ref-messages-install>`. You can check if django-messages was 
+successfully installed by opening a python shell and running::
+
+    >>> import messages
+    >>>
+    
+If no error occured, you can assumed that the app was installed correctly.
+
+
+Edit settings
+-------------
+
+The next step is to add ``messsages`` to the ``INSTALLED_APPS`` setting::
+
+    INSTALLED_APPS = (
+        ...
+        'messages',
+        ...
+    )
+
+
+Add urls
+--------
+
+To make django-messages available to your users you should include the 
+bunlded url-conf in your root url-conf. One example would be to edit
+your main ``urls.py`` and add a line like this::
+
+    urlpatterns = patterns(''
+        ...
+        (r'^messages/', include('messages.urls')),
+        ...
+    )
+    
+    
+Templates
+---------
+
+Django-messages provides some simple default templates which will get you
+started quick. The templates make the assumption that a base template with
+the name ``base.html`` exists which defines a block ``content`` and a block 
+``sidebar``. If this is not the case, or the template don't fit due to other
+concerns, it's very easy to provide to your own templates. Please see the
+:ref:`customization docs <ref-messages-customization>` fore more details.
+

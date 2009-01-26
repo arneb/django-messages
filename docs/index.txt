@@ -1,0 +1,26 @@
+===============
+django-messages
+===============
+
+``messages`` is a Django app which provides a user-to-user messaging system.
+Django-messages enables your users to send private messages to each other. It
+provides a basic set of functionality you would expect from such a system. 
+Every user has an inbox, an Outbox and a Trash. Messages can be composed and
+there is an easy url-based approach to preloading the compose-form with the
+recipient user, which makes it extremly easy to put "send xyz a message" links
+on profile pages.
+
+Currently django-messages comes with these translations:
+
+* de
+* fr
+* es_AR
+* pl
+* es
+* pt_BR
+
+.. toctree::
+
+    install
+    usage
+    customizing

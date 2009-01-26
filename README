@@ -1,4 +1,6 @@
 User-to-user messaging app for Django
 =====================================
 
-This is a basic messaging application for the django web-framework.
+This is a basic messaging application for the django web-framework, please
+see the /docs/ directory for more information. 
+

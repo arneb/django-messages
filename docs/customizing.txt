@@ -1,0 +1,98 @@
+.. _ref-messages-customization:
+
+===========================
+Customizing django-messages
+===========================
+
+There are multiple levels at which you can customize django-messages without
+altering the code directly. 
+
+
+Templates
+---------
+
+Django-messages comes with a set of built-in templates which you can use. 
+If these templates don't fit your project you can override any or all of them
+by putting files with the same filenames in one the directories listes in
+``TEMPLATES_DIRS`` in your ``settings.py``.
+
+Django-messages uses the following templates:
+
+* :file:`messages/base.html` - A base template from which all the following
+  templates inherit. Maybe it's enough to customize this template for your
+  project.
+* :file:`messages/compose.html` - This template is rendered, when a user 
+  composes a new messages.
+* :file:`messages/inbox.html` - This template lists the users inbox.
+* :file:`messages/new_messages.html` - This template is used to construct the
+  notification mail sent to a user, whenever a new message is received.
+* :file:`messages/outbox.html` - This template lists the users outbox aka sent 
+  messages.
+* :file:`messages/trash.html` - This template lists the users trash.
+* :file:`messages/view.html` - This template renders a single message with all
+  details.
+
+Additionally django-message provides a set of template for django-notification.
+These template can be found in :file:`messages/templates/notification/` and 
+can also be overwritten in one of your project's ``TEMPLATE_DIRS``.
+
+
+URL-conf
+--------
+
+If you want to further customize how django-messages works it is possible to
+write your own url-conf instead of including ``messages.urls`` in your
+root url-conf. This not only allows changing the url structure but also allows
+modifying the kwargs passed to the views and therefore modifying some behaviour.
+
+Please note: If you provide your own url-conf, or urlpatterns directly embedded
+in your root url-conf, you shouldn't include ``messages.urls``.
+
+Three common customizations are described in more detail below.
+
+ 
+Modifying template names
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+If overwriting templates in your project's ``TEMPLATE_DIRS`` does not provide
+enough freedom, you can change the names of the used templates by providing
+a `template_name` keyword argument to the views. Every view which renders a
+template accepts this keyword-argument.
+
+If you want to change the template the ``inbox`` view uses to ``my_inbox.html``
+instead of the default ``messages/inbox.html`` you can use this line in your
+own url-conf::
+
+    url(r'^inbox/$', inbox, {'template_name': 'my_inbox.html',}, name='messages_inbox'),
+    
+
+Modifying form classes
+~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to use your own form for composing messages, for example to add
+new features, you can simply pass the form-class to the views via kwargs. 
+Every view which renders a form accepts a `form_class` keyword argument to 
+specify the form-class.
+
+If you want to use Your own ``MyComposeForm`` you can pass it to the view by
+using a line like the following in your own url-conf::
+
+    from somewhere import MyComposeForm
+    ...
+    url(r'^compose/$', compose, {'form_class': MyComposeForm,}, name='messages_compose'),
+
+
+Modifying success urls
+~~~~~~~~~~~~~~~~~~~~~~
+
+All views, which will redirect the user after a successfull action accept a
+`success_url` keyword argument to specify the destination url. The ``delete``
+and ``undelete`` views will additionally check if a ``next`` parameter is
+provided in the querystring appended to the url.
+
+If you don't want to append the next target to the url, or want to change
+the redirecting behaviour of other views, you can pass a ``success_url``
+parameter in your own url-conf, for example like this::
+
+    url(r'^delete/(?P<message_id>[\d]+)/$', delete, {'success_url': '/profile/',}, name='messages_delete'),
+
