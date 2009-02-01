@@ -57,7 +57,7 @@ def trash(request, template_name='messages/trash.html'):
 trash = login_required(trash)
 
 def compose(request, recipient=None, form_class=ComposeForm,
-        template_name='messages/compose.html', success_url=None):
+        template_name='messages/compose.html', success_url=None, recipient_filter=None):
     """
     Displays and handles the ``form_class`` form to compose new messages.
     Required Arguments: None
@@ -71,7 +71,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
     """
     if request.method == "POST":
         sender = request.user
-        form = form_class(request.POST)
+        form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user)
             request.user.message_set.create(
@@ -92,7 +92,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
 compose = login_required(compose)
 
 def reply(request, message_id, form_class=ComposeForm,
-        template_name='messages/compose.html', success_url=None):
+        template_name='messages/compose.html', success_url=None, recipient_filter=None):
     """
     Prepares the ``form_class`` form for writing a reply to a given message
     (specified via ``message_id``). Uses the ``format_quote`` helper from
@@ -101,7 +101,7 @@ def reply(request, message_id, form_class=ComposeForm,
     parent = get_object_or_404(Message, id=message_id)
     if request.method == "POST":
         sender = request.user
-        form = form_class(request.POST)
+        form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user, parent_msg=parent)
             request.user.message_set.create(

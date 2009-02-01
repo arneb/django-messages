@@ -24,6 +24,11 @@ class CommaSeparatedUserInput(widgets.Input):
 class CommaSeparatedUserField(forms.Field):
     widget = CommaSeparatedUserInput
     
+    def __init__(self, *args, **kwargs):
+        recipient_filter = kwargs.pop('recipient_filter', None)
+        self._recipient_filter = recipient_filter
+        super(CommaSeparatedUserField, self).__init__(*args, **kwargs)
+        
     def clean(self, value):
         super(CommaSeparatedUserField, self).clean(value)
         if not value:
@@ -35,8 +40,17 @@ class CommaSeparatedUserField(forms.Field):
         names_set = set([name.strip() for name in names])
         users = list(User.objects.filter(username__in=names_set))
         unknown_names = names_set ^ set([user.username for user in users])
-        if unknown_names:
-            raise forms.ValidationError(_(u"The following usernames are incorrect: %(users)s") % {'users': ', '.join(unknown_names)})
+        
+        recipient_filter = self._recipient_filter
+        invalid_users = []
+        if recipient_filter is not None:
+            for r in users:
+                if recipient_filter(r) is False:
+                    users.remove(r)
+                    invalid_users.append(r.username)
+        
+        if unknown_names or invalid_users:
+            raise forms.ValidationError(_(u"The following usernames are incorrect: %(users)s") % {'users': ', '.join(list(unknown_names)+invalid_users)})
         
         return users
 
