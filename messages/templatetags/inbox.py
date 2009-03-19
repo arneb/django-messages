@@ -2,11 +2,9 @@ from django.template import Library, Node
 
 class InboxOutput(Node):
     def render(self, context):
-        try:
-            user = context['user']
-            count = user.received_messages.filter(read_at__isnull=True, recipient_deleted_at__isnull=True).count()
-        except (KeyError, AttributeError):
-            count = ''
+        user = context['user']
+        count = user.received_messages.filter(messagerecipient__read_at__isnull=True, messagerecipient__deleted_at__isnull=True).count()
+        print user.received_messages.filter(messagerecipient__read_at__isnull=True, messagerecipient__deleted_at__isnull=True)
         return "%s" % (count)        
         
 def do_print_inbox_count(parser, token):

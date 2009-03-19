@@ -9,7 +9,7 @@
     <tbody>
 {% for message in message_list %} 
     <tr>
-        <td>{{ message.recipient }}</td>
+        <td>{{ message.recipients.all|join:", " }}</td>
         <td>
         <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
         </td>

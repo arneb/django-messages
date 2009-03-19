@@ -7,16 +7,18 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_noop
 from django.core.urlresolvers import reverse
-from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+from django.db.models import get_app
 
 from messages.models import Message
 from messages.forms import ComposeForm
 from messages.utils import format_quote
 
-if "notification" in settings.INSTALLED_APPS:
-    from notification import models as notification
-else:
+try:
+    notification = get_app('notification')
+except ImproperlyConfigured:
     notification = None
+
 
 def inbox(request, template_name='messages/inbox.html'):
     """
@@ -56,6 +58,18 @@ def trash(request, template_name='messages/trash.html'):
     }, context_instance=RequestContext(request))
 trash = login_required(trash)
 
+def drafts(request, template_name='messages/drafts.html'):
+    """
+    Displays a list of saved drafts.
+    Option arguments:
+        ``template_name``: name of the template to use.
+    """
+    message_list = Message.objects.drafts_for(request.user)
+    return render_to_response(template_name, {
+        'message_list': message_list,
+    }, context_instance=RequestContext(request))
+drafts = login_required(drafts)
+
 def compose(request, recipient=None, form_class=ComposeForm,
         template_name='messages/compose.html', success_url=None, recipient_filter=None):
     """
@@ -73,9 +87,15 @@ def compose(request, recipient=None, form_class=ComposeForm,
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
-            form.save(sender=request.user)
-            request.user.message_set.create(
-                message=_(u"Message successfully sent."))
+            draft = request.POST.has_key('_draft')
+            form.save(sender=request.user, draft=draft)
+            if draft:
+                request.user.message_set.create(
+                    message=_(u'Message saved as draft.'))
+                
+            else:
+                request.user.message_set.create(
+                    message=_(u"Message successfully sent."))
             if success_url is None:
                 success_url = reverse('messages_inbox')
             if request.GET.has_key('next'):
@@ -103,7 +123,7 @@ def reply(request, message_id, form_class=ComposeForm,
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
-            form.save(sender=request.user, parent_msg=parent)
+            form.save(sender=request.user, parent_msg=parent, draft=request.POST.has_key('_draft'))
             request.user.message_set.create(
                 message=_(u"Message successfully sent."))
             if success_url is None:
@@ -146,8 +166,10 @@ def delete(request, message_id, success_url=None):
     if message.sender == user:
         message.sender_deleted_at = now
         deleted = True
-    if message.recipient == user:
-        message.recipient_deleted_at = now
+    if user in (message.recipients.all()):
+        mr = message.messagerecipient_set.get(user=user, message=message)
+        mr.deleted_at = now
+        mr.save()
         deleted = True
     if deleted:
         message.save()
@@ -173,8 +195,10 @@ def undelete(request, message_id, success_url=None):
     if message.sender == user:
         message.sender_deleted_at = None
         undeleted = True
-    if message.recipient == user:
-        message.recipient_deleted_at = None
+    if user in message.recipients.all():
+        mr = message.messagerecipient_set.get(user=user, message=message)
+        mr.deleted_at = None
+        mr.save()
         undeleted = True
     if undeleted:
         message.save()
@@ -197,12 +221,14 @@ def view(request, message_id, template_name='messages/view.html'):
     user = request.user
     now = datetime.datetime.now()
     message = get_object_or_404(Message, id=message_id)
-    if (message.sender != user) and (message.recipient != user):
+    if (message.sender != user) and (user not in message.recipients.all()):
         raise Http404
-    if message.read_at is None and message.recipient == user:
-        message.read_at = now
-        message.save()
+    mr = message.messagerecipient_set.get(message=message, user=user)
+    if mr.read_at is None:
+        mr.read_at = now
+        mr.save()    
     return render_to_response(template_name, {
         'message': message,
     }, context_instance=RequestContext(request))
 view = login_required(view)
+

@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 
-from messages.models import Message
+from messages.models import Message, MessageRecipient 
 
 class MessageAdminForm(forms.ModelForm):
     """
@@ -82,3 +82,4 @@ class MessageAdmin(admin.ModelAdmin):
             obj.save()
 
 admin.site.register(Message, MessageAdmin)
+admin.site.register(MessageRecipient)

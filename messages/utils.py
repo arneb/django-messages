@@ -6,10 +6,9 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 # favour django-mailer but fall back to django.core.mail
-
-if "mailer" in settings.INSTALLED_APPS:
+try:
     from mailer import send_mail
-else:
+except ImportError:
     from django.core.mail import send_mail
 
 def format_quote(text):

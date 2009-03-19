@@ -10,12 +10,21 @@
     <dt>{% trans "Date" %} </dt>
     <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
     <dt>{% trans "Recipient" %}</dt>
-    <dd>{{ message.recipient }}</dd>
+    <dd>{{ message.recipients.all|join:", " }}</dd>
 </dl>
 {{ message.body|linebreaksbr }}<br /><br />
 
 {% ifequal message.recipient user %}
 <a href="{% url messages_reply message.id %}">{% trans "Reply" %}</a>
+
+{% if message.get_next_by_sent_at %} 
+<a href="{% url messages_detail message.get_next_by_sent_at.id %}">next</a>
+{% endif %}
+{% if message.get_previous_by_sent_at %}  
+<a href="{% url messages_detail message.get_previous_by_sent_at.id %}">prev</a>
+{% endif %} 
+
 {% endifequal %}
 <a href="{% url messages_delete message.id %}">{% trans "Delete" %}</a>
 {% endblock %}
+ 
