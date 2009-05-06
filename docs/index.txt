@@ -18,6 +18,7 @@ Currently django-messages comes with these translations:
 * pl
 * es
 * pt_BR
+* ru_RU
 
 .. toctree::
 
