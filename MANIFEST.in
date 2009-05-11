@@ -2,7 +2,7 @@ include AUTHORS
 include LICENSE
 include INSTALL
 include README
-recursive-include messages/locale *
-recursive-include messages/templates/ *
+recursive-include messages/locale *.po *.mo
+recursive-include messages/templates *.html *.txt
 include docs/*
 exclude docs/conf.py

@@ -11,6 +11,13 @@ setup(
         'messages',
         'messages.templatetags',
     ),
+    package_data={
+        'messages': [
+            'templates/messages/*',
+            'templates/notification/*/*',
+            'locale/*/LC_MESSAGES/*',
+        ]
+    },
     classifiers=(
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
