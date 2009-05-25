@@ -15,7 +15,7 @@ If no error occured, you can assumed that the app was installed correctly.
 Edit settings
 -------------
 
-The next step is to add ``messsages`` to the ``INSTALLED_APPS`` setting::
+The next step is to add ``messages`` to the ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
         ...
