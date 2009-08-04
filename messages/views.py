@@ -99,6 +99,10 @@ def reply(request, message_id, form_class=ComposeForm,
     ``messages.utils`` to pre-format the quote.
     """
     parent = get_object_or_404(Message, id=message_id)
+    
+    if parent.sender != request.user and parent.recipient != request.user:
+        raise Http404
+    
     if request.method == "POST":
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
