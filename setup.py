@@ -7,6 +7,7 @@ setup(
     author='Arne Brodowski',
     author_email='mail@arnebrodowski.de',
     url='http://code.google.com/p/django-messages/',
+    download_url='http://code.google.com/p/django-messages/downloads/list',
     packages=(
         'messages',
         'messages.templatetags',
