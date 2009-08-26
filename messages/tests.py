@@ -32,15 +32,15 @@ class DeleteTestCase(TestCase):
         self.msg2.save()
                 
     def testBasic(self):
-        self.assertEquals(self.user1.sent_messages.count(), 1)
-        self.assertEquals(self.user1.sent_messages.all()[0].subject, 'Subject Text 2')
-        self.assertEquals(self.user2.received_messages.count(),1)
-        self.assertEquals(self.user2.received_messages.all()[0].subject, 'Subject Text 1')
+        self.assertEquals(Message.objects.outbox_for(self.user1).count(), 1)
+        self.assertEquals(Message.objects.outbox_for(self.user1)[0].subject, 'Subject Text 2')
+        self.assertEquals(Message.objects.inbox_for(self.user2).count(),1)
+        self.assertEquals(Message.objects.inbox_for(self.user2)[0].subject, 'Subject Text 1')
         #undelete
         self.msg1.sender_deleted_at = None
         self.msg2.recipient_deleted_at = None
         self.msg1.save()
         self.msg2.save()
-        self.assertEquals(self.user1.sent_messages.count(), 2)
-        self.assertEquals(self.user2.received_messages.count(),2)
+        self.assertEquals(Message.objects.outbox_for(self.user1).count(), 2)
+        self.assertEquals(Message.objects.inbox_for(self.user2).count(),2)
         
