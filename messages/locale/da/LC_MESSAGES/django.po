@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 23:37+0200\n"
+"POT-Creation-Date: 2009-09-11 12:31-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,7 +102,7 @@ msgid "Message Recovered"
 msgstr "Besked Genskabt"
 
 #: management.py:14
-msgid "you have undelete a message"
+msgid "you have undeleted a message"
 msgstr "du har genskabt en besked"
 
 #: models.py:51 templates/messages/inbox.html:7
@@ -266,35 +266,11 @@ msgstr "Læs Besked"
 msgid "Delete"
 msgstr "Slet"
 
-#: templates/notification/messages_deleted/full.txt:1
-#, fuzzy, python-format
-msgid "You have deleted the message '%(message)s'."
-msgstr "Du har slettet beskeden '%(message)s'."
-
 #: templates/notification/messages_deleted/notice.html:1
 #, python-format
 msgid ""
 "You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
 msgstr "Du har slettet beskeden <a href=\"%(message_url)s\">%(message)s</a>."
-
-#: templates/notification/messages_received/full.txt:1
-#, fuzzy, python-format
-msgid ""
-"%(message_sender)s has sent you a message:\n"
-"\n"
-"%(message)s\n"
-"\n"
-"%(message_body)s\n"
-"\n"
-"http://%(current_site)s%(message_url)s"
-msgstr ""
-"%(message_sender)s har sendt dig en besked:\n"
-"\n"
-"%(message)s\n"
-"\n"
-"%(message_body)s\n"
-"\n"
-"http://%(current_site)s%(message_url)s"
 
 #: templates/notification/messages_received/notice.html:2
 #, python-format
@@ -305,30 +281,11 @@ msgstr ""
 "Du har modtaget beskeden <a href=\"%(message_url)s\">%(message)s</a> fra %"
 "(message_sender)s."
 
-#: templates/notification/messages_received/short.txt:1
-#: templates/notification/messages_reply_received/short.txt:1
-#, python-format
-msgid "%(notice)s by %(message_sender)s"
-msgstr "%(notice)s af %(message_sender)s"
-
-#: templates/notification/messages_recovered/full.txt:1
-#, fuzzy, python-format
-msgid "You have recovered the message '%(message)s'."
-msgstr "Du har genskabt beskeden '%(message)s'."
-
 #: templates/notification/messages_recovered/notice.html:1
 #, python-format
 msgid ""
 "You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
-msgstr ""
-"Du har genskabt beskeden <a href=\"%(message_url)s\">%(message)s</a>."
-
-#: templates/notification/messages_replied/full.txt:1
-#, fuzzy, python-format
-msgid ""
-"You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
-msgstr ""
-"Du har besvaret '%(message_parent_msg)s' fra %(message_recipient)s."
+msgstr "Du har genskabt beskeden <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_replied/notice.html:2
 #, python-format
@@ -339,35 +296,11 @@ msgstr ""
 "Du har besvaret <a href=\"%(message_url)s\">%(message_parent_msg)s</a> fra %"
 "(message_recipient)s."
 
-#: templates/notification/messages_reply_received/full.txt:1
-#, python-format
-msgid ""
-"%(message_sender)s replied to '%(message_parent_msg)s':\n"
-"\n"
-"%(message)s\n"
-"\n"
-"%(message_body)s\n"
-"\n"
-"http://%(current_site)s%(message_url)s"
-msgstr ""
-"%(message_sender)s besvarede '%(message_parent_msg)s':\n"
-"\n"
-"%(message)s\n"
-"\n"
-"%(message_body)s\n"
-"\n"
-"http://%(current_site)s%(message_url)s"
-
 #: templates/notification/messages_reply_received/notice.html:2
 #, python-format
 msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
-msgstr "%(message_sender)s har sendt dig en besvarelse på %(message_parent_msg)s."
-
-
-#: templates/notification/messages_sent/full.txt:1
-#, fuzzy, python-format
-msgid "You have sent the message '%(message)s' to %(message_recipient)s."
-msgstr "Du har sendt beskeden '%(message)s' til %(message_recipient)s."
+msgstr ""
+"%(message_sender)s har sendt dig en besvarelse på %(message_parent_msg)s."
 
 #: templates/notification/messages_sent/notice.html:2
 #, python-format
@@ -377,3 +310,58 @@ msgid ""
 msgstr ""
 "Du har sendt beskeden <a href=\"%(message_url)s\">%(message)s</a> til %"
 "(message_recipient)s."
+
+#, fuzzy
+#~ msgid "You have deleted the message '%(message)s'."
+#~ msgstr "Du har slettet beskeden '%(message)s'."
+
+#, fuzzy
+#~ msgid ""
+#~ "%(message_sender)s has sent you a message:\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+#~ msgstr ""
+#~ "%(message_sender)s har sendt dig en besked:\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+
+#~ msgid "%(notice)s by %(message_sender)s"
+#~ msgstr "%(notice)s af %(message_sender)s"
+
+#, fuzzy
+#~ msgid "You have recovered the message '%(message)s'."
+#~ msgstr "Du har genskabt beskeden '%(message)s'."
+
+#, fuzzy
+#~ msgid ""
+#~ "You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
+#~ msgstr "Du har besvaret '%(message_parent_msg)s' fra %(message_recipient)s."
+
+#~ msgid ""
+#~ "%(message_sender)s replied to '%(message_parent_msg)s':\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+#~ msgstr ""
+#~ "%(message_sender)s besvarede '%(message_parent_msg)s':\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+
+#, fuzzy
+#~ msgid "You have sent the message '%(message)s' to %(message_recipient)s."
+#~ msgstr "Du har sendt beskeden '%(message)s' til %(message_recipient)s."

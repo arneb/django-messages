@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-28 19:15-0300\n"
+"POT-Creation-Date: 2009-09-11 12:31-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,170 +18,161 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:19 models.py:58 templates/messages/outbox.html:7
+#: admin.py:13 forms.py:20 models.py:52 templates/messages/outbox.html:7
 #: templates/messages/view.html:12
 msgid "Recipient"
 msgstr "Destinatario"
 
-#: forms.py:20 models.py:55 templates/messages/inbox.html:7
+#: admin.py:15
+msgid "group"
+msgstr ""
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr ""
+
+#: admin.py:23
+msgid "All users"
+msgstr ""
+
+#: admin.py:38 models.py:88
+msgid "Message"
+msgstr "Mensaje"
+
+#: admin.py:45
+#, fuzzy
+msgid "Date/time"
+msgstr "Fecha"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr ""
+
+#: forms.py:21 models.py:49 templates/messages/inbox.html:7
 #: templates/messages/outbox.html:7 templates/messages/trash.html:7
 #: templates/messages/view.html:6
 msgid "Subject"
 msgstr "Asunto"
 
-#: forms.py:21 models.py:56
+#: forms.py:22 models.py:50
 msgid "Body"
 msgstr "Cuerpo"
 
-#: forms.py:28
-msgid "There is no user with this username."
-msgstr "No hay ningún usuario con ese nombre."
-
-#: forms.py:49
-#, python-format
-msgid "you have replied to %(message)s from %(recipient)s."
-msgstr "ha respondido a %(message)s de %(recipient)s."
-
-#: forms.py:54
-#, python-format
-msgid "%(sender)s has sent you a reply to %(message)s."
-msgstr "%(sender)s le ha enviado una respuesta a %(message)s."
-
-#: forms.py:60
-#, python-format
-msgid "you have sent a message to %(recipient)s."
-msgstr "ha enviado un mensaje a %(recipient)s."
-
-#: forms.py:64
-#, python-format
-msgid "you have received a message from %(sender)s."
-msgstr "ha recibido un mensaje de %(sender)s."
-
-#: management.py:10
+#: management.py:9
 msgid "Message Received"
 msgstr "Mensaje Recibido"
 
-#: management.py:10
+#: management.py:9
 msgid "you have received a message"
 msgstr "ha recibido un mensaje"
 
-#: management.py:11
+#: management.py:10
 msgid "Message Sent"
 msgstr "Mensaje Enviado"
 
-#: management.py:11
+#: management.py:10
 msgid "you have sent a message"
 msgstr "ha enviado un mensaje"
 
-#: management.py:12
+#: management.py:11
 msgid "Message Replied"
 msgstr "Mensaje Respondido"
 
-#: management.py:12
+#: management.py:11
 msgid "you have replied to a message"
 msgstr "ha respondido un mensaje"
 
-#: management.py:13
+#: management.py:12
 msgid "Reply Received"
 msgstr "Respuesta Recibida"
 
-#: management.py:13
+#: management.py:12
 msgid "you have received a reply to a message"
 msgstr "ha recibido una respuesta a un mensaje"
 
-#: management.py:14
+#: management.py:13
 msgid "Message Deleted"
 msgstr "Mensaje Eliminado"
 
-#: management.py:14
+#: management.py:13
 msgid "you have deleted a message"
 msgstr "ha eliminado un mensaje"
 
-#: management.py:15
+#: management.py:14
 msgid "Message Recovered"
 msgstr "Mensaje Recuperado"
 
-#: management.py:15
-msgid "you have undelete a message"
+#: management.py:14
+msgid "you have undeleted a message"
 msgstr "ha recuperado un mensaje"
 
-#: models.py:57 templates/messages/inbox.html:7
+#: models.py:51 templates/messages/inbox.html:7
 #: templates/messages/trash.html:7 templates/messages/view.html:8
 msgid "Sender"
 msgstr "Emisor"
 
-#: models.py:59
+#: models.py:53
 msgid "Parent message"
 msgstr "Mensaje padre"
 
-#: models.py:60
+#: models.py:54
 msgid "sent at"
 msgstr "enviado"
 
-#: models.py:61
+#: models.py:55
 msgid "read at"
 msgstr "leído"
 
-#: models.py:62
+#: models.py:56
 msgid "replied at"
 msgstr "respondido"
 
-#: models.py:63
+#: models.py:57
 msgid "Sender deleted at"
 msgstr "Emisor borrado"
 
-#: models.py:64
+#: models.py:58
 msgid "Recipient deleted at"
 msgstr "Destinatario borrado"
 
-#: models.py:98
-msgid "Message"
-msgstr "Mensaje"
-
-#: models.py:99
+#: models.py:89
 msgid "Messages"
 msgstr "Mensajes"
 
-#: utils.py:25
-msgid "New Message:"
-msgstr "Mensaje Nuevo"
+#: utils.py:27
+#, fuzzy, python-format
+msgid "New Message: %(subject)s"
+msgstr "Re: %(subject)s"
 
-#: views.py:82 views.py:114
+#: views.py:78 views.py:112
 msgid "Message successfully sent."
 msgstr "Se envió con éxito el mensaje."
 
-#: views.py:120
+#: views.py:118
 #, python-format
 msgid ""
 "%(sender)s wrote:\n"
 "%(body)s"
-msgstr "%(sender)s escribió:\n"
+msgstr ""
+"%(sender)s escribió:\n"
 "%(body)s"
 
-#: views.py:124
+#: views.py:122
 #, python-format
 msgid "Re: %(subject)s"
 msgstr "Re: %(subject)s"
 
-#: views.py:160
+#: views.py:158
 msgid "Message successfully deleted."
 msgstr "Se eliminó con éxito el mensaje."
 
-#: views.py:163
-#, python-format
-msgid "you have deleted the message %(message)s."
-msgstr "ha eliminado el mensaje %(message)s."
-
-#: views.py:190
+#: views.py:185
 msgid "Message successfully recovered."
 msgstr "Se recuperó con éxito el mensaje."
 
-#: views.py:193
-#, python-format
-msgid "you have recovered the message %(message)s."
-msgstr "ha recuperado el mensaje %(message)s."
-
 #: templates/messages/base.html:8 templates/messages/inbox.html:4
+#: templates/messages/new_message.html:10
 msgid "Inbox"
 msgstr "Bandeja de entrada"
 
@@ -223,10 +214,23 @@ msgstr ""
 msgid "delete"
 msgstr "eliminar"
 
-#: templates/messages/new_message.html:4
+#: templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+
+#: templates/messages/new_message.html:9
 #, python-format
 msgid "Sent from %(site_url)s"
 msgstr "Enviado desde %(site_url)s"
+
+#: templates/messages/new_message.html:11 templates/messages/view.html:18
+msgid "Reply"
+msgstr "Responder"
 
 #: templates/messages/outbox.html:7
 msgid "Sent"
@@ -251,14 +255,58 @@ msgid ""
 msgstr ""
 "Los Mensajes Eliminados son borrados de la Papelera a intérvalos irregulares,"
 "no se confíe en esta característica para almacenamiento a largo plazo."
+
 #: templates/messages/view.html:4
 msgid "View Message"
 msgstr "Ver Mensaje"
 
-#: templates/messages/view.html:18
-msgid "Reply"
-msgstr "Responder"
-
 #: templates/messages/view.html:20
 msgid "Delete"
 msgstr "Eliminar"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, fuzzy, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "ha eliminado el mensaje %(message)s."
+
+#: templates/notification/messages_received/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr "ha recibido un mensaje de %(sender)s."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, fuzzy, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "ha recuperado el mensaje %(message)s."
+
+#: templates/notification/messages_replied/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr "ha respondido a %(message)s de %(recipient)s."
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, fuzzy, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr "%(sender)s le ha enviado una respuesta a %(message)s."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
+"(message_recipient)s."
+msgstr ""
+
+#~ msgid "There is no user with this username."
+#~ msgstr "No hay ningún usuario con ese nombre."
+
+#~ msgid "you have sent a message to %(recipient)s."
+#~ msgstr "ha enviado un mensaje a %(recipient)s."
+
+#~ msgid "New Message:"
+#~ msgstr "Mensaje Nuevo"
