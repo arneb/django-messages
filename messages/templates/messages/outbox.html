@@ -2,6 +2,7 @@
 {% load i18n %} 
 {% block content %} 
 <h1>{% trans "Sent Messages" %}</h1>
+{% if message_lisst %} 
 <table class="messages">
     <thead>
         <tr><th>{% trans "Recipient" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Sent" %}</th><th>{% trans "Action" %}</th></tr>
@@ -19,4 +20,7 @@
 {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>{% trans "No messages." %}</p>
+{% endif %}   
 {% endblock %}
