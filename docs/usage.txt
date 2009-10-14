@@ -74,10 +74,10 @@ use the bundled Context Processor to add the value to every Template Context
 instead of loading the Templatetag. Simply add the Context Processor to the
 TEMPLATE_CONTEXT_PROCESSORS settings in your settings.py::
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    ...
-    'messages.context_processors.inbox',
-)
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        'messages.context_processors.inbox',
+    )
 
 And now every Template Context will contain a variable named 
 ``messages_inbox_count``, if the user is logged in::
