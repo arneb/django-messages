@@ -1,3 +1,5 @@
+.. _ref-messages-usage:
+
 =====================
 Using django-messages
 =====================

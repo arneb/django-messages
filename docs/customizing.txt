@@ -63,7 +63,10 @@ If you want to change the template the ``inbox`` view uses to ``my_inbox.html``
 instead of the default ``messages/inbox.html`` you can use this line in your
 own url-conf::
 
-    url(r'^inbox/$', inbox, {'template_name': 'my_inbox.html',}, name='messages_inbox'),
+    url(r'^inbox/$', 
+        inbox, 
+        {'template_name': 'my_inbox.html',}, 
+        name='messages_inbox'),
     
 
 Modifying form classes
@@ -79,7 +82,10 @@ using a line like the following in your own url-conf::
 
     from somewhere import MyComposeForm
     ...
-    url(r'^compose/$', compose, {'form_class': MyComposeForm,}, name='messages_compose'),
+    url(r'^compose/$', 
+        compose, 
+        {'form_class': MyComposeForm,}, 
+        name='messages_compose'),
 
 
 Modifying success urls
@@ -94,5 +100,8 @@ If you don't want to append the next target to the url, or want to change
 the redirecting behaviour of other views, you can pass a ``success_url``
 parameter in your own url-conf, for example like this::
 
-    url(r'^delete/(?P<message_id>[\d]+)/$', delete, {'success_url': '/profile/',}, name='messages_delete'),
+    url(r'^delete/(?P<message_id>[\d]+)/$', 
+        delete, 
+        {'success_url': '/profile/',}, 
+        name='messages_delete'),
 

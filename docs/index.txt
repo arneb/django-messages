@@ -27,7 +27,8 @@ Contents
 --------
 
 .. toctree::
-
-    install
-    usage
-    customizing
+   :maxdepth: 2
+   
+   install
+   usage
+   customizing
