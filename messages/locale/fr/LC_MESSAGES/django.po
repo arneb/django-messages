@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
@@ -21,31 +21,9 @@ msgstr ""
 msgid "Recipient"
 msgstr "Destinataire"
 
-#: admin.py:15
-msgid "group"
-msgstr ""
-
-#: admin.py:16
-msgid "Creates the message optionally for all users or a group of users."
-msgstr ""
-
-#: admin.py:23
-msgid "All users"
-msgstr ""
-
 #: admin.py:38 models.py:88
 msgid "Message"
 msgstr "Message"
-
-#: admin.py:45
-#, fuzzy
-msgid "Date/time"
-msgstr "Date"
-
-#: fields.py:53
-#, python-format
-msgid "The following usernames are incorrect: %(users)s"
-msgstr ""
 
 #: forms.py:21 models.py:49 templates/messages/inbox.html:7
 #: templates/messages/outbox.html:7 templates/messages/trash.html:7
@@ -138,11 +116,6 @@ msgstr "Destinataire effacé à"
 msgid "Messages"
 msgstr "Messages"
 
-#: utils.py:27
-#, fuzzy, python-format
-msgid "New Message: %(subject)s"
-msgstr "Re: %(subject)s"
-
 #: views.py:78 views.py:112
 msgid "Message successfully sent."
 msgstr "Message envoyé avec succès."
@@ -212,15 +185,6 @@ msgstr "j F Y, G:i"
 msgid "delete"
 msgstr "effacer"
 
-#: templates/messages/new_message.html:1
-#, python-format
-msgid ""
-"Hello %(recipient)s,\n"
-"\n"
-"you received a private message from %(sender)s with\n"
-"the following contents:"
-msgstr ""
-
 #: templates/messages/new_message.html:9
 #, python-format
 msgid "Sent from %(site_url)s"
@@ -247,12 +211,8 @@ msgid "undelete"
 msgstr "restaurer"
 
 #: templates/messages/trash.html:23
-msgid ""
-"Deleted Messages are removed from the trash at unregular intervals, don't "
-"rely on this feature for long-time storage."
-msgstr ""
-"Les Messages Effacés sont enlevé de la poubelle a intervalles irréguliers, "
-"ne comptez pas sur cette fonctionnalité pour du stockage à long terme."
+msgid "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage."
+msgstr "Les Messages Effacés sont enlevé de la poubelle a intervalles irréguliers, ne comptez pas sur cette fonctionnalité pour du stockage à long terme."
 
 #: templates/messages/view.html:4
 msgid "View Message"
@@ -264,50 +224,72 @@ msgstr "Effacer"
 
 #: templates/notification/messages_deleted/notice.html:1
 #, python-format
-msgid ""
-"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
-msgstr ""
-"Vous avez effacé le message <a href=\"%(message_url)s\">%(message)s</a>."
-
-#: templates/notification/messages_received/notice.html:2
-#, fuzzy, python-format
-msgid ""
-"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
-"from %(message_sender)s."
-msgstr ""
-"Vous avez reçu le message '<a href=\"%(message_url)s\">%(message)s</a>' de "
-"<a href=\"%(sender_url)s\">%(message_sender)s</a>."
+msgid "You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Vous avez effacé le message <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_recovered/notice.html:1
-#, fuzzy, python-format
-msgid ""
-"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
-msgstr ""
-"vous avez récupéré le message '<a href=\"%(message_url)s\">%(message)s</a>'."
+#, python-format
+msgid "You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Vous avez récupéré le message <a href=\"%(message_url)s\">%(message)s</a>."
 
-#: templates/notification/messages_replied/notice.html:2
-#, fuzzy, python-format
-msgid ""
-"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
-"from %(message_recipient)s."
-msgstr ""
-"Vous avez répondu à '<a href=\"%(message_url)s\">%(message_parent_msg)s'</a> "
-"de <a href=\"%(recipient_url)s\">%(message_recipient)s</a>."
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid "You have received the message <a href=\"%(message_url)s\">%(message)s</a> from %(message_sender)s."
+msgstr "Vous avez reçu le message <a href=\"%(message_url)s\">%(message)s</a> de %(message_sender)s."
 
 #: templates/notification/messages_reply_received/notice.html:2
-#, fuzzy, python-format
+#, python-format
 msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
-msgstr ""
-"%(message_sender)s vous a envoyé une réponse à  '%(message_parent_msg)s'."
+msgstr "%(message_sender)s vous a envoyé une réponse à  %(message_parent_msg)s."
 
 #: templates/notification/messages_sent/notice.html:2
-#, fuzzy, python-format
+#, python-format
+msgid "You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %(message_recipient)s."
+msgstr "Vous avez envoyé le message <a href=\"%(message_url)s\">%(message)s</a> à %(message_recipient)s."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid "You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> from %(message_recipient)s."
+msgstr "Vous avez répondu à <a href=\"%(message_url)s\">%(message_parent_msg)s</a> de %(message_recipient)s."
+
+#: templates/messages/new_message.html:1
+#, python-format
 msgid ""
-"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
-"(message_recipient)s."
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
 msgstr ""
-"Vous avez envoyé un message <a href=\"%(message_url)s\">%(message)s</a> à <a "
-"href=\"%(recipient_url)s\">%(message_recipient)s</a>."
+"Bonjour %(recipient)s,\n"
+"\n"
+"vous avez reçu un message privé de %(sender)s avec\n"
+"le contenu suivant :"
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Créé le message en option pour tous les utilisateurs ou un groupe d'utilisateurs."
+
+#: admin.py:15
+msgid "group"
+msgstr "groupe"
+
+#: admin.py:23
+msgid "All users"
+msgstr "Tous les utilisateurs"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Les noms d'utilisateurs suivants sont incorrects : %(users)s"
+
+#: admin.py:45
+msgid "Date/time"
+msgstr "Date/heure"
+
+#: utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Nouveau message: %(subject)s"
 
 #~ msgid "There is no user with this username."
 #~ msgstr "Il n'y a pas d'utilisateur avec ce nom d'utilisateur."
@@ -324,17 +306,11 @@ msgstr ""
 #~ msgid "You have recovered the message '%(message)s'."
 #~ msgstr "vous avez récupéré le message '%(message)s'."
 
-#~ msgid ""
-#~ "You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
-#~ msgstr ""
-#~ "Vous avez répondu à  '%(message_parent_msg)s' de %(message_recipient)s."
+#~ msgid "You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
+#~ msgstr "Vous avez répondu à  '%(message_parent_msg)s' de %(message_recipient)s."
 
-#~ msgid ""
-#~ "<a href=\"%(sender_url)s\">%(message_sender)s</a> has sent you a reply to "
-#~ "'<a href=\"%(message_url)s\">%(message_parent_msg)s</a>'."
-#~ msgstr ""
-#~ "<a href=\"%(sender_url)s\">%(message_sender)s</a> vous a envoyé une "
-#~ "réponse à '<a href=\"%(message_url)s\">%(message_parent_msg)s</a>'."
+#~ msgid "<a href=\"%(sender_url)s\">%(message_sender)s</a> has sent you a reply to '<a href=\"%(message_url)s\">%(message_parent_msg)s</a>'."
+#~ msgstr "<a href=\"%(sender_url)s\">%(message_sender)s</a> vous a envoyé une réponse à '<a href=\"%(message_url)s\">%(message_parent_msg)s</a>'."
 
 #~ msgid "You have sent the message '%(message)s' to %(message_recipient)s."
 #~ msgstr "Vous avez envoyé le message '%(message)s' à %(message_recipient)s."
