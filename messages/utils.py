@@ -25,20 +25,25 @@ def format_quote(text):
     
 def new_message_email(sender, instance, signal, 
         subject_prefix=_(u'New Message: %(subject)s'),
-        template_name="messages/new_message.html", *args, **kwargs):
+        template_name="messages/new_message.html",
+        default_protocol=None,
+        *args, **kwargs):
     """
     This function sends an email and is called via Django's signal framework.
     Optional arguments:
         ``template_name``: the template to use
         ``subject_prefix``: prefix for the email subject.
+        ``default_protocol``: default protocol in site URL passed to template
     """
+    if default_protocol is None:
+        default_protocol = getattr(settings, 'DEFAULT_HTTP_PROTOCOL', 'http')
 
     if 'created' in kwargs and kwargs['created']:
         try:
             current_domain = Site.objects.get_current().domain
             subject = subject_prefix % {'subject': instance.subject}
             message = render_to_string(template_name, {
-                'site_url': 'http://%s' % current_domain,
+                'site_url': '%s://%s' % (default_protocol, current_domain),
                 'message': instance,
             })
             if instance.recipient.email != "":
