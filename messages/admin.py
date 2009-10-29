@@ -1,8 +1,14 @@
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 
+if "notification" in settings.INSTALLED_APPS:
+    from notification import models as notification
+else:
+    notification = None
+    
 from messages.models import Message
 
 class MessageAdminForm(forms.ModelForm):
@@ -64,6 +70,19 @@ class MessageAdmin(admin.ModelAdmin):
         the message is effectively resent to those users.
         """
         obj.save()
+        
+        if notification:
+            # Getting the appropriate notice labels for the sender and recipients.
+            if obj.parent_msg is None:
+                sender_label = 'messages_sent'
+                recipients_label = 'messages_received'
+            else:
+                sender_label = 'messages_replied'
+                recipients_label = 'messages_reply_received'
+                
+            # Notification for the sender.
+            notification.send([obj.sender], sender_label, {'message': obj,})
+
         if form.cleaned_data['group'] == 'all':
             # send to all users
             recipients = User.objects.exclude(pk=obj.recipient.pk)
@@ -81,4 +100,8 @@ class MessageAdmin(admin.ModelAdmin):
             obj.recipient = user
             obj.save()
 
+            if notification:
+                # Notification for the recipient.
+                notification.send([user], recipients_label, {'message' : obj,})
+            
 admin.site.register(Message, MessageAdmin)
