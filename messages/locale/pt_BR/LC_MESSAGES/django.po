@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Diego Martins <conchas@gmail.com>, 2009.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -21,26 +20,9 @@ msgstr ""
 msgid "Recipient"
 msgstr "Usuário"
 
-#: admin.py:15
-msgid "group"
-msgstr ""
-
-#: admin.py:16
-msgid "Creates the message optionally for all users or a group of users."
-msgstr ""
-
-#: admin.py:23
-msgid "All users"
-msgstr ""
-
 #: admin.py:38 models.py:88
 msgid "Message"
 msgstr "Mensagem"
-
-#: admin.py:45
-#, fuzzy
-msgid "Date/time"
-msgstr "Data"
 
 #: fields.py:53
 #, python-format
@@ -88,10 +70,6 @@ msgstr "Resposta Recebida"
 #: management.py:12
 msgid "you have received a reply to a message"
 msgstr "Você recebeu uma resposta de uma mensagem"
-
-#: management.py:13
-msgid "Message Deleted"
-msgstr ""
 
 #: management.py:13
 msgid "you have deleted a message"
@@ -251,12 +229,8 @@ msgid "undelete"
 msgstr "recuperar"
 
 #: templates/messages/trash.html:23
-msgid ""
-"Deleted Messages are removed from the trash at unregular intervals, don't "
-"rely on this feature for long-time storage."
-msgstr ""
-"Mensagens excluidas são removidas da lixeira em intervalos de tempo não "
-"regulares,não use a lixeira para armazenar mensagens por muito tempo."
+msgid "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage."
+msgstr "Mensagens excluidas são removidas da lixeira em intervalos de tempo não regulares,não use a lixeira para armazenar mensagens por muito tempo."
 
 #: templates/messages/view.html:4
 msgid "View Message"
@@ -268,33 +242,23 @@ msgstr "Excluir"
 
 #: templates/notification/messages_deleted/notice.html:1
 #, python-format
-msgid ""
-"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgid "You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
 msgstr "Você excluiu a mensagem <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_received/notice.html:2
 #, python-format
-msgid ""
-"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
-"from %(message_sender)s."
-msgstr ""
-"Você recebeu a mensagem <a href=\"%(message_url)s\">%(message)s</a> de %"
-"(message_sender)s."
+msgid "You have received the message <a href=\"%(message_url)s\">%(message)s</a> from %(message_sender)s."
+msgstr "Você recebeu a mensagem <a href=\"%(message_url)s\">%(message)s</a> de %(message_sender)s."
 
 #: templates/notification/messages_recovered/notice.html:1
 #, python-format
-msgid ""
-"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgid "You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
 msgstr "Você recuperou a mensagem <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_replied/notice.html:2
 #, python-format
-msgid ""
-"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
-"from %(message_recipient)s."
-msgstr ""
-"Você respondeu a mensagem  <a href=\"%(message_url)s\">%(message_parent_msg)"
-"s</a> de %(message_recipient)s."
+msgid "You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> from %(message_recipient)s."
+msgstr "Você respondeu a mensagem  <a href=\"%(message_url)s\">%(message_parent_msg)s</a> de %(message_recipient)s."
 
 #: templates/notification/messages_reply_received/notice.html:2
 #, python-format
@@ -303,9 +267,25 @@ msgstr "%(message_sender)s lhe enviou uma resposta a %(message_parent_msg)s."
 
 #: templates/notification/messages_sent/notice.html:2
 #, python-format
-msgid ""
-"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
-"(message_recipient)s."
-msgstr ""
-"Você enviou a mensagem <a href=\"%(message_url)s\">%(message)s</a> para %"
-"(message_recipient)s."
+msgid "You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %(message_recipient)s."
+msgstr "Você enviou a mensagem <a href=\"%(message_url)s\">%(message)s</a> para %(message_recipient)s."
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Cria a mensagem para todos os usuários ou para um grupo de usuários."
+
+#: admin.py:15
+msgid "group"
+msgstr "grupo"
+
+#: admin.py:23
+msgid "All users"
+msgstr "Todos os usuários"
+
+#: admin.py:45
+msgid "Date/time"
+msgstr "Data/Hora"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Mensagem excluída"
