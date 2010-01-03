@@ -213,6 +213,11 @@ msgstr "j. N Y, H:i"
 msgid "delete"
 msgstr "löschen"
 
+#: templates/messages/inbox.html:27 templates/messages/outbox.html:24
+#: templates/messages/trash.html:24
+msgid "No messages."
+msgstr "Keine Nachrichten."
+
 #: templates/messages/new_message.html:1
 #, python-format
 msgid ""
