@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -26,8 +26,7 @@ msgstr "ομάδα"
 
 #: admin.py:16
 msgid "Creates the message optionally for all users or a group of users."
-msgstr ""
-"Δημιουργεί το μήνυμα προαιρετικά για όλους τους χρήστες ή για ομάδα χρηστών."
+msgstr "Δημιουργεί το μήνυμα προαιρετικά για όλους τους χρήστες ή για ομάδα χρηστών."
 
 #: admin.py:23
 msgid "All users"
@@ -205,7 +204,7 @@ msgstr "Ενέργεια"
 #: templates/messages/inbox.html:19 templates/messages/outbox.html:16
 #: templates/messages/trash.html:16 templates/messages/view.html:11
 msgid "DATETIME_FORMAT"
-msgstr ""
+msgstr "DATETIME_FORMAT"
 
 #: templates/messages/inbox.html:20 templates/messages/outbox.html:17
 msgid "delete"
@@ -250,12 +249,8 @@ msgid "undelete"
 msgstr "ξεδιαγράψτε"
 
 #: templates/messages/trash.html:23
-msgid ""
-"Deleted Messages are removed from the trash at unregular intervals, don't "
-"rely on this feature for long-time storage."
-msgstr ""
-"Τα διαγραμμένα μηνύματα απομακρύνονται απο τα Άχρηστα σε μη τακτά "
-"διαστήματα, μη βασίζεστε σε αυτά για μακροχρόνια αποθήκευση."
+msgid "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage."
+msgstr "Τα διαγραμμένα μηνύματα απομακρύνονται απο τα Άχρηστα σε μη τακτά διαστήματα, μη βασίζεστε σε αυτά για μακροχρόνια αποθήκευση."
 
 #: templates/messages/view.html:4
 msgid "View Message"
@@ -267,45 +262,30 @@ msgstr "Διαγραφή"
 
 #: templates/notification/messages_deleted/notice.html:1
 #, python-format
-msgid ""
-"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgid "You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
 msgstr "Έχετε διαγράψει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_received/notice.html:2
 #, python-format
-msgid ""
-"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
-"from %(message_sender)s."
-msgstr ""
-"Έχετε λάβει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a> από τον/"
-"την %(message_sender)s."
+msgid "You have received the message <a href=\"%(message_url)s\">%(message)s</a> from %(message_sender)s."
+msgstr "Έχετε λάβει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a> από τον/την %(message_sender)s."
 
 #: templates/notification/messages_recovered/notice.html:1
 #, python-format
-msgid ""
-"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgid "You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
 msgstr "Έχετε ανακτήσει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_replied/notice.html:2
 #, python-format
-msgid ""
-"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
-"from %(message_recipient)s."
-msgstr ""
-"Έχετε απαντήσει στο <a href=\"%(message_url)s\">%(message_parent_msg)s</"
-"a>από τον/την  %(message_recipient)s."
+msgid "You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> from %(message_recipient)s."
+msgstr "Έχετε απαντήσει στο <a href=\"%(message_url)s\">%(message_parent_msg)s</a>από τον/την  %(message_recipient)s."
 
 #: templates/notification/messages_reply_received/notice.html:2
 #, python-format
 msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
-msgstr ""
-"Ο/η %(message_sender)s σας έστειλε μια απάντηση στο %(message_parent_msg)s."
+msgstr "Ο/η %(message_sender)s σας έστειλε μια απάντηση στο %(message_parent_msg)s."
 
 #: templates/notification/messages_sent/notice.html:2
 #, python-format
-msgid ""
-"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
-"(message_recipient)s."
-msgstr ""
-"Έχετε στείλει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a> στον/"
-"στην %(message_recipient)s."
+msgid "You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %(message_recipient)s."
+msgstr "Έχετε στείλει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a> στον/στην %(message_recipient)s."
