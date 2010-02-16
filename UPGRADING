@@ -1,0 +1,64 @@
+========================================
+Upgrading django-messages 0.4.x to 0.5.x
+========================================
+
+To Upgrade from django-messages 0.4.x to django-messages 0.5.x the following
+changes might be neccessary in your project.
+
+
+Settings
+--------
+
+To avoid name clashes with the new django.contrib.messages app (new in Django 1.2)
+the django-messages python module was renamed from ``messages`` to ``django_messages``.
+
+This makes a change of the INSTALLED_APPS setting neccessary:
+
+Old::
+
+    INSTALLED_APPS = (
+        ...
+        'messages',
+        ...
+    )
+    
+New::
+
+    INSTALLED_APPS = (
+        ...
+        'django_messages',
+        ...
+    )
+    
+If you are using the ``inbox`` context processor, the TEMPLATE_CONTEXT_PROCESSORS
+setting also needs to be changed:
+
+Old::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        'messages.context_processors.inbox',
+        ...
+    )
+    
+New::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        'django_messages.context_processors.inbox',
+        ...
+    )
+    
+
+Templates
+---------
+
+To keep the convention that a reuseable app should keep its templates in a 
+folder with the name of the app, all templates where moved from the folder
+``messages`` to the folder ``django_messages``. That means if you provided
+your own templates for django-messages, you should also move the directory from
+``messages`` to ``django_messages``. Example::
+
+    mv myproject/templates/messages myproject/templates/django_messages
+
+

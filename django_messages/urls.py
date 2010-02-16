@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import redirect_to
 
-from messages.views import *
+from django_messages.views import *
 
 urlpatterns = patterns('',
     url(r'^$', redirect_to, {'url': 'inbox/'}),

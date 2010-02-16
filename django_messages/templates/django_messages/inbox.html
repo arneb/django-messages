@@ -1,4 +1,4 @@
-{% extends "messages/base.html" %} 
+{% extends "django_messages/base.html" %} 
 {% load i18n %} 
 {% block content %}
 <h1>{% trans "Inbox" %}</h1>
@@ -18,7 +18,7 @@
             {% if message.replied %}</em>{% endif %}
             {% if message.new %}</strong>{% endif %}</td>
         <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-        <td><a href="{% url messages.views.delete message.id %}">{% trans "delete" %}</a></td>
+        <td><a href="{% url messages_delete message.id %}">{% trans "delete" %}</a></td>
     </tr>
 {% endfor %}
     </tbody>

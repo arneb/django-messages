@@ -9,16 +9,16 @@ from django.utils.translation import ugettext_noop
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-from messages.models import Message
-from messages.forms import ComposeForm
-from messages.utils import format_quote
+from django_messages.models import Message
+from django_messages.forms import ComposeForm
+from django_messages.utils import format_quote
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
 else:
     notification = None
 
-def inbox(request, template_name='messages/inbox.html'):
+def inbox(request, template_name='django_messages/inbox.html'):
     """
     Displays a list of received messages for the current user.
     Optional Arguments:
@@ -30,7 +30,7 @@ def inbox(request, template_name='messages/inbox.html'):
     }, context_instance=RequestContext(request))
 inbox = login_required(inbox)
 
-def outbox(request, template_name='messages/outbox.html'):
+def outbox(request, template_name='django_messages/outbox.html'):
     """
     Displays a list of sent messages by the current user.
     Optional arguments:
@@ -42,7 +42,7 @@ def outbox(request, template_name='messages/outbox.html'):
     }, context_instance=RequestContext(request))
 outbox = login_required(outbox)
 
-def trash(request, template_name='messages/trash.html'):
+def trash(request, template_name='django_messages/trash.html'):
     """
     Displays a list of deleted messages. 
     Optional arguments:
@@ -57,7 +57,7 @@ def trash(request, template_name='messages/trash.html'):
 trash = login_required(trash)
 
 def compose(request, recipient=None, form_class=ComposeForm,
-        template_name='messages/compose.html', success_url=None, recipient_filter=None):
+        template_name='django_messages/compose.html', success_url=None, recipient_filter=None):
     """
     Displays and handles the ``form_class`` form to compose new messages.
     Required Arguments: None
@@ -92,7 +92,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
 compose = login_required(compose)
 
 def reply(request, message_id, form_class=ComposeForm,
-        template_name='messages/compose.html', success_url=None, recipient_filter=None):
+        template_name='django_messages/compose.html', success_url=None, recipient_filter=None):
     """
     Prepares the ``form_class`` form for writing a reply to a given message
     (specified via ``message_id``). Uses the ``format_quote`` helper from
@@ -189,7 +189,7 @@ def undelete(request, message_id, success_url=None):
     raise Http404
 undelete = login_required(undelete)
 
-def view(request, message_id, template_name='messages/view.html'):
+def view(request, message_id, template_name='django_messages/view.html'):
     """
     Shows a single message.``message_id`` argument is required.
     The user is only allowed to see the message, if he is either 

@@ -1,8 +1,9 @@
-{% extends "messages/base.html" %} 
+{% extends "django_messages/base.html" %} 
 {% load i18n %} 
 {% block content %} 
 <h1>{% trans "Compose Message"%}</h1>
 <form action="" method="post">
+{% csrf_token %} 
 <table>
 {{ form.as_table }}
 </table>

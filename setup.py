@@ -2,19 +2,19 @@ from distutils.core import setup
 
 setup(
     name='django-messages',
-    version=__import__('messages').__version__,
+    version=__import__('django_messages').__version__,
     description='User-to-user messaging system for Django',
     author='Arne Brodowski',
     author_email='mail@arnebrodowski.de',
     url='http://code.google.com/p/django-messages/',
     download_url='http://code.google.com/p/django-messages/downloads/list',
     packages=(
-        'messages',
-        'messages.templatetags',
+        'django_messages',
+        'django_messages.templatetags',
     ),
     package_data={
-        'messages': [
-            'templates/messages/*',
+        'django_messages': [
+            'templates/django_messages/*',
             'templates/notification/*/*',
             'locale/*/LC_MESSAGES/*',
         ]
