@@ -78,10 +78,10 @@ class Message(models.Model):
         return ('messages_detail', [self.id])
     get_absolute_url = models.permalink(get_absolute_url)
     
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.id:
             self.sent_at = datetime.datetime.now()
-        super(Message, self).save(force_insert, force_update) 
+        super(Message, self).save(**kwargs) 
     
     class Meta:
         ordering = ['-sent_at']

@@ -92,11 +92,14 @@ def compose(request, recipient=None, form_class=ComposeForm,
 compose = login_required(compose)
 
 def reply(request, message_id, form_class=ComposeForm,
-        template_name='django_messages/compose.html', success_url=None, recipient_filter=None):
+        template_name='django_messages/compose.html', success_url=None, 
+        recipient_filter=None, quote_helper=format_quote):
     """
     Prepares the ``form_class`` form for writing a reply to a given message
     (specified via ``message_id``). Uses the ``format_quote`` helper from
-    ``messages.utils`` to pre-format the quote.
+    ``messages.utils`` to pre-format the quote. To change the quote format
+    assign a different ``quote_helper`` kwarg in your url-conf.
+    
     """
     parent = get_object_or_404(Message, id=message_id)
     
@@ -114,11 +117,8 @@ def reply(request, message_id, form_class=ComposeForm,
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
     else:
-        form = form_class({
-            'body': _(u"%(sender)s wrote:\n%(body)s") % {
-                'sender': parent.sender, 
-                'body': format_quote(parent.body)
-                }, 
+        form = form_class(initial={
+            'body': quote_helper(parent.sender, parent.body),
             'subject': _(u"Re: %(subject)s") % {'subject': parent.subject},
             'recipient': [parent.sender,]
             })
