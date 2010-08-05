@@ -4,7 +4,7 @@ from django.views.generic.simple import redirect_to
 from django_messages.views import *
 
 urlpatterns = patterns('',
-    url(r'^$', redirect_to, {'url': 'inbox/'}),
+    url(r'^$', redirect_to, {'url': 'inbox/'}, name='messages_redirect'),
     url(r'^inbox/$', inbox, name='messages_inbox'),
     url(r'^outbox/$', outbox, name='messages_outbox'),
     url(r'^compose/$', compose, name='messages_compose'),
