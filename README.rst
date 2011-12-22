@@ -25,10 +25,6 @@ Currently django-messages comes with these translations:
 * ar (thanks to speedy)
 * it (thanks to Sergio Morstabilini)
 
-If you want to add a translation or fix one of the current translations you 
-can easily do it via Transifex at: 
-http://www.transifex.net/projects/p/django-messages/c/trunk/
-
 
 Versions
 --------
