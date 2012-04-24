@@ -87,6 +87,7 @@ class Message(models.Model):
         ordering = ['-sent_at']
         verbose_name = _("Message")
         verbose_name_plural = _("Messages")
+        db_table = 'messages_message'
         
 def inbox_count_for(user):
     """
