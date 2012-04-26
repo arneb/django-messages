@@ -69,11 +69,11 @@ msgstr "쪽지에 답장을 받았습니다"
 
 #: management.py:13
 msgid "Message Deleted"
-msgstr "쪽지 삭제"
+msgstr "쪽지 지움"
 
 #: management.py:13
 msgid "you have deleted a message"
-msgstr "쪽지를 삭제하였습니다"
+msgstr "쪽지를 지웠습니다"
 
 #: management.py:14
 msgid "Message Recovered"
@@ -106,15 +106,15 @@ msgstr "답장 시각:"
 
 #: models.py:57
 msgid "Sender deleted at"
-msgstr "보낸이 삭제 시각:"
+msgstr "보낸이가 지운 시각:"
 
 #: models.py:58
 msgid "Recipient deleted at"
-msgstr "받는이 삭제 시각:"
+msgstr "받는이가 지운 시각:"
 
 #: models.py:89
 msgid "Messages"
-msgstr "Messages"
+msgstr "쪽지"
 
 #: views.py:78 views.py:112
 msgid "Message successfully sent."
@@ -136,11 +136,11 @@ msgstr "Re: %(subject)s"
 
 #: views.py:158
 msgid "Message successfully deleted."
-msgstr "쪽지를 삭제하였습니다."
+msgstr "쪽지를 지웠습니다."
 
 #: views.py:185
 msgid "Message successfully recovered."
-msgstr "쪽지를 복구하였습니다."
+msgstr "쪽지를 되살렸습니다."
 
 #: templates/messages/base.html:8 templates/messages/inbox.html:4
 #: templates/messages/new_message.html:10
@@ -179,7 +179,7 @@ msgstr "할일"
 #: templates/messages/inbox.html:19 templates/messages/outbox.html:16
 #: templates/messages/trash.html:16 templates/messages/view.html:11
 msgid "DATETIME_FORMAT"
-msgstr "j F Y, G:i"
+msgstr "Y-m-d G:i"
 
 #: templates/messages/inbox.html:20 templates/messages/outbox.html:17
 msgid "delete"
@@ -260,10 +260,9 @@ msgid ""
 "you received a private message from %(sender)s with\n"
 "the following contents:"
 msgstr ""
-"Bonjour %(recipient)s,\n"
+"%(recipient)s 님\n"
 "\n"
-"vous avez reçu un message privé de %(sender)s avec\n"
-"le contenu suivant :"
+"%(sender)s 님께 다음 내용으로 쪽지를 받았습니다:"
 
 #: admin.py:16
 msgid "Creates the message optionally for all users or a group of users."
@@ -280,7 +279,7 @@ msgstr "모든 사용자"
 #: fields.py:53
 #, python-format
 msgid "The following usernames are incorrect: %(users)s"
-msgstr "올바르지 않은 사용자 이름이 입력되었습니다: %(users)s"
+msgstr "올바르지 않은 사용자 이름을 입력하였습니다: %(users)s"
 
 #: admin.py:45
 msgid "Date/time"
