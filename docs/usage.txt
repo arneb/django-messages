@@ -8,7 +8,7 @@ To enable django-messages in your Django project make sure it is
 :ref:`installed <ref-messages-install>`. You can check if django-messages was 
 successfully installed by opening a python shell and running::
 
-    >>> import messages
+    >>> import django_messages
     >>>
     
 If no error occured, you can assumed that the app was installed correctly.
@@ -17,11 +17,11 @@ If no error occured, you can assumed that the app was installed correctly.
 Edit settings
 -------------
 
-The next step is to add ``messages`` to the ``INSTALLED_APPS`` setting::
+The next step is to add ``django_messages`` to the ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
         ...
-        'messages',
+        'django_messages',
         ...
     )
 
@@ -35,7 +35,7 @@ your main ``urls.py`` and add a line like this::
 
     urlpatterns = patterns(''
         ...
-        (r'^messages/', include('messages.urls')),
+        (r'^messages/', include('django_messages.urls')),
         ...
     )
     
@@ -78,7 +78,7 @@ TEMPLATE_CONTEXT_PROCESSORS settings in your settings.py::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...
-        'messages.context_processors.inbox',
+        'django_messages.context_processors.inbox',
     )
 
 And now every Template Context will contain a variable named 

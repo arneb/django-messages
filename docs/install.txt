@@ -34,9 +34,9 @@ You will always find and download the latest packaged version at:
 http://code.google.com/p/django-messages/downloads/list
 
 If you prefer to use the current developement version to get earlier access to
-new features you can checkout the code from the SVN repository::
+new features you can checkout the code from the GIT repository::
 
-    svn checkout http://django-messages.googlecode.com/svn/trunk/ django-messages
+    git clone https://github.com/arneb/django-messages.git
     
 
 Install
@@ -58,17 +58,17 @@ Manual Install
 --------------
 
 Instead of using ``setup.py install`` it is also possible to copy or symlink
-the ``messages`` folder inside the toplevel ``django-messages`` folder to 
-your Python path. This will be enough to make djano-messages available to your
-system.
+the ``django_messages`` folder inside the toplevel ``django-messages`` folder 
+to your Python path. This will be enough to make djano-messages available to 
+your system.
 
 
 Dependencies
 ------------
 
 Django-messages has no external dependencies except for Django. Starting with
-version 0.3 Django 1.0 or later is required. If you have to use Django 0.96.x
-you might still use version 0.2 (unsupported).
+version 0.4 Django 1.1 or later is required. Version 0.3 works with Django 1.0.
+If you have to use Django 0.96.x you might still use version 0.2 (unsupported).
 
 Django-messages has some features which may use an external app if it is 
 present in the current Django project. Please note, that these apps have to

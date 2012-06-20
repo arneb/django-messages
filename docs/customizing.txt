@@ -18,35 +18,36 @@ by putting files with the same filenames in one the directories listes in
 
 Django-messages uses the following templates:
 
-* :file:`messages/base.html` - A base template from which all the following
-  templates inherit. Maybe it's enough to customize this template for your
-  project.
-* :file:`messages/compose.html` - This template is rendered, when a user 
-  composes a new messages.
-* :file:`messages/inbox.html` - This template lists the users inbox.
-* :file:`messages/new_messages.html` - This template is used to construct the
-  notification mail sent to a user, whenever a new message is received.
-* :file:`messages/outbox.html` - This template lists the users outbox aka sent 
-  messages.
-* :file:`messages/trash.html` - This template lists the users trash.
-* :file:`messages/view.html` - This template renders a single message with all
-  details.
+* :file:`django_messages/base.html` - A base template from which all the 
+  following templates inherit. Maybe it's enough to customize this template 
+  for your project.
+* :file:`django_messages/compose.html` - This template is rendered, when a 
+  user composes a new messages.
+* :file:`django_messages/inbox.html` - This template lists the users inbox.
+* :file:`django_messages/new_messages.html` - This template is used to 
+  construct the notification mail sent to a user, whenever a new message is 
+  received.
+* :file:`django_messages/outbox.html` - This template lists the users outbox 
+  aka sent messages.
+* :file:`django_messages/trash.html` - This template lists the users trash.
+* :file:`django_messages/view.html` - This template renders a single message 
+  with all details.
 
 Additionally django-message provides a set of template for django-notification.
-These template can be found in :file:`messages/templates/notification/` and 
-can also be overwritten in one of your project's ``TEMPLATE_DIRS``.
+These template can be found in :file:`django_messages/templates/notification/` 
+and can also be overwritten in one of your project's ``TEMPLATE_DIRS``.
 
 
 URL-conf
 --------
 
 If you want to further customize how django-messages works it is possible to
-write your own url-conf instead of including ``messages.urls`` in your
+write your own url-conf instead of including ``django_messages.urls`` in your
 root url-conf. This not only allows changing the url structure but also allows
 modifying the kwargs passed to the views and therefore modifying some behaviour.
 
 Please note: If you provide your own url-conf, or urlpatterns directly embedded
-in your root url-conf, you shouldn't include ``messages.urls``.
+in your root url-conf, you shouldn't include ``django_messages.urls``.
 
 Three common customizations are described in more detail below.
 
@@ -60,8 +61,8 @@ a `template_name` keyword argument to the views. Every view which renders a
 template accepts this keyword-argument.
 
 If you want to change the template the ``inbox`` view uses to ``my_inbox.html``
-instead of the default ``messages/inbox.html`` you can use this line in your
-own url-conf::
+instead of the default ``django_messages/inbox.html`` you can use this line 
+in your own url-conf::
 
     url(r'^inbox/$', 
         inbox, 
