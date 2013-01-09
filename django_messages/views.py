@@ -13,6 +13,7 @@ from django.conf import settings
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote
+from django_messages import backend
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -63,9 +64,9 @@ def compose(request, recipient=None, form_class=ComposeForm,
     Displays and handles the ``form_class`` form to compose new messages.
     Required Arguments: None
     Optional Arguments:
-        ``recipient``: username of a `django.contrib.auth` User, who should
-                       receive the message, optionally multiple usernames
-                       could be separated by a '+'
+        ``recipient``: name of a user - username of `django.contrib.auth` User
+                       at default, who should receive the message, optionally
+                       multiple names could be separated by a '+'
         ``form_class``: the form-class to use
         ``template_name``: the template to use
         ``success_url``: where to redirect after successfull submission
@@ -84,7 +85,8 @@ def compose(request, recipient=None, form_class=ComposeForm,
     else:
         form = form_class()
         if recipient is not None:
-            recipients = [u for u in User.objects.filter(username__in=[r.strip() for r in recipient.split('+')])]
+            names = [r.strip() for r in recipient.split('+')]
+            recipients = backend.filter_users(names)
             form.fields['recipient'].initial = recipients
     return render_to_response(template_name, {
         'form': form,
