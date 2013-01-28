@@ -1,9 +1,15 @@
+import pkg_resources
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils import importlib
 
-VERSION = (0, 5, 0, 'pre')
-__version__ = '.'.join(map(str, VERSION))
+__version__ = pkg_resources.resource_string('django_messages', 'version.txt').strip()
+
+def _version_tuple(__version__):
+    versions = __version__.split('-')
+    numversions = map(int, versions[0].split('.'))
+    return tuple(numversions + versions[1:])
+VERSION = _version_tuple(__version__)
 
 BACKEND = getattr(settings, 'MESSAGES_BACKEND',
                   'django_messages.backends.username.UsernameBackend')
