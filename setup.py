@@ -1,8 +1,12 @@
 from distutils.core import setup
 
+def get_version():
+    with open('django_messages/version.txt') as f:
+        return f.read().strip()
+
 setup(
     name='django-messages',
-    version=__import__('django_messages').__version__,
+    version=get_version(),
     description='User-to-user messaging system for Django',
     long_description=open('README.rst').read(),
     author='Arne Brodowski',
@@ -12,9 +16,11 @@ setup(
     packages=(
         'django_messages',
         'django_messages.templatetags',
+        'django_messages.backends',
     ),
     package_data={
         'django_messages': [
+            'version.txt',
             'templates/django_messages/*',
             'templates/notification/*/*',
             'locale/*/LC_MESSAGES/*',

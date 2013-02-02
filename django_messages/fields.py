@@ -5,8 +5,8 @@ by sopelkin
 
 from django import forms
 from django.forms import widgets
-from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django_messages import backend
 
 
 class CommaSeparatedUserInput(widgets.Input):
@@ -16,7 +16,7 @@ class CommaSeparatedUserInput(widgets.Input):
         if value is None:
             value = ''
         elif isinstance(value, (list, tuple)):
-            value = (', '.join([user.username for user in value]))
+            value = (', '.join([backend.get_name(user) for user in value]))
         return super(CommaSeparatedUserInput, self).render(name, value, attrs)
         
 
@@ -38,8 +38,8 @@ class CommaSeparatedUserField(forms.Field):
         
         names = set(value.split(','))
         names_set = set([name.strip() for name in names if name.strip()])
-        users = list(User.objects.filter(username__in=names_set))
-        unknown_names = names_set ^ set([user.username for user in users])
+        users = backend.filter_users(names_set)
+        unknown_names = names_set ^ set([backend.get_name(user) for user in users])
         
         recipient_filter = self._recipient_filter
         invalid_users = []
@@ -47,7 +47,7 @@ class CommaSeparatedUserField(forms.Field):
             for r in users:
                 if recipient_filter(r) is False:
                     users.remove(r)
-                    invalid_users.append(r.username)
+                    invalid_users.append(backend.get_name(r))
         
         if unknown_names or invalid_users:
             raise forms.ValidationError(_(u"The following usernames are incorrect: %(users)s") % {'users': ', '.join(list(unknown_names)+invalid_users)})
