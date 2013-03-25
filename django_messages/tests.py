@@ -74,28 +74,28 @@ class IntegrationTestCase(TestCase):
         """ request the empty inbox """
         response = self.c.get(reverse('messages_inbox'))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.template[0].name, 'django_messages/inbox.html')
+        self.assertEquals(response.templates[0].name, 'django_messages/inbox.html')
         self.assertEquals(len(response.context['message_list']), 0)
     
     def testOutboxEmpty(self):
         """ request the empty outbox """
         response = self.c.get(reverse('messages_outbox'))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.template[0].name, 'django_messages/outbox.html')
+        self.assertEquals(response.templates[0].name, 'django_messages/outbox.html')
         self.assertEquals(len(response.context['message_list']), 0)
 
     def testTrashEmpty(self):
         """ request the empty trash """
         response = self.c.get(reverse('messages_trash'))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.template[0].name, 'django_messages/trash.html')
+        self.assertEquals(response.templates[0].name, 'django_messages/trash.html')
         self.assertEquals(len(response.context['message_list']), 0)
 
     def testCompose(self):
         """ compose a message step by step """
         response = self.c.get(reverse('messages_compose'))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.template[0].name, 'django_messages/compose.html')
+        self.assertEquals(response.templates[0].name, 'django_messages/compose.html')
         response = self.c.post(reverse('messages_compose'),
             {'recipient': self.T_USER_DATA[1]['username'],
              'subject': self.T_MESSAGE_DATA[0]['subject'],
@@ -120,14 +120,14 @@ class IntegrationTestCase(TestCase):
                      password=self.T_USER_DATA[1]['password'])
         response = self.c.get(reverse('messages_inbox'))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.template[0].name, 'django_messages/inbox.html')
+        self.assertEquals(response.templates[0].name, 'django_messages/inbox.html')
         self.assertEquals(len(response.context['message_list']), 1)
         pk = getattr(response.context['message_list'][0], 'pk')
         # reply to the first message
         response = self.c.get(reverse('messages_reply', 
             kwargs={'message_id':pk}))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.template[0].name, 'django_messages/compose.html')
+        self.assertEquals(response.templates[0].name, 'django_messages/compose.html')
         self.assertEquals(response.context['form'].initial['body'], 
                 format_quote(self.user_1, self.T_MESSAGE_DATA[0]['body']))
         self.assertEqual(response.context['form'].initial['subject'],
