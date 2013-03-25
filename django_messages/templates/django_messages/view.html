@@ -15,7 +15,7 @@
 {{ message.body|linebreaksbr }}<br /><br />
 
 {% ifequal message.recipient.pk user.pk %}
-<a href="{% url messages_reply message.id %}">{% trans "Reply" %}</a>
+<a href="{% url 'messages_reply' message.id %}">{% trans "Reply" %}</a>
 {% endifequal %}
-<a href="{% url messages_delete message.id %}">{% trans "Delete" %}</a>
+<a href="{% url 'messages_delete' message.id %}">{% trans "Delete" %}</a>
 {% endblock %}
