@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load url from future %}
 
-{% blocktrans with message.recipient.username as recipient and message.sender.username as sender%}Hello {{ recipient }},
+{% blocktrans with message.recipient.get_username as recipient and message.sender.get_username as sender%}Hello {{ recipient }},
 
 you received a private message from {{ sender }} with
 the following contents:{% endblocktrans %}
