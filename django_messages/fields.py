@@ -19,7 +19,7 @@ class CommaSeparatedUserInput(widgets.Input):
         if value is None:
             value = ''
         elif isinstance(value, (list, tuple)):
-            value = (', '.join([user.get_username() for user in value]))
+            value = (', '.join([getattr(user, get_username_field()) for user in value]))
         return super(CommaSeparatedUserInput, self).render(name, value, attrs)
         
 
@@ -42,7 +42,7 @@ class CommaSeparatedUserField(forms.Field):
         names = set(value.split(','))
         names_set = set([name.strip() for name in names if name.strip()])
         users = list(User.objects.filter(**{'%s__in' % get_username_field(): names_set}))
-        unknown_names = names_set ^ set([user.get_username() for user in users])
+        unknown_names = names_set ^ set([getattr(user, get_username_field()) for user in users])
         
         recipient_filter = self._recipient_filter
         invalid_users = []
@@ -50,7 +50,7 @@ class CommaSeparatedUserField(forms.Field):
             for r in users:
                 if recipient_filter(r) is False:
                     users.remove(r)
-                    invalid_users.append(r.get_username())
+                    invalid_users.append(getattr(r, get_username_field()))
         
         if unknown_names or invalid_users:
             raise forms.ValidationError(_(u"The following usernames are incorrect: %(users)s") % {'users': ', '.join(list(unknown_names)+invalid_users)})
