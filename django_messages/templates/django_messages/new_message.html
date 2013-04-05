@@ -1,9 +1,9 @@
 {% load i18n %}
 {% load url from future %}
 
-{% blocktrans with recipient=message.recipient.get_username sender=message.sender.get_username recipient_old=message.recipient.username sender_old=message.sender.username%}Hello {{ recipient }}{{ recipient_old }},
+{% blocktrans with recipient=message.recipient sender=message.sender %}Hello {{ recipient }},
 
-you received a private message from {{ sender }}{{sender_old}} with
+you received a private message from {{ sender }} with
 the following contents:{% endblocktrans %}
 
 {{ message.body|safe }}
