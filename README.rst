@@ -3,9 +3,9 @@ A user-to-user messaging system for Django
 ==========================================
 
 Django-messages enables your users to send private messages to each other. 
-It provides a basic set of functionality your would expect from such a system.
+It provides a basic set of functionality that you would expect from such a system.
 Every user has an Inbox, an Outbox and a Trash. Messages can be composed and 
-there is an easy url-based approach to preloading the compose-form with the 
+there is an easy, url-based approach to preloading the compose-form with the 
 recipient-user, which makes it extremly easy to put "send xyz a message" links 
 on a profile-page.
 
@@ -70,12 +70,12 @@ but the included ones are good enough for testing and getting started.
 Dependencies
 ------------
 
-Django-messages has no external dependencied except for django. But if 
-django-notification and/or django-mailer are found it will make use of them. 
+Django-messages has no external dependencies except for django. However, if 
+django-notification and/or django-mailer are found, it will make use of them. 
 Note: as of r65 django-messages will only use django-notification if 
-'notification' is also added to the INSTALLES_APPS setting. This has been 
+'notification' is also added to the INSTALLED_APPS setting. This has been 
 done to make situations possible where notification is on pythonpath but 
-should not be used, or where notification is an other python package as 
+should not be used, or where notification is another python package, such as 
 django-notification which has the same name.
 
 
