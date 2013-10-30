@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
+from django_messages import signals
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
@@ -74,8 +75,12 @@ def compose(request, recipient=None, form_class=ComposeForm,
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
-            form.save(sender=request.user)
+            msg_list = form.save(sender=request.user)
             messages.info(request, _(u"Message successfully sent."))
+
+            signals.message_sent.send(sender=sender,
+                                     msg_list=msg_list,
+                                     request=request)
             if success_url is None:
                 success_url = reverse('messages_inbox')
             if request.GET.has_key('next'):
@@ -110,8 +115,12 @@ def reply(request, message_id, form_class=ComposeForm,
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
-            form.save(sender=request.user, parent_msg=parent)
+            msg_list = form.save(sender=request.user, parent_msg=parent)
             messages.info(request, _(u"Message successfully sent."))
+
+            signals.message_replied.send(sender=sender,
+                                     msg_list=msg_list,
+                                     request=request)
             if success_url is None:
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
@@ -155,6 +164,11 @@ def delete(request, message_id, success_url=None):
     if deleted:
         message.save()
         messages.info(request, _(u"Message successfully deleted."))
+
+        signals.message_deleted.send(sender=message,
+                                    message=message,
+                                    request=request)
+
         if notification:
             notification.send([user], "messages_deleted", {'message': message,})
         return HttpResponseRedirect(success_url)
@@ -205,6 +219,9 @@ def view(request, message_id, template_name='django_messages/view.html'):
     if message.read_at is None and message.recipient == user:
         message.read_at = now
         message.save()
+        signals.message_read.send(sender=message,
+                                message=message,
+                                request=request)
     return render_to_response(template_name, {
         'message': message,
     }, context_instance=RequestContext(request))
