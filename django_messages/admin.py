@@ -18,15 +18,13 @@ class MessageAdminForm(forms.ModelForm):
     """
     Custom AdminForm to enable messages to groups and all users.
     """
-    recipient = forms.ModelChoiceField(
-        label=_('Recipient'), queryset=User.objects.all(), required=True)
-
     group = forms.ChoiceField(label=_('group'), required=False,
         help_text=_('Creates the message optionally for all users or a group of users.'))
 
     def __init__(self, *args, **kwargs):
         super(MessageAdminForm, self).__init__(*args, **kwargs)
         self.fields['group'].choices = self._get_group_choices()
+        self.fields['recipient'].required = True
 
     def _get_group_choices(self):
         return [('', u'---------'), ('all', _('All users'))] + \
@@ -62,6 +60,7 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ('subject', 'sender', 'recipient', 'sent_at', 'read_at')
     list_filter = ('sent_at', 'sender', 'recipient')
     search_fields = ('subject', 'body')
+    raw_id_fields = ('sender', 'recipient', 'parent_msg')
 
     def save_model(self, request, obj, form, change):
         """
