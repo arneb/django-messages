@@ -1,8 +1,8 @@
-import datetime
 from django.db import models
 from django.conf import settings
 from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -80,7 +80,7 @@ class Message(models.Model):
     
     def save(self, **kwargs):
         if not self.id:
-            self.sent_at = datetime.datetime.now()
+            self.sent_at = timezone.now()
         super(Message, self).save(**kwargs) 
     
     class Meta:

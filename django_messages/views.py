@@ -1,10 +1,10 @@
-import datetime
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
+from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
@@ -139,7 +139,7 @@ def delete(request, message_id, success_url=None):
     page (e.g. `/foo/bar/`) than ``success_url`` after deletion of the message.
     """
     user = request.user
-    now = datetime.datetime.now()
+    now = timezone.now()
     message = get_object_or_404(Message, id=message_id)
     deleted = False
     if success_url is None:
@@ -198,7 +198,7 @@ def view(request, message_id, template_name='django_messages/view.html'):
     ``read_at`` is set to the current datetime.
     """
     user = request.user
-    now = datetime.datetime.now()
+    now = timezone.now()
     message = get_object_or_404(Message, id=message_id)
     if (message.sender != user) and (message.recipient != user):
         raise Http404
