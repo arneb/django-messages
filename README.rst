@@ -31,14 +31,14 @@ Currently django-messages comes with these translations:
 Versions
 --------
 
-* The current trunk/head is compatible with Django 1.2; users of Django 1.1
-  should continue using messages-0.4.x; if you are upgrading from 0.4.x to trunk
-  please read the UPGRADING docs.
-* messages-0.4.x is compatible with Django 1.1 (and may work with Django 1.0).
-  The code is avaliable as a Branch.
-* messages-0.3 is compatible with Django 1.0, but no longer maintained
-* messages-0.2 is still compatible with Django 0.96.x, but not longer maintaned.
-  The code is avalibale as a Branch.
++-------+-------------------------------------------------------------------+
+| 0.5.x | compatible with Django 1.4, 1.5, 1.6 and 1.7 alpha; if you are    | 
+|       | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
++-------+-------------------------------------------------------------------+
+| 0.4.x | compatible with Django 1.1 (and may work with Django 1.0)         |
++-------+-------------------------------------------------------------------+
+| 0.3   | compatible with Django 1.0, but no longer maintained              |
++-------+-------------------------------------------------------------------+
 
 
 Documentation
