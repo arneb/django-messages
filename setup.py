@@ -8,7 +8,6 @@ setup(
     author='Arne Brodowski',
     author_email='mail@arnebrodowski.de',
     url='https://github.com/arneb/django-messages',
-    download_url='http://code.google.com/p/django-messages/downloads/list',
     packages=(
         'django_messages',
         'django_messages.templatetags',
