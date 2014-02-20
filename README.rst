@@ -46,7 +46,7 @@ Documentation
 
 The documentation is contained in the /docs/ directory and can be build with
 sphinx. A HTML version of the documentation is available at:
-http://files.arnebrodowski.de/software/django-messages/Documentation/
+http://django-messages.readthedocs.org
 
 
 Install
