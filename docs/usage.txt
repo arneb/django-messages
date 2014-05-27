@@ -11,7 +11,7 @@ successfully installed by opening a python shell and running::
     >>> import django_messages
     >>>
     
-If no error occured, you can assumed that the app was installed correctly.
+If no error occured, you can assume that the app was installed correctly.
 
 
 Edit settings
@@ -44,10 +44,10 @@ Templates
 ---------
 
 Django-messages provides some simple default templates which will get you
-started quick. The templates make the assumption that a base template with
+started quickly. The templates make the assumption that a base template with
 the name ``base.html`` exists which defines a block ``content`` and a block 
-``sidebar``. If this is not the case, or the template don't fit due to other
-concerns, it's very easy to provide to your own templates. Please see the
+``sidebar``. If this is not the case, or the template doesn't fit due to other
+concerns, it's very easy to provide your own templates. Please see the
 :ref:`customization docs <ref-messages-customization>` fore more details.
 
 
