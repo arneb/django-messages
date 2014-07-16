@@ -19,6 +19,7 @@ if "notification" in settings.INSTALLED_APPS:
 else:
     notification = None
 
+@login_required
 def inbox(request, template_name='django_messages/inbox.html'):
     """
     Displays a list of received messages for the current user.
@@ -29,8 +30,8 @@ def inbox(request, template_name='django_messages/inbox.html'):
     return render_to_response(template_name, {
         'message_list': message_list,
     }, context_instance=RequestContext(request))
-inbox = login_required(inbox)
 
+@login_required
 def outbox(request, template_name='django_messages/outbox.html'):
     """
     Displays a list of sent messages by the current user.
@@ -41,8 +42,8 @@ def outbox(request, template_name='django_messages/outbox.html'):
     return render_to_response(template_name, {
         'message_list': message_list,
     }, context_instance=RequestContext(request))
-outbox = login_required(outbox)
 
+@login_required
 def trash(request, template_name='django_messages/trash.html'):
     """
     Displays a list of deleted messages.
@@ -55,8 +56,8 @@ def trash(request, template_name='django_messages/trash.html'):
     return render_to_response(template_name, {
         'message_list': message_list,
     }, context_instance=RequestContext(request))
-trash = login_required(trash)
 
+@login_required
 def compose(request, recipient=None, form_class=ComposeForm,
         template_name='django_messages/compose.html', success_url=None, recipient_filter=None):
     """
@@ -89,8 +90,8 @@ def compose(request, recipient=None, form_class=ComposeForm,
     return render_to_response(template_name, {
         'form': form,
     }, context_instance=RequestContext(request))
-compose = login_required(compose)
 
+@login_required
 def reply(request, message_id, form_class=ComposeForm,
         template_name='django_messages/compose.html', success_url=None,
         recipient_filter=None, quote_helper=format_quote):
@@ -124,8 +125,8 @@ def reply(request, message_id, form_class=ComposeForm,
     return render_to_response(template_name, {
         'form': form,
     }, context_instance=RequestContext(request))
-reply = login_required(reply)
 
+@login_required
 def delete(request, message_id, success_url=None):
     """
     Marks a message as deleted by sender or recipient. The message is not
@@ -159,8 +160,8 @@ def delete(request, message_id, success_url=None):
             notification.send([user], "messages_deleted", {'message': message,})
         return HttpResponseRedirect(success_url)
     raise Http404
-delete = login_required(delete)
 
+@login_required
 def undelete(request, message_id, success_url=None):
     """
     Recovers a message from trash. This is achieved by removing the
@@ -186,8 +187,8 @@ def undelete(request, message_id, success_url=None):
             notification.send([user], "messages_recovered", {'message': message,})
         return HttpResponseRedirect(success_url)
     raise Http404
-undelete = login_required(undelete)
 
+@login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         template_name='django_messages/view.html'):
     """
@@ -219,4 +220,3 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         context['reply_form'] = form
     return render_to_response(template_name, context,
         context_instance=RequestContext(request))
-view = login_required(view)
