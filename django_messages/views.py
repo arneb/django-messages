@@ -188,7 +188,8 @@ def undelete(request, message_id, success_url=None):
     raise Http404
 undelete = login_required(undelete)
 
-def view(request, message_id, template_name='django_messages/view.html'):
+def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
+        template_name='django_messages/view.html'):
     """
     Shows a single message.``message_id`` argument is required.
     The user is only allowed to see the message, if he is either
@@ -196,6 +197,8 @@ def view(request, message_id, template_name='django_messages/view.html'):
     is raised.
     If the user is the recipient and the message is unread
     ``read_at`` is set to the current datetime.
+    If the user is the recipient a reply form will be added to the
+    tenplate context, otherwise 'reply_form' will be None.
     """
     user = request.user
     now = timezone.now()
@@ -205,7 +208,15 @@ def view(request, message_id, template_name='django_messages/view.html'):
     if message.read_at is None and message.recipient == user:
         message.read_at = now
         message.save()
-    return render_to_response(template_name, {
-        'message': message,
-    }, context_instance=RequestContext(request))
+
+    context = {'message': message, 'reply_form': None}
+    if message.recipient == user:
+        form = form_class(initial={
+            'body': quote_helper(message.sender, message.body),
+            'subject': _(u"Re: %(subject)s") % {'subject': message.subject},
+            'recipient': [message.sender,]
+            })
+        context['reply_form'] = form
+    return render_to_response(template_name, context,
+        context_instance=RequestContext(request))
 view = login_required(view)
