@@ -94,7 +94,8 @@ def compose(request, recipient=None, form_class=ComposeForm,
 @login_required
 def reply(request, message_id, form_class=ComposeForm,
         template_name='django_messages/compose.html', success_url=None,
-        recipient_filter=None, quote_helper=format_quote):
+        recipient_filter=None, quote_helper=format_quote,
+        subject_template=_(u"Re: %(subject)s"),):
     """
     Prepares the ``form_class`` form for writing a reply to a given message
     (specified via ``message_id``). Uses the ``format_quote`` helper from
@@ -119,7 +120,7 @@ def reply(request, message_id, form_class=ComposeForm,
     else:
         form = form_class(initial={
             'body': quote_helper(parent.sender, parent.body),
-            'subject': _(u"Re: %(subject)s") % {'subject': parent.subject},
+            'subject': subject_template % {'subject': parent.subject},
             'recipient': [parent.sender,]
             })
     return render_to_response(template_name, {
@@ -190,6 +191,7 @@ def undelete(request, message_id, success_url=None):
 
 @login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
+        subject_template=_(u"Re: %(subject)s"),
         template_name='django_messages/view.html'):
     """
     Shows a single message.``message_id`` argument is required.
@@ -214,7 +216,7 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
     if message.recipient == user:
         form = form_class(initial={
             'body': quote_helper(message.sender, message.body),
-            'subject': _(u"Re: %(subject)s") % {'subject': message.subject},
+            'subject': subject_template % {'subject': message.subject},
             'recipient': [message.sender,]
             })
         context['reply_form'] = form
