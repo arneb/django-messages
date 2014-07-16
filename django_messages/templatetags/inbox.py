@@ -34,7 +34,7 @@ def do_print_inbox_count(parser, token):
     bits = token.contents.split()
     if len(bits) > 1:
         if len(bits) != 3:
-            raise TemplateSyntaxError, "inbox_count tag takes either no arguments or exactly two arguments"
+            raise TemplateSyntaxError("inbox_count tag takes either no arguments or exactly two arguments")
         if bits[1] != 'as':
             raise TemplateSyntaxError, "first argument to inbox_count tag must be 'as'"
         return InboxOutput(bits[2])

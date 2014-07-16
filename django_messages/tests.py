@@ -15,14 +15,14 @@ class SendTestCase(TestCase):
         self.msg1.save()
         
     def testBasic(self):
-        self.assertEquals(self.msg1.sender, self.user1)
-        self.assertEquals(self.msg1.recipient, self.user2)
-        self.assertEquals(self.msg1.subject, 'Subject Text')
-        self.assertEquals(self.msg1.body, 'Body Text')
-        self.assertEquals(self.user1.sent_messages.count(), 1)
-        self.assertEquals(self.user1.received_messages.count(), 0)
-        self.assertEquals(self.user2.received_messages.count(), 1)
-        self.assertEquals(self.user2.sent_messages.count(), 0)
+        self.assertEqual(self.msg1.sender, self.user1)
+        self.assertEqual(self.msg1.recipient, self.user2)
+        self.assertEqual(self.msg1.subject, 'Subject Text')
+        self.assertEqual(self.msg1.body, 'Body Text')
+        self.assertEqual(self.user1.sent_messages.count(), 1)
+        self.assertEqual(self.user1.received_messages.count(), 0)
+        self.assertEqual(self.user2.received_messages.count(), 1)
+        self.assertEqual(self.user2.sent_messages.count(), 0)
         
 class DeleteTestCase(TestCase):
     def setUp(self):
@@ -36,17 +36,17 @@ class DeleteTestCase(TestCase):
         self.msg2.save()
                 
     def testBasic(self):
-        self.assertEquals(Message.objects.outbox_for(self.user1).count(), 1)
-        self.assertEquals(Message.objects.outbox_for(self.user1)[0].subject, 'Subject Text 2')
-        self.assertEquals(Message.objects.inbox_for(self.user2).count(),1)
-        self.assertEquals(Message.objects.inbox_for(self.user2)[0].subject, 'Subject Text 1')
+        self.assertEqual(Message.objects.outbox_for(self.user1).count(), 1)
+        self.assertEqual(Message.objects.outbox_for(self.user1)[0].subject, 'Subject Text 2')
+        self.assertEqual(Message.objects.inbox_for(self.user2).count(),1)
+        self.assertEqual(Message.objects.inbox_for(self.user2)[0].subject, 'Subject Text 1')
         #undelete
         self.msg1.sender_deleted_at = None
         self.msg2.recipient_deleted_at = None
         self.msg1.save()
         self.msg2.save()
-        self.assertEquals(Message.objects.outbox_for(self.user1).count(), 2)
-        self.assertEquals(Message.objects.inbox_for(self.user2).count(),2)
+        self.assertEqual(Message.objects.outbox_for(self.user1).count(), 2)
+        self.assertEqual(Message.objects.inbox_for(self.user2).count(),2)
 
 
 class IntegrationTestCase(TestCase):
@@ -73,40 +73,40 @@ class IntegrationTestCase(TestCase):
     def testInboxEmpty(self):
         """ request the empty inbox """
         response = self.c.get(reverse('messages_inbox'))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.templates[0].name, 'django_messages/inbox.html')
-        self.assertEquals(len(response.context['message_list']), 0)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.templates[0].name, 'django_messages/inbox.html')
+        self.assertEqual(len(response.context['message_list']), 0)
     
     def testOutboxEmpty(self):
         """ request the empty outbox """
         response = self.c.get(reverse('messages_outbox'))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.templates[0].name, 'django_messages/outbox.html')
-        self.assertEquals(len(response.context['message_list']), 0)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.templates[0].name, 'django_messages/outbox.html')
+        self.assertEqual(len(response.context['message_list']), 0)
 
     def testTrashEmpty(self):
         """ request the empty trash """
         response = self.c.get(reverse('messages_trash'))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.templates[0].name, 'django_messages/trash.html')
-        self.assertEquals(len(response.context['message_list']), 0)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.templates[0].name, 'django_messages/trash.html')
+        self.assertEqual(len(response.context['message_list']), 0)
 
     def testCompose(self):
         """ compose a message step by step """
         response = self.c.get(reverse('messages_compose'))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.templates[0].name, 'django_messages/compose.html')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.templates[0].name, 'django_messages/compose.html')
         response = self.c.post(reverse('messages_compose'),
             {'recipient': self.T_USER_DATA[1]['username'],
              'subject': self.T_MESSAGE_DATA[0]['subject'],
              'body': self.T_MESSAGE_DATA[0]['body']})
         # successfull sending should redirect to inbox
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response['Location'], "http://testserver%s"%reverse('messages_inbox'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], "http://testserver%s"%reverse('messages_inbox'))
         
         # make sure the message exists in the outbox after sending
         response = self.c.get(reverse('messages_outbox'))
-        self.assertEquals(len(response.context['message_list']), 1)
+        self.assertEqual(len(response.context['message_list']), 1)
 
     def testReply(self):
         """ test that user_2 can reply """
@@ -119,16 +119,16 @@ class IntegrationTestCase(TestCase):
         self.c.login(username=self.T_USER_DATA[1]['username'], 
                      password=self.T_USER_DATA[1]['password'])
         response = self.c.get(reverse('messages_inbox'))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.templates[0].name, 'django_messages/inbox.html')
-        self.assertEquals(len(response.context['message_list']), 1)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.templates[0].name, 'django_messages/inbox.html')
+        self.assertEqual(len(response.context['message_list']), 1)
         pk = getattr(response.context['message_list'][0], 'pk')
         # reply to the first message
         response = self.c.get(reverse('messages_reply', 
             kwargs={'message_id':pk}))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.templates[0].name, 'django_messages/compose.html')
-        self.assertEquals(response.context['form'].initial['body'], 
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.templates[0].name, 'django_messages/compose.html')
+        self.assertEqual(response.context['form'].initial['body'], 
                 format_quote(self.user_1, self.T_MESSAGE_DATA[0]['body']))
         self.assertEqual(response.context['form'].initial['subject'],
                 u"Re: %(subject)s"%{'subject': self.T_MESSAGE_DATA[0]['subject']})
@@ -137,9 +137,9 @@ class FormatTestCase(TestCase):
     """ some tests for helper functions """
     def testSubject(self):
         """ test that reply counting works as expected """
-        self.assertEquals(format_subject(u"foo bar"), u"Re: foo bar")
-        self.assertEquals(format_subject(u"Re: foo bar"), u"Re[2]: foo bar")
-        self.assertEquals(format_subject(u"Re[2]: foo bar"), u"Re[3]: foo bar")
-        self.assertEquals(format_subject(u"Re[10]: foo bar"), u"Re[11]: foo bar")
+        self.assertEqual(format_subject(u"foo bar"), u"Re: foo bar")
+        self.assertEqual(format_subject(u"Re: foo bar"), u"Re[2]: foo bar")
+        self.assertEqual(format_subject(u"Re[2]: foo bar"), u"Re[3]: foo bar")
+        self.assertEqual(format_subject(u"Re[10]: foo bar"), u"Re[11]: foo bar")
         
         
