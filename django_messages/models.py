@@ -1,10 +1,12 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.db.models import signals
-from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import ugettext_lazy as _
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
 
 class MessageManager(models.Manager):
 
@@ -42,6 +44,7 @@ class MessageManager(models.Manager):
         )
 
 
+@python_2_unicode_compatible
 class Message(models.Model):
     """
     A private message from user to user
@@ -56,38 +59,39 @@ class Message(models.Model):
     replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
     sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
     recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
-    
+
     objects = MessageManager()
-    
+
     def new(self):
         """returns whether the recipient has read the message or not"""
         if self.read_at is not None:
             return False
         return True
-        
+
     def replied(self):
         """returns whether the recipient has written a reply to this message"""
         if self.replied_at is not None:
             return True
         return False
-    
-    def __unicode__(self):
+
+    def __str__(self):
         return self.subject
-    
+
     def get_absolute_url(self):
         return ('messages_detail', [self.id])
     get_absolute_url = models.permalink(get_absolute_url)
-    
+
     def save(self, **kwargs):
         if not self.id:
             self.sent_at = timezone.now()
-        super(Message, self).save(**kwargs) 
-    
+        super(Message, self).save(**kwargs)
+
     class Meta:
         ordering = ['-sent_at']
         verbose_name = _("Message")
         verbose_name_plural = _("Messages")
-        
+
+
 def inbox_count_for(user):
     """
     returns the number of unread messages for the given user but does not
