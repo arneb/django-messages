@@ -11,6 +11,7 @@ setup(
     packages=(
         'django_messages',
         'django_messages.templatetags',
+        'django_messages.migrations',
     ),
     package_data={
         'django_messages': [
