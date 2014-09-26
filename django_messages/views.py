@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,8 @@ from django.conf import settings
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
+from . import signals
+
 
 User = get_user_model()
 
@@ -72,7 +74,6 @@ def compose(request, recipient=None, form_class=ComposeForm,
         ``success_url``: where to redirect after successfull submission
     """
     if request.method == "POST":
-        sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user)
@@ -127,6 +128,7 @@ def reply(request, message_id, form_class=ComposeForm,
         'form': form,
     }, context_instance=RequestContext(request))
 
+
 @login_required
 def delete(request, message_id, success_url=None):
     """
@@ -156,11 +158,13 @@ def delete(request, message_id, success_url=None):
         deleted = True
     if deleted:
         message.save()
+        signals.message_deleted.send(sender=delete, message=message, user=request.user)
         messages.info(request, _(u"Message successfully deleted."))
         if notification:
-            notification.send([user], "messages_deleted", {'message': message,})
+            notification.send([user], "messages_deleted", {'message': message})
         return HttpResponseRedirect(success_url)
     raise Http404
+
 
 @login_required
 def undelete(request, message_id, success_url=None):
@@ -183,16 +187,18 @@ def undelete(request, message_id, success_url=None):
         undeleted = True
     if undeleted:
         message.save()
+        signals.mesage_recovered.send(sender=undelete, message=message, user=request.user)
         messages.info(request, _(u"Message successfully recovered."))
         if notification:
-            notification.send([user], "messages_recovered", {'message': message,})
+            notification.send([user], "messages_recovered", {'message': message})
         return HttpResponseRedirect(success_url)
     raise Http404
 
+
 @login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
-        subject_template=_(u"Re: %(subject)s"),
-        template_name='django_messages/view.html'):
+         subject_template=_(u"Re: %(subject)s"),
+         template_name='django_messages/view.html'):
     """
     Shows a single message.``message_id`` argument is required.
     The user is only allowed to see the message, if he is either
@@ -217,11 +223,10 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         form = form_class(initial={
             'body': quote_helper(message.sender, message.body),
             'subject': subject_template % {'subject': message.subject},
-            'recipient': [message.sender,]
+            'recipient': [message.sender]
             })
         context['reply_form'] = form
-    return render_to_response(template_name, context,
-        context_instance=RequestContext(request))
+    return render(request, template_name, context)
 
 
 @login_required
@@ -241,6 +246,7 @@ def unread(request, message_id, success_url=None):
 
     message.read_at = None
     message.save()
+    signals.message_marked_as_unread.send(sender=unread, message=message, user=request.user)
     messages.info(request, _(u"Message successfully marked as unread."))
     if notification:
         notification.send([user], "messages_marked_unread", {'message': message})
@@ -271,6 +277,7 @@ def purge(request, message_id, success_url=None):
         message.delete()
     else:
         message.save()
+    signals.message_purge.send(sender=purge, message=message, user=request.user)
     messages.info(request, _(u"Message successfully purged."))
     if notification:
         notification.send([user], "messages_purged", {'message': message})
