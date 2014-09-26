@@ -38,14 +38,17 @@ class MessageManager(models.Manager):
         return self.filter(
             recipient=user,
             recipient_deleted_at__isnull=False,
+            purged_for_recipient=False,
         ) | self.filter(
             sender=user,
             sender_deleted_at__isnull=False,
+            purged_for_sender=False,
         )
 
 
 @python_2_unicode_compatible
 class Message(models.Model):
+
     """
     A private message from user to user
     """
@@ -59,6 +62,8 @@ class Message(models.Model):
     replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
     sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
     recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
+    purged_for_sender = models.BooleanField(_("Purged for sender"), default=False, db_index=True)
+    purged_for_recipient = models.BooleanField(_("Purged for recipient"), default=False, db_index=True)
 
     objects = MessageManager()
 

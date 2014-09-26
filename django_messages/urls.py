@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     url(r'^undelete/(?P<message_id>[\d]+)/$', undelete, name='messages_undelete'),
     url(r'^mark-unread/(?P<message_id>[\d]+)/$', unread, name='messages_mark_unread'),
     url(r'^trash/$', trash, name='messages_trash'),
+    url(r'^purge/(?P<message_id>[\d]+)/$', purge, name='messages_purge'),
 )

@@ -245,3 +245,33 @@ def unread(request, message_id, success_url=None):
     if notification:
         notification.send([user], "messages_marked_unread", {'message': message})
     return HttpResponseRedirect(success_url)
+
+
+@login_required
+def purge(request, message_id, success_url=None):
+    """
+    Purges a deleted message from database.
+    @type request: django.http.HttpRequest
+    @type success_url: mix
+    """
+    user = request.user
+    message = get_object_or_404(Message, id=message_id)
+
+    if success_url is None:
+        success_url = reverse('messages_trash')
+    if 'next' in request.GET:
+        success_url = request.GET['next']
+
+    if message.sender == request.user:
+        message.purged_for_sender = True
+    else:
+        message.purged_for_recipient = True
+
+    if message.purged_for_recipient and message.purged_for_sender:
+        message.delete()
+    else:
+        message.save()
+    messages.info(request, _(u"Message successfully purged."))
+    if notification:
+        notification.send([user], "messages_purged", {'message': message})
+    return HttpResponseRedirect(success_url)
