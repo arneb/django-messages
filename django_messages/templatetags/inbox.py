@@ -23,9 +23,9 @@ class InboxOutput(Node):
         try:
             user = context['user']
             messages = {
-                'inbox': user.received_messages.all(),
-                'outbox': user.sent_messages.all(),
-                'trash': user.received_messages.filter(recipient_deleted_at__isnull=False),
+                'inbox': user.received_messages.inbox_for(user),
+                'outbox': user.sent_messages.outbox_for(user),
+                'trash': user.received_messages.trash_for(user) | user.sent_messages.trash_for(user),
             }.get(self.box, 'inbox')
 
             if self.only_new:
