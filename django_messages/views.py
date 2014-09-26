@@ -222,3 +222,26 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         context['reply_form'] = form
     return render_to_response(template_name, context,
         context_instance=RequestContext(request))
+
+
+@login_required
+def unread(request, message_id, success_url=None):
+    """
+    Sets a message's state as unread.
+    @type request: django.http.HttpRequest
+    @type success_url: mix
+    """
+    user = request.user
+    message = get_object_or_404(Message, id=message_id)
+
+    if success_url is None:
+        success_url = reverse('messages_inbox')
+    if 'next' in request.GET:
+        success_url = request.GET['next']
+
+    message.read_at = None
+    message.save()
+    messages.info(request, _(u"Message successfully marked as unread."))
+    if notification:
+        notification.send([user], "messages_marked_unread", {'message': message})
+    return HttpResponseRedirect(success_url)

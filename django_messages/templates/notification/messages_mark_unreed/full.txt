@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans %}You have marked the message as unread '{{ message }}'.{% endblocktrans %}
