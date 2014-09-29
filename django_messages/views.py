@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils import timezone
 from django.core.urlresolvers import reverse
-from django.conf import settings
 
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
@@ -16,10 +15,6 @@ from . import signals
 
 User = get_user_model()
 
-if "notification" in settings.INSTALLED_APPS:
-    from notification import models as notification
-else:
-    notification = None
 
 @login_required
 def inbox(request, template_name='django_messages/inbox.html'):
@@ -110,7 +105,6 @@ def reply(request, message_id, form_class=ComposeForm,
         raise Http404
 
     if request.method == "POST":
-        sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user, parent_msg=parent)
@@ -160,8 +154,7 @@ def delete(request, message_id, success_url=None):
         message.save()
         signals.message_deleted.send(sender=delete, message=message, user=request.user)
         messages.info(request, _(u"Message successfully deleted."))
-        if notification:
-            notification.send([user], "messages_deleted", {'message': message})
+
         return HttpResponseRedirect(success_url)
     raise Http404
 
@@ -189,8 +182,7 @@ def undelete(request, message_id, success_url=None):
         message.save()
         signals.mesage_recovered.send(sender=undelete, message=message, user=request.user)
         messages.info(request, _(u"Message successfully recovered."))
-        if notification:
-            notification.send([user], "messages_recovered", {'message': message})
+
         return HttpResponseRedirect(success_url)
     raise Http404
 
@@ -236,7 +228,6 @@ def unread(request, message_id, success_url=None):
     @type request: django.http.HttpRequest
     @type success_url: mix
     """
-    user = request.user
     message = get_object_or_404(Message, id=message_id)
 
     if success_url is None:
@@ -248,8 +239,7 @@ def unread(request, message_id, success_url=None):
     message.save()
     signals.message_marked_as_unread.send(sender=unread, message=message, user=request.user)
     messages.info(request, _(u"Message successfully marked as unread."))
-    if notification:
-        notification.send([user], "messages_marked_unread", {'message': message})
+
     return HttpResponseRedirect(success_url)
 
 
@@ -260,7 +250,6 @@ def purge(request, message_id, success_url=None):
     @type request: django.http.HttpRequest
     @type success_url: mix
     """
-    user = request.user
     message = get_object_or_404(Message, id=message_id)
 
     if success_url is None:
@@ -273,12 +262,13 @@ def purge(request, message_id, success_url=None):
     else:
         message.purged_for_recipient = True
 
-    if message.purged_for_recipient and message.purged_for_sender:
+    if message.sender == message.recipient:
+        message.delete()
+    elif message.purged_for_recipient and message.purged_for_sender:
         message.delete()
     else:
         message.save()
     signals.message_purge.send(sender=purge, message=message, user=request.user)
     messages.info(request, _(u"Message successfully purged."))
-    if notification:
-        notification.send([user], "messages_purged", {'message': message})
+
     return HttpResponseRedirect(success_url)

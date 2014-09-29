@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models
-from django.db.models import signals
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
@@ -103,8 +102,3 @@ def inbox_count_for(user):
     mark them seen
     """
     return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()
-
-# fallback for email notification if django-notification could not be found
-if "notification" not in settings.INSTALLED_APPS:
-    from django_messages.utils import new_message_email
-    signals.post_save.connect(new_message_email, sender=Message)
