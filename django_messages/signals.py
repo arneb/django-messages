@@ -8,6 +8,12 @@ mesage_recovered = Signal(providing_args=["message", "user"])
 message_marked_as_unread = Signal(providing_args=["message", "user"])
 message_purge = Signal(providing_args=["message", "user"])
 
+try:
+    #If it's during installation, we should configure the settings otherwise it fails
+    settings.configure()
+except RuntimeError:
+    # Already configured (installation is complete)
+    pass
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
