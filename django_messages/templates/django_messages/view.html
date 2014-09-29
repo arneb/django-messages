@@ -20,6 +20,7 @@
 <a href="{% url 'messages_reply' message.id %}">{% trans "Reply" %}</a>
 {% endifequal %}
 <a href="{% url 'messages_delete' message.id %}">{% trans "Delete" %}</a>
+<a href="{% url 'messages_mark_unread' message.id %}">{% trans "Mark Unread" %}</a>
 
 {% comment %}Example reply_form integration
 {% if reply_form %}

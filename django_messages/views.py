@@ -1,23 +1,20 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils import timezone
 from django.core.urlresolvers import reverse
-from django.conf import settings
 
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
+from . import signals
+
 
 User = get_user_model()
 
-if "notification" in settings.INSTALLED_APPS:
-    from notification import models as notification
-else:
-    notification = None
 
 @login_required
 def inbox(request, template_name='django_messages/inbox.html'):
@@ -72,7 +69,6 @@ def compose(request, recipient=None, form_class=ComposeForm,
         ``success_url``: where to redirect after successfull submission
     """
     if request.method == "POST":
-        sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user)
@@ -109,7 +105,6 @@ def reply(request, message_id, form_class=ComposeForm,
         raise Http404
 
     if request.method == "POST":
-        sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user, parent_msg=parent)
@@ -126,6 +121,7 @@ def reply(request, message_id, form_class=ComposeForm,
     return render_to_response(template_name, {
         'form': form,
     }, context_instance=RequestContext(request))
+
 
 @login_required
 def delete(request, message_id, success_url=None):
@@ -156,11 +152,12 @@ def delete(request, message_id, success_url=None):
         deleted = True
     if deleted:
         message.save()
+        signals.message_deleted.send(sender=delete, message=message, user=request.user)
         messages.info(request, _(u"Message successfully deleted."))
-        if notification:
-            notification.send([user], "messages_deleted", {'message': message,})
+
         return HttpResponseRedirect(success_url)
     raise Http404
+
 
 @login_required
 def undelete(request, message_id, success_url=None):
@@ -183,16 +180,17 @@ def undelete(request, message_id, success_url=None):
         undeleted = True
     if undeleted:
         message.save()
+        signals.mesage_recovered.send(sender=undelete, message=message, user=request.user)
         messages.info(request, _(u"Message successfully recovered."))
-        if notification:
-            notification.send([user], "messages_recovered", {'message': message,})
+
         return HttpResponseRedirect(success_url)
     raise Http404
 
+
 @login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
-        subject_template=_(u"Re: %(subject)s"),
-        template_name='django_messages/view.html'):
+         subject_template=_(u"Re: %(subject)s"),
+         template_name='django_messages/view.html'):
     """
     Shows a single message.``message_id`` argument is required.
     The user is only allowed to see the message, if he is either
@@ -217,8 +215,60 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         form = form_class(initial={
             'body': quote_helper(message.sender, message.body),
             'subject': subject_template % {'subject': message.subject},
-            'recipient': [message.sender,]
+            'recipient': [message.sender]
             })
         context['reply_form'] = form
-    return render_to_response(template_name, context,
-        context_instance=RequestContext(request))
+    return render(request, template_name, context)
+
+
+@login_required
+def unread(request, message_id, success_url=None):
+    """
+    Sets a message's state as unread.
+    @type request: django.http.HttpRequest
+    @type success_url: mix
+    """
+    message = get_object_or_404(Message, id=message_id)
+
+    if success_url is None:
+        success_url = reverse('messages_inbox')
+    if 'next' in request.GET:
+        success_url = request.GET['next']
+
+    message.read_at = None
+    message.save()
+    signals.message_marked_as_unread.send(sender=unread, message=message, user=request.user)
+    messages.info(request, _(u"Message successfully marked as unread."))
+
+    return HttpResponseRedirect(success_url)
+
+
+@login_required
+def purge(request, message_id, success_url=None):
+    """
+    Purges a deleted message from database.
+    @type request: django.http.HttpRequest
+    @type success_url: mix
+    """
+    message = get_object_or_404(Message, id=message_id)
+
+    if success_url is None:
+        success_url = reverse('messages_trash')
+    if 'next' in request.GET:
+        success_url = request.GET['next']
+
+    if message.sender == request.user:
+        message.purged_for_sender = True
+    else:
+        message.purged_for_recipient = True
+
+    if message.sender == message.recipient:
+        message.delete()
+    elif message.purged_for_recipient and message.purged_for_sender:
+        message.delete()
+    else:
+        message.save()
+    signals.message_purge.send(sender=purge, message=message, user=request.user)
+    messages.info(request, _(u"Message successfully purged."))
+
+    return HttpResponseRedirect(success_url)
