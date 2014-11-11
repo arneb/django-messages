@@ -38,10 +38,10 @@ class ComposeForm(forms.Form):
                 msg.parent_msg = parent_msg
                 parent_msg.replied_at = timezone.now()
                 parent_msg.save()
+                msg.save()
                 signals.message_repled.send(sender=ComposeForm, message=msg, user=sender)
-            msg.save()
-
-            if parent_msg is None:
+            else:
+                msg.save()
                 signals.message_sent.send(sender=ComposeForm, message=msg, user=sender)
 
             message_list.append(msg)
