@@ -15,7 +15,7 @@ except RuntimeError:
     # Already configured (installation is complete)
     pass
 
-if "notification" in settings.INSTALLED_APPS:
+if "notification" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
     from notification import models as notification
     from django_messages.forms import ComposeForm
     from django_messages.views import delete, undelete, unread, purge
