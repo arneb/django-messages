@@ -46,7 +46,7 @@ def outbox(request, template_name='django_messages/outbox.html'):
 @login_required
 def trash(request, template_name='django_messages/trash.html'):
     """
-    Displays a list of deleted messages.
+    Displays a list of deleted messages which are less than MESSAGES_DELETED_MAX_AGE days old.
     Optional arguments:
         ``template_name``: name of the template to use
     Hint: A Cron-Job could periodicly clean up old messages, which are deleted
