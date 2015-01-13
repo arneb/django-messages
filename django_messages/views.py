@@ -1,3 +1,4 @@
+import datetime
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -11,6 +12,7 @@ from django.conf import settings
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
+from django_messages.conf import settings
 
 User = get_user_model()
 
@@ -54,7 +56,7 @@ def trash(request, template_name='django_messages/trash.html'):
     """
     message_list = Message.objects.trash_for(request.user)
     return render_to_response(template_name, {
-        'message_list': message_list,
+        'message_list': message_list, 'max_age': settings.MESSAGES_DELETED_MAX_AGE
     }, context_instance=RequestContext(request))
 
 @login_required
@@ -186,6 +188,47 @@ def undelete(request, message_id, success_url=None):
         messages.info(request, _(u"Message successfully recovered."))
         if notification:
             notification.send([user], "messages_recovered", {'message': message,})
+        return HttpResponseRedirect(success_url)
+    raise Http404
+
+def permanently_delete_message(user, message_id):
+    """
+    Function called to permanently delete a message
+    """
+    permanently_deleted_date = timezone.now() - datetime.timedelta(days=settings.MESSAGES_DELETED_MAX_AGE)
+    message = get_object_or_404(Message, id=message_id)
+    deleted = False
+
+    if message.sender == user:
+        message.sender_deleted_at = permanently_deleted_date
+        deleted = True
+    if message.recipient == user:
+        message.recipient_deleted_at = permanently_deleted_date
+        deleted = True
+    if deleted:
+        message.save()
+        if message.sender_deleted_at and message.recipient_deleted_at:
+            if message.sender_deleted_at <= permanently_deleted_date and message.recipient_deleted_at <= permanently_deleted_date:
+                message.delete()
+    return deleted
+
+@login_required
+def permanently_delete(request, message_id, success_url=None):
+    """
+    Marks a message as permanently deleted by sender or recipient.
+    This is done by marking deleted_at to more than MESSAGES_DELETED_MAX_AGE
+    days ago.
+    The message is permanently deleted if both users permanently deleted it or
+    if it was deleted more than MESSAGES_DELETED_MAX_AGE days ago.
+    """
+    if success_url is None:
+        success_url = reverse('messages_inbox')
+    if 'next' in request.GET:
+        success_url = request.GET['next']
+    if permanently_delete_message(request.user, message_id):
+        messages.info(request, _(u"Message permanently deleted."))
+        if notification:
+            notification.send([user], "messages_permanently_deleted")
         return HttpResponseRedirect(success_url)
     raise Http404
 
