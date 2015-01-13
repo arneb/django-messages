@@ -13,6 +13,7 @@ if "notification" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSA
         notification.create_notice_type("messages_deleted", _("Message Deleted"), _("you have deleted a message"), default=1)
         notification.create_notice_type("messages_permanently_deleted", _("Message Permanently Deleted"), _("you have permanently deleted a message"), default=0)
         notification.create_notice_type("messages_recovered", _("Message Recovered"), _("you have undeleted a message"), default=1)
+        notification.create_notice_type("empty_trash", _("Emptied Trash"), _("you have permanently deleted all messages in your trash bin"), default=0)
 
     signals.post_syncdb.connect(create_notice_types, sender=notification)
 else:

@@ -191,12 +191,11 @@ def undelete(request, message_id, success_url=None):
         return HttpResponseRedirect(success_url)
     raise Http404
 
-def permanently_delete_message(user, message_id):
+def permanently_delete_message(user, message):
     """
     Function called to permanently delete a message
     """
     permanently_deleted_date = timezone.now() - datetime.timedelta(days=settings.MESSAGES_DELETED_MAX_AGE)
-    message = get_object_or_404(Message, id=message_id)
     deleted = False
 
     if message.sender == user:
@@ -221,16 +220,34 @@ def permanently_delete(request, message_id, success_url=None):
     The message is permanently deleted if both users permanently deleted it or
     if it was deleted more than MESSAGES_DELETED_MAX_AGE days ago.
     """
+    message = get_object_or_404(Message, id=message_id)
     if success_url is None:
         success_url = reverse('messages_inbox')
     if 'next' in request.GET:
         success_url = request.GET['next']
-    if permanently_delete_message(request.user, message_id):
+    if permanently_delete_message(request.user, message):
         messages.info(request, _(u"Message permanently deleted."))
         if notification:
             notification.send([user], "messages_permanently_deleted")
         return HttpResponseRedirect(success_url)
     raise Http404
+
+@login_required
+def empty_trash(request, success_url=None):
+    """
+    Empties a user's trash.
+    """
+    if success_url is None:
+        success_url = reverse('messages_inbox')
+    if 'next' in request.GET:
+        success_url = request.GET['next']
+    message_list = Message.objects.trash_for(request.user)
+    for message in message_list.all():
+        permanently_delete_message(request.user, message)
+    messages.info(request, _(u"Trash is now empty."))
+    if notification:
+        notification.send([user], "trash_empty")
+    return HttpResponseRedirect(success_url)
 
 @login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,

@@ -5,6 +5,7 @@
 {% block content %} 
 <h1>{% trans "Deleted Messages" %}</h1>
 {% if message_list %} 
+<a href="{% url 'empty_trash' %}">{% trans "Empty trash" %}</a>
 <table class="messages">
     <thead>
         <tr><th>{% trans "Sender" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Date" %}</th><th>{% trans "Action" %}</th></tr>
