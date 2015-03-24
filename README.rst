@@ -20,6 +20,7 @@ Currently django-messages comes with these translations:
 * fa
 * fr (thanks froland and dpaccoud)
 * it (thanks to Sergio Morstabilini)
+* lt
 * ko
 * nl (thanks krisje8)
 * pl (thanks maczewski)
