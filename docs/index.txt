@@ -11,16 +11,21 @@ which makes it extremly easy to put "send user a message" links on profile pages
 
 Currently django-messages comes with these translations:
 
+* ar
+* da
 * de
-* fr
-* es_AR
-* pl
+* el
 * es
+* es_AR
+* fa
+* fr
+* it
+* lt
+* ko
+* nl
+* pl
 * pt_BR
 * ru
-* nl
-* da
-* el
 * zh_CN
 
 Contents
