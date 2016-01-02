@@ -5,6 +5,7 @@
 {% block content %} 
 <h1>{% trans "Deleted Messages" %}</h1>
 {% if message_list %} 
+<a href="{% url 'empty_trash' %}">{% trans "Empty trash" %}</a>
 <table class="messages">
     <thead>
         <tr><th>{% trans "Sender" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Date" %}</th><th>{% trans "Action" %}</th></tr>
@@ -17,7 +18,7 @@
         {{ message.subject }}
         </td>
         <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-        <td><a href="{% url 'messages_undelete' message.id %}">{% trans "undelete" %}</a></td>
+        <td><a href="{% url 'messages_undelete' message.id %}">{% trans "undelete" %}</a>, <a href="{% url 'messages_permanently_delete' message.id %}">{% trans "permanently delete" %}</a></td>
     </tr>
 {% endfor %}
     </tbody>
@@ -26,5 +27,5 @@
 <p>{% trans "No messages." %}</p>
 {% endif %}   
 <br />
-<p>{% trans "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage." %}</p>
+<p>{% blocktrans with deleted_max_age=max_age %} Deleted Messages are removed from the trash after {{deleted_max_age}} days, don't rely on this feature for long-time storage.{% endblocktrans %}</p>
 {% endblock %}
