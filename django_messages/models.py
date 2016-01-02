@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models
-from django.db.models import signals
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
@@ -38,14 +37,17 @@ class MessageManager(models.Manager):
         return self.filter(
             recipient=user,
             recipient_deleted_at__isnull=False,
+            purged_for_recipient=False,
         ) | self.filter(
             sender=user,
             sender_deleted_at__isnull=False,
+            purged_for_sender=False,
         )
 
 
 @python_2_unicode_compatible
 class Message(models.Model):
+
     """
     A private message from user to user
     """
@@ -59,6 +61,8 @@ class Message(models.Model):
     replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
     sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
     recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
+    purged_for_sender = models.BooleanField(_("Purged for sender"), default=False, db_index=True)
+    purged_for_recipient = models.BooleanField(_("Purged for recipient"), default=False, db_index=True)
 
     objects = MessageManager()
 
@@ -98,8 +102,3 @@ def inbox_count_for(user):
     mark them seen
     """
     return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()
-
-# fallback for email notification if django-notification could not be found
-if "notification" not in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
-    from django_messages.utils import new_message_email
-    signals.post_save.connect(new_message_email, sender=Message)
