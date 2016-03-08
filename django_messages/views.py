@@ -112,7 +112,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
                         notify_message="Nachricht erfolgreich versendet!")
             UserOnBoardNotification.objects.create(
                         user=recipient, title="Nachricht", notify_typ="info",
-                        notify_message=""+request.user+"hat dir eine Nachricht zugesendet!")
+                        notify_message="Hi, " + str(request.user) + "hat dir eine Nachricht zugesendet!")
             if success_url is None:
                 success_url = reverse('messages_inbox')
             if 'next' in request.GET:
