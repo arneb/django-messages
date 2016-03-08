@@ -198,7 +198,7 @@ def delete(request, message_id, success_url=None):
         messages.info(request, _(u"Message successfully deleted."))
         UserOnBoardNotification.objects.create(
                         user=request.user, title="Nachricht", notify_typ="info",
-                        notify_message=u"Nachricht erfolgreich gelöscht!")
+                        notify_message="Nachricht erfolgreich gelöscht!")
         if notification:
             notification.send([user], "messages_deleted", {'message': message,})
         return HttpResponseRedirect(success_url)
