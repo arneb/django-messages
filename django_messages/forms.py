@@ -34,6 +34,7 @@ class ComposeForm(forms.Form):
         body = self.cleaned_data['body']
         message_list = []
         for r in recipients:
+            recipient = r
             msg = Message(
                 sender=sender,
                 recipient=r,
@@ -46,8 +47,8 @@ class ComposeForm(forms.Form):
                 parent_msg.save()
             msg.save()
             message_list.append(msg)
-            UserOnBoardNotification.objects.create(user=recipient.user, title="Nachricht", notify_typ="info",
-                                                   notify_message="Hi, " + sender + "hat dir eine Nachricht zugesendet!")
+            UserOnBoardNotification.objects.create(user=recipient, title="Nachricht", notify_typ="info",
+                                                   notify_message="Hi, " + recipient + "hat dir eine Nachricht zugesendet!")
             if notification:
                 if parent_msg is not None:
                     notification.send([sender], "messages_replied", {'message': msg,})
