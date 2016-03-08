@@ -12,7 +12,7 @@ from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
 
-from profiles.models import ProfileProfileConnection
+from profiles.models import ProfileProfileConnection, UserOnBoardNotification
 
 User = get_user_model()
 
@@ -107,6 +107,12 @@ def compose(request, recipient=None, form_class=ComposeForm,
         if form.is_valid():
             form.save(sender=request.user)
             messages.info(request, _(u"Message successfully sent."))
+            UserOnBoardNotification.objects.create(
+                        user=request.user, title="Nachricht", notify_typ="info",
+                        notify_message="Nachricht erfolgreich versendet!")
+            UserOnBoardNotification.objects.create(
+                        user=recipient, title="Nachricht", notify_typ="info",
+                        notify_message=""+request.user+"hat dir eine Nachricht zugesendet!")
             if success_url is None:
                 success_url = reverse('messages_inbox')
             if 'next' in request.GET:
@@ -120,7 +126,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
             form.fields['recipient'].initial = recipients
     return render_to_response(template_name, {
         'form': form,
-        'profile_list':profile_list,
+        'profile_list': profile_list,
     }, context_instance=RequestContext(request))
 
 
@@ -134,6 +140,7 @@ def reply(request, message_id, form_class=ComposeForm,
     (specified via ``message_id``). Uses the ``format_quote`` helper from
     ``messages.utils`` to pre-format the quote. To change the quote format
     assign a different ``quote_helper`` kwarg in your url-conf.
+    :param recipient_filter:
 
     """
     parent = get_object_or_404(Message, id=message_id)

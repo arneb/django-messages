@@ -2,3 +2,4 @@
 MANIFEST
 dist
 .tox
+.idea
