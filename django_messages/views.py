@@ -227,7 +227,7 @@ def undelete(request, message_id, success_url=None):
         message.save()
         messages.info(request, _(u"Message successfully recovered."))
         UserOnBoardNotification.objects.create(user=user, title="Nachricht", notify_typ="info",
-                                               notify_message=u"Message successfully recovered.")
+                                               notify_message="Nachricht wurde wiederhergestellt!")
         if notification:
             notification.send([user], "messages_recovered", {'message': message,})
         return HttpResponseRedirect(success_url)
