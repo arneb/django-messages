@@ -90,7 +90,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
                                                            rejected_connection=False,
                                                            connected=True)
     for profile in profiles_one:
-        profile_user = ProfileProfileConnection.objects.get(pk=str(profile)).sec_profile.username
+        profile_user = ProfileProfileConnection.objects.get(pk=str(profile)).first_profile.username
         variable = User.objects.get(username=profile_user)
         profile_list.append(variable)
 
@@ -98,7 +98,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
                                                            rejected_connection=False,
                                                            connected=True)
     for profile in profiles_two:
-        profile_user = ProfileProfileConnection.objects.get(pk=str(profile)).first_profile.username
+        profile_user = ProfileProfileConnection.objects.get(pk=str(profile)).sec_profile.username
         variable = User.objects.get(username=profile_user)
         profile_list.append(variable)
 
@@ -196,6 +196,8 @@ def delete(request, message_id, success_url=None):
     if deleted:
         message.save()
         messages.info(request, _(u"Message successfully deleted."))
+        UserOnBoardNotification.objects.create(user=user, title="Nachricht", notify_typ="info",
+                                               notify_message="Nachricht gelöscht!")
         if notification:
             notification.send([user], "messages_deleted", {'message': message,})
         return HttpResponseRedirect(success_url)
@@ -224,6 +226,8 @@ def undelete(request, message_id, success_url=None):
     if undeleted:
         message.save()
         messages.info(request, _(u"Message successfully recovered."))
+        UserOnBoardNotification.objects.create(user=user, title="Nachricht", notify_typ="info",
+                                               notify_message=u"Message successfully recovered.")
         if notification:
             notification.send([user], "messages_recovered", {'message': message,})
         return HttpResponseRedirect(success_url)
@@ -243,6 +247,7 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
     ``read_at`` is set to the current datetime.
     If the user is the recipient a reply form will be added to the
     tenplate context, otherwise 'reply_form' will be None.
+    :param subject_template:
     """
     message_list = Message.objects.inbox_for(request.user)
     user = request.user
