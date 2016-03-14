@@ -78,7 +78,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
             form.save(sender=request.user)
             messages.info(request, _(u"Message successfully sent."))
             if success_url is None:
-                success_url = reverse('messages_inbox')
+                success_url = reverse('messages:messages_inbox')
             if 'next' in request.GET:
                 success_url = request.GET['next']
             return HttpResponseRedirect(success_url)
@@ -115,7 +115,7 @@ def reply(request, message_id, form_class=ComposeForm,
             form.save(sender=request.user, parent_msg=parent)
             messages.info(request, _(u"Message successfully sent."))
             if success_url is None:
-                success_url = reverse('messages_inbox')
+                success_url = reverse('messages:messages_inbox')
             return HttpResponseRedirect(success_url)
     else:
         form = form_class(initial={
@@ -145,7 +145,7 @@ def delete(request, message_id, success_url=None):
     message = get_object_or_404(Message, id=message_id)
     deleted = False
     if success_url is None:
-        success_url = reverse('messages_inbox')
+        success_url = reverse('messages:messages_inbox')
     if 'next' in request.GET:
         success_url = request.GET['next']
     if message.sender == user:
@@ -172,7 +172,7 @@ def undelete(request, message_id, success_url=None):
     message = get_object_or_404(Message, id=message_id)
     undeleted = False
     if success_url is None:
-        success_url = reverse('messages_inbox')
+        success_url = reverse('messages:messages_inbox')
     if 'next' in request.GET:
         success_url = request.GET['next']
     if message.sender == user:
