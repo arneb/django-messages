@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.views.decorators.cache import never_cache
 
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
@@ -19,6 +20,7 @@ if "notification" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSA
 else:
     notification = None
 
+@never_cache
 @login_required
 def inbox(request, template_name='django_messages/inbox.html'):
     """
@@ -31,6 +33,7 @@ def inbox(request, template_name='django_messages/inbox.html'):
         'message_list': message_list,
     }, context_instance=RequestContext(request))
 
+@never_cache
 @login_required
 def outbox(request, template_name='django_messages/outbox.html'):
     """
@@ -43,6 +46,7 @@ def outbox(request, template_name='django_messages/outbox.html'):
         'message_list': message_list,
     }, context_instance=RequestContext(request))
 
+@never_cache
 @login_required
 def trash(request, template_name='django_messages/trash.html'):
     """
@@ -189,6 +193,7 @@ def undelete(request, message_id, success_url=None):
         return HttpResponseRedirect(success_url)
     raise Http404
 
+@never_cache
 @login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         subject_template=_(u"Re: %(subject)s"),
