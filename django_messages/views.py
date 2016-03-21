@@ -93,7 +93,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
             form.fields['recipient'].initial = recipients
     return render_to_response(template_name, {
         'form': form,
-        'recipent': recipient
+        'recipient': recipient
     }, context_instance=RequestContext(request))
 
 @login_required
@@ -130,6 +130,7 @@ def reply(request, message_id, form_class=ComposeForm,
             })
     return render_to_response(template_name, {
         'form': form,
+        'recipient': parent.sender,
     }, context_instance=RequestContext(request))
 
 @login_required
