@@ -10,6 +10,7 @@ else:
 
 from django_messages.models import Message
 from django_messages.fields import CommaSeparatedUserField
+from django.core.exceptions import ValidationError
 
 class ComposeForm(forms.Form):
     """
@@ -29,6 +30,8 @@ class ComposeForm(forms.Form):
     
                 
     def save(self, sender, parent_msg=None):
+        if sender is None:
+            raise ValidationError(self.error_messages['empty_sender'], code='empty_sender')
         recipients = self.cleaned_data['recipient']
         subject = self.cleaned_data['subject']
         body = self.cleaned_data['body']
