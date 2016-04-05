@@ -125,8 +125,11 @@ class IntegrationTestCase(TestCase):
             })
         # successfull sending should redirect to inbox
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['Location'],
-                         "http://testserver%s" % reverse('messages:messages_inbox'))
+        # Not absolute for some reason
+        self.assertEqual(
+            response['Location'],
+            reverse('messages:messages_inbox'))
+                         # "http://testserver%s" % reverse('messages:messages_inbox'))
 
         # make sure the message exists in the outbox after sending
         response = self.c.get(reverse('messages:messages_outbox'))
