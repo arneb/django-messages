@@ -153,6 +153,9 @@ def reply(request, message_id, form_class=ComposeForm,
         if form.is_valid():
             form.save(sender=request.user, parent_msg=parent)
             messages.info(request, _(u"Message successfully sent."))
+            UserOnBoardNotification.objects.create(
+                user=request.user, title="Nachricht", notify_typ="info",
+                notify_message="Nachricht erfolgreich versendet!")
             if success_url is None:
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
@@ -260,6 +263,9 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         raise Http404
     if message.read_at is None and message.recipient == user:
         message.read_at = now
+        UserOnBoardNotification.objects.create(
+            user=message.sender, title="Nachricht", notify_typ="info",
+            notify_message="Nachricht wurde von " + message.recipient + " gelesen!")
         message.save()
 
     context = {'message': message, 'mid': mid, 'message_list': message_list, 'reply_form': None}
