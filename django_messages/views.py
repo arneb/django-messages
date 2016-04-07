@@ -143,7 +143,7 @@ def reply(request, message_id, form_class=ComposeForm,
 
     """
     parent = get_object_or_404(Message, id=message_id)
-
+    replying = True
     if parent.sender != request.user and parent.recipient != request.user:
         raise Http404
 
@@ -164,6 +164,7 @@ def reply(request, message_id, form_class=ComposeForm,
         })
     return render_to_response(template_name, {
         'form': form,
+        'replying': replying,
     }, context_instance=RequestContext(request))
 
 
