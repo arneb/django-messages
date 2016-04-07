@@ -265,7 +265,7 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         message.read_at = now
         UserOnBoardNotification.objects.create(
             user=message.sender, title="Nachricht", notify_typ="info",
-            notify_message="Nachricht wurde von " + str(message.recipient) + " gelesen!")
+            notify_message=" " + str(message.recipient) + " hat deine Nachricht gelesen gelesen!")
         message.save()
 
     context = {'message': message, 'mid': mid, 'message_list': message_list, 'reply_form': None}
