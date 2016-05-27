@@ -3,6 +3,16 @@ from django.views.generic import RedirectView
 
 from django_messages.views import *
 
+# For Django 1.4
+try:
+    from django.template import add_to_builtins
+    from django import VERSION as DJANGO_VERSION
+    if DJANGO_VERSION[0] == 1 and DJANGO_VERSION[1] < 5:
+        add_to_builtins('django.templatetags.future')
+except:
+    pass
+
+
 urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(permanent=True, url='inbox/'), name='messages_redirect'),
     url(r'^inbox/$', inbox, name='messages_inbox'),
