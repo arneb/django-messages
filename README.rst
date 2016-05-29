@@ -32,15 +32,15 @@ Currently django-messages comes with these translations:
 Versions
 --------
 
-+-------+-------------------------------------------------------------------+
-| 0.5.x | compatible with Django 1.4, 1.5, 1.6 and 1.7; if you are          |
-|       | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
-+-------+-------------------------------------------------------------------+
-| 0.4.x | compatible with Django 1.1 (may work with Django 1.0/1.2), no     |
-|       | longer maintained                                                 |
-+-------+-------------------------------------------------------------------+
-| 0.3   | compatible with Django 1.0, no longer maintained                  |
-+-------+-------------------------------------------------------------------+
++-------+--------------------------------------------------------------------+
+| 0.5.x | compatible with Django 1.4, 1.5, 1.6, 1.7, 1.8 and 1.9; if you are |
+|       | upgrading from 0.4.x to trunk please read the UPGRADING docs.      |
++-------+--------------------------------------------------------------------+
+| 0.4.x | compatible with Django 1.1 (may work with Django 1.0/1.2), no      |
+|       | longer maintained                                                  |
++-------+--------------------------------------------------------------------+
+| 0.3   | compatible with Django 1.0, no longer maintained                   |
++-------+--------------------------------------------------------------------+
 
 
 Documentation
