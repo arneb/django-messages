@@ -49,7 +49,7 @@ class Message(models.Model):
     """
     A private message from user to user
     """
-    subject = models.CharField(_("Subject"), max_length=120)
+    subject = models.CharField(_("Subject"), max_length=140)
     body = models.TextField(_("Body"))
     sender = models.ForeignKey(AUTH_USER_MODEL, related_name='sent_messages', verbose_name=_("Sender"))
     recipient = models.ForeignKey(AUTH_USER_MODEL, related_name='received_messages', null=True, blank=True, verbose_name=_("Recipient"))
