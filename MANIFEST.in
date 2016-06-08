@@ -7,4 +7,3 @@ recursive-include django_messages/locale *.po *.mo
 recursive-include django_messages/templates *.html *.txt
 include docs/*
 exclude docs/conf.py
-
