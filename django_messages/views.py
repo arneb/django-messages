@@ -221,11 +221,14 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
 
     context = {'message': message, 'reply_form': None}
     if message.recipient == user:
+        context['inbox'] = True
         form = form_class(initial={
             'body': quote_helper(message.sender, message.body),
             'subject': subject_template % {'subject': message.subject},
             'recipient': [message.sender,]
             })
         context['reply_form'] = form
+    else:
+        context['outbox'] = True
     return render_to_response(template_name, context,
         context_instance=RequestContext(request))
