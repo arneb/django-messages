@@ -4,13 +4,13 @@
 Using django-messages
 =====================
 
-To enable django-messages in your Django project make sure it is 
-:ref:`installed <ref-messages-install>`. You can check if django-messages was 
+To enable django-messages in your Django project make sure it is
+:ref:`installed <ref-messages-install>`. You can check if django-messages was
 successfully installed by opening a python shell and running::
 
     >>> import django_messages
     >>>
-    
+
 If no error occured, you can assume that the app was installed correctly.
 
 
@@ -29,7 +29,7 @@ The next step is to add ``django_messages`` to the ``INSTALLED_APPS`` setting::
 Add urls
 --------
 
-To make django-messages available to your users you should include the 
+To make django-messages available to your users you should include the
 bunlded url-conf in your root url-conf. One example would be to edit
 your main ``urls.py`` and add a line like this::
 
@@ -38,14 +38,14 @@ your main ``urls.py`` and add a line like this::
         (r'^messages/', include('django_messages.urls')),
         ...
     )
-    
-    
+
+
 Templates
 ---------
 
 Django-messages provides some simple default templates which will get you
 started quickly. The templates make the assumption that a base template with
-the name ``base.html`` exists which defines a block ``content`` and a block 
+the name ``base.html`` exists which defines a block ``content`` and a block
 ``sidebar``. If this is not the case, or the template doesn't fit due to other
 concerns, it's very easy to provide your own templates. Please see the
 :ref:`customization docs <ref-messages-customization>` fore more details.
@@ -54,23 +54,23 @@ concerns, it's very easy to provide your own templates. Please see the
 Templatetags and Context-Processors
 -----------------------------------
 
-Django-messages provides a Templatetag and a Template Context Processor to 
+Django-messages provides a Templatetag and a Template Context Processor to
 make it easy to print the number of unread messages of a user in the templates.
 
 To use the Templatetag simply add this to your template::
 
     {% load inbox %}
-    
+
 Now you can either print the number of unread messages in the users inbox by
 using::
 
     {% inbox_count %}
-    
+
 Or you can assign the count to a variable to further process it in the template::
 
     {% inbox_count as my_var %}
     {{ my_var }}
-    
+
 If you want to show the inbox count on every page of your site you could also
 use the bundled Context Processor to add the value to every Template Context
 instead of loading the Templatetag. Simply add the Context Processor to the
@@ -81,8 +81,17 @@ TEMPLATE_CONTEXT_PROCESSORS settings in your settings.py::
         'django_messages.context_processors.inbox',
     )
 
-And now every Template Context will contain a variable named 
+And now every Template Context will contain a variable named
 ``messages_inbox_count``, if the user is logged in::
 
     {{ messages_inbox_count }}
 
+
+Settings Options
+----------------
+
+If you do want to disable django-messages from sending either a
+'django-notification' notice or an email (fallback if 'django-notification
+not installed' then set the following in your django settings::
+
+    DJANGO_MESSAGES_NOTIFY = False
