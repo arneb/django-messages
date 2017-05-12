@@ -14,8 +14,8 @@ from django_messages.utils import format_quote, get_user_model, get_username_fie
 
 User = get_user_model()
 
-if "notification" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
-    from notification import models as notification
+if "pinax.notifications" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
+    from pinax.notifications import models as notification
 else:
     notification = None
 

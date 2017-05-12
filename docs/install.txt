@@ -74,7 +74,7 @@ Django-messages has some features which may use an external app if it is
 present in the current Django project. Please note, that these apps have to
 be listed in ``INSTALLED_APPS`` to be used by django-messages.
 
-* If you use `django-notification`_ django-messages will use it for sending
+* If you use `pinax-notifications`_ django-messages will use it for sending
   notifications to users about new messages instead of using the built-in
   mechanism
   
@@ -86,5 +86,5 @@ on Python 2.5 sometimes code might slip in which breaks Python 2.4 compatibility
 This can be considered a bug and you can help us by reporting the incompytibility.
 
 
-.. _`django-notification`: http://code.google.com/p/django-notification/
+.. _`pinax-notifications`: https://github.com/pinax/pinax-notifications
 .. _`django-mailer`: http://code.google.com/p/django-mailer/
