@@ -78,9 +78,9 @@ Dependencies
 ------------
 
 Django-messages has no external dependencies except for django. However, if
-django-notification and/or django-mailer are found, it will make use of them.
-Note: as of r65 django-messages will only use django-notification if
-'notification' is also added to the INSTALLED_APPS setting. This has been
+pinax-notifications and/or django-mailer are found, it will make use of them.
+Note: as of r65 django-messages will only use pinax-notifications if
+'pinax.notifications' is also added to the INSTALLED_APPS setting. This has been
 done to make situations possible where notification is on pythonpath but
 should not be used, or where notification is another python package, such as
 django-notification which has the same name.

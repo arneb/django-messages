@@ -91,7 +91,7 @@ Settings Options
 ----------------
 
 If you do want to disable django-messages from sending either a
-'django-notification' notice or an email (fallback if 'django-notification
+'pinax-notifications' notice or an email (fallback if 'pinax-notifications
 not installed' then set the following in your django settings::
 
     DJANGO_MESSAGES_NOTIFY = False
