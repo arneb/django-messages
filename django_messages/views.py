@@ -208,7 +208,8 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
     message = get_object_or_404(Message, id=message_id)
     if (message.sender != user) and (message.recipient != user):
         raise Http404
-    if message.read_at is None and message.recipient == user:
+    if message.read_at is None and message.recipient == user and \
+            (message.read_at is not None and getattr(settings, 'DJANGO_MESSAGES_UPDATE_READ_AT', True)):
         message.read_at = now
         message.save()
 
