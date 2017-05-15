@@ -1,0 +1,12 @@
+<style>
+	.subnavilist > li {display: inline;}
+	.subnavilist > li > a:hover {background: orange; color: white;}
+</style>
+
+{% for message in messages %}{{ message }}{% endfor %}
+
+{% block sidebar %}
+{% endblock %}
+<hr>
+{% block content %}
+{% endblock %}
