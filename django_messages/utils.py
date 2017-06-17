@@ -34,7 +34,7 @@ def format_subject(subject):
     a counter is added.
     NOTE: Currently unused. First step to fix Issue #48.
     FIXME: Any hints how to make this i18n aware are very welcome.
-    
+
     """
     subject_prefix_re = r'^Re\[(\d*)\]:\ '
     m = re.match(subject_prefix_re, subject, re.U)
@@ -50,13 +50,13 @@ def format_subject(subject):
         except:
             # if anything fails here, fall back to the old mechanism
             pass
-        
+
     return ugettext(u"Re%(prefix)s: %(subject)s") % {
-        'subject': subject, 
+        'subject': subject,
         'prefix': prefix
     }
-    
-def new_message_email(sender, instance, signal, 
+
+def new_message_email(sender, instance, signal,
         subject_prefix=_(u'New Message: %(subject)s'),
         template_name="django_messages/new_message.html",
         default_protocol=None,

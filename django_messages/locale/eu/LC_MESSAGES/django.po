@@ -1,0 +1,315 @@
+# django-messages in Basque.
+# django-messages Euskaraz.
+# Copyright (C) 2008
+# This file is distributed under the same license as the django-messages package.
+# Urtzi Odriozola Lizaso <urtzi.odriozola@gmail.com>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-11 12:31-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:13 forms.py:20 models.py:52 templates/messages/outbox.html:7
+#: templates/messages/view.html:12
+msgid "Recipient"
+msgstr "Hartzailea"
+
+#: admin.py:15
+msgid "group"
+msgstr "taldea"
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Erabiltzaile bat edo talde batentzat mezua sortzen du aukeran"
+
+#: admin.py:23
+msgid "All users"
+msgstr "Erabiltzaile guztiak"
+
+#: admin.py:38 models.py:88
+msgid "Message"
+msgstr "Mezua"
+
+#: admin.py:45
+#, fuzzy
+msgid "Date/time"
+msgstr "Data/ordua"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Erabiltzaile hauek okerrak dira: %(users)s"
+
+#: forms.py:21 models.py:49 templates/messages/inbox.html:7
+#: templates/messages/outbox.html:7 templates/messages/trash.html:7
+#: templates/messages/view.html:6
+msgid "Subject"
+msgstr "Gaia"
+
+#: forms.py:22 models.py:50
+msgid "Body"
+msgstr "Testua"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Mezua jasota"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "mezu bat jaso duzu"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Mezua bidalita"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "mezu bat bidali duzu"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Mezua erantzunda"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "mezu bat erantzun duzu"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Erantzuna jasota"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "mezu baten erantzuna jaso duzu"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Mezua ezabatuta"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "mezu bat ezabatu duzu"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Mezua berreskuratuta"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "mezu bat berreskuratu duzu"
+
+#: models.py:51 templates/messages/inbox.html:7
+#: templates/messages/trash.html:7 templates/messages/view.html:8
+msgid "Sender"
+msgstr "Igorlea"
+
+#: models.py:53
+msgid "Parent message"
+msgstr "Mezu gurasoa"
+
+#: models.py:54
+msgid "sent at"
+msgstr "bidalita"
+
+#: models.py:55
+msgid "read at"
+msgstr "irakurrita"
+
+#: models.py:56
+msgid "replied at"
+msgstr "erantzunda"
+
+#: models.py:57
+msgid "Sender deleted at"
+msgstr "Igorlea ezabatuta"
+
+#: models.py:58
+msgid "Recipient deleted at"
+msgstr "Hartzailea ezabatuta"
+
+#: models.py:89
+msgid "Messages"
+msgstr "Mezuak"
+
+#: utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Mezu berria: %(subject)s"
+
+#: views.py:78 views.py:112
+msgid "Message successfully sent."
+msgstr "Mezua arrakastaz bidali da."
+
+#: views.py:118
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s idatzi du:\n"
+"%(body)s"
+
+#: views.py:122
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Re: %(subject)s"
+
+#: views.py:158
+msgid "Message successfully deleted."
+msgstr "Mezua arrakastaz ezabatu da."
+
+#: views.py:185
+msgid "Message successfully recovered."
+msgstr "Mezua arrakastaz berreskuratu da."
+
+#: templates/messages/base.html:8 templates/messages/inbox.html:4
+#: templates/messages/new_message.html:10
+msgid "Inbox"
+msgstr "Sarrera-ontzia"
+
+#: templates/messages/base.html:9 templates/messages/outbox.html:4
+msgid "Sent Messages"
+msgstr "Bidalitako mezuak"
+
+#: templates/messages/base.html:10
+msgid "New Message"
+msgstr "Mezu berria"
+
+#: templates/messages/base.html:11
+msgid "Trash"
+msgstr "Zaborrontzia"
+
+#: templates/messages/compose.html:4
+msgid "Compose Message"
+msgstr "Idatzi mezua"
+
+#: templates/messages/compose.html:9
+msgid "Send"
+msgstr "Bidali"
+
+#: templates/messages/inbox.html:7
+msgid "Received"
+msgstr "Jasota"
+
+#: templates/messages/inbox.html:7 templates/messages/outbox.html:7
+#: templates/messages/trash.html:7
+msgid "Action"
+msgstr "Ekintza"
+
+#: templates/messages/inbox.html:19 templates/messages/outbox.html:16
+#: templates/messages/trash.html:16 templates/messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/messages/inbox.html:20 templates/messages/outbox.html:17
+msgid "delete"
+msgstr "ezabatu"
+
+#: templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Kaixo %(recipient)s,\n"
+"\n"
+"%(sender)s-(r)en mezu bat jaso duzu\n"
+"ondorengo edukiarekin:"
+
+#: templates/messages/new_message.html:9
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "%(site_url)s-(e)tik bidalita"
+
+#: templates/messages/new_message.html:11 templates/messages/view.html:18
+msgid "Reply"
+msgstr "Erantzun"
+
+#: templates/messages/outbox.html:7
+msgid "Sent"
+msgstr "Bidalita"
+
+#: templates/messages/trash.html:4
+msgid "Deleted Messages"
+msgstr "Ezabatutako mezuak"
+
+#: templates/messages/trash.html:7 templates/messages/view.html:10
+msgid "Date"
+msgstr "Data"
+
+#: templates/messages/trash.html:17
+msgid "undelete"
+msgstr "berreskuratu"
+
+#: templates/messages/trash.html:23
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Ezabatutako mezuak periodo irregularretan ezabatzen dira zaborrontzitik,"
+"ez zaitez fidatu luzerako gordeko direla pentsatuz."
+
+#: templates/messages/view.html:4
+msgid "View Message"
+msgstr "Ikusi mezua"
+
+#: templates/messages/view.html:20
+msgid "Delete"
+msgstr "Eliminar"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "<a href=\"%(message_url)s\">%(message)s</a> mezua ezabatu duzu."
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr ""
+"%(message_sender)s erabiltzailearen "
+"<a href=\"%(message_url)s\">%(message)s</a> mezua ezabatu duzu."
+
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "<a href=\"%(message_url)s\">%(message)s</a> mezua berreskuratu duzu."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"%(message_recipient)s-(r)en "
+"<a href=\"%(message_url)s\">%(message_parent_msg)s</a> mezua erantzun duzu."
+
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr ""
+"%(message_sender)s-(e)k erantzun bat bidali dizu %(message_parent_msg)s mezura."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
+"(message_recipient)s."
+msgstr ""
+"%(message_recipient)s-(r)i "
+"<a href=\"%(message_url)s\">%(message)s</a> mezua bidali diozu."
