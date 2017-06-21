@@ -4,6 +4,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django_messages'
 ]
 
@@ -18,6 +19,7 @@ MIDDLEWARE_CLASSES = (
 
 SITE_ID = 1
 SECRET_KEY = '+zzix-&k$afk-k0d0s7v01w0&15z#ne$71qf28#e$$c*@g742z'
+
 ROOT_URLCONF = "urls"
 
 DEBUG = True
@@ -30,3 +32,19 @@ DATABASES = {
         'NAME': os.path.join(os.path.dirname(__file__), 'database.db'),
     }
 }
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]

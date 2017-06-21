@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -18,8 +18,8 @@ from profiles.models import ProfileProfileConnection, UserOnBoardNotification
 
 User = get_user_model()
 
-if "notification" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
-    from notification import models as notification
+if "pinax.notifications" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
+    from pinax.notifications import models as notification
 else:
     notification = None
 
@@ -33,10 +33,10 @@ def inbox(request, template_name='django_messages/inbox.html'):
     """
     page_menu_id = 1
     message_list = Message.objects.inbox_for(request.user)
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         'message_list': message_list,
         'page_menu_id': page_menu_id,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -49,10 +49,10 @@ def outbox(request, template_name='django_messages/outbox.html'):
 
     page_menu_id = 2
     message_list = Message.objects.outbox_for(request.user)
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         'message_list': message_list,
         'page_menu_id': page_menu_id,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -66,10 +66,10 @@ def trash(request, template_name='django_messages/trash.html'):
     """
     page_menu_id = 3
     message_list = Message.objects.trash_for(request.user)
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         'message_list': message_list,
         'page_menu_id': page_menu_id,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -123,10 +123,10 @@ def compose(request, recipient=None, form_class=ComposeForm,
             recipients = [u for u in User.objects.filter(
                 **{'%s__in' % get_username_field(): [r.strip() for r in recipient.split('+')]})]
             form.fields['recipient'].initial = recipients
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         'form': form,
         'profile_list': profile_list,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -165,10 +165,10 @@ def reply(request, message_id, form_class=ComposeForm,
             'subject': subject_template % {'subject': parent.subject},
             'recipient': [parent.sender, ]
         })
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         'form': form,
         'replying': replying,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -276,5 +276,4 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
             'recipient': [message.sender, ]
         })
         context['reply_form'] = form
-    return render_to_response(template_name, context,
-                              context_instance=RequestContext(request))
+    return render(request,template_name, context)

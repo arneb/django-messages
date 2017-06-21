@@ -1,9 +1,12 @@
 from django.test import TestCase
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.contrib.auth.models import AnonymousUser
+from django.template import Template, Context
 from django_messages.models import Message
 from django_messages.utils import format_subject, format_quote
+from django_messages.context_processors import inbox
 
 from .utils import get_user_model
 
@@ -125,8 +128,11 @@ class IntegrationTestCase(TestCase):
             })
         # successfull sending should redirect to inbox
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['Location'],
-                         "http://testserver%s" % reverse('messages_inbox'))
+        if 'http' in response['Location']:
+            self.assertEqual(response['Location'],
+                "http://testserver%s" % reverse('messages_inbox'))
+        else:
+            self.assertEqual(response['Location'], reverse('messages_inbox'))
 
         # make sure the message exists in the outbox after sending
         response = self.c.get(reverse('messages_outbox'))
@@ -173,3 +179,56 @@ class FormatTestCase(TestCase):
         self.assertEqual(format_subject(u"Re[2]: foo bar"), u"Re[3]: foo bar")
         self.assertEqual(format_subject(u"Re[10]: foo bar"),
                          u"Re[11]: foo bar")
+
+
+class InboxCountTestCase(TestCase):
+    """Test inbox-count content processor and templatetag."""
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.anonymous_user = AnonymousUser()
+        self.user = User.objects.create_user(
+            username='test_user', email='test@example.com', password='secret'
+        )
+        self.user_2 = User.objects.create_user(
+            username='test_user_2', email='test2@example.de', password='secret'
+        )
+        Message.objects.create(
+            recipient=self.user_2,
+            subject="Subject",
+            body="Body",
+            sender=self.user
+        )
+        self.template = Template("""{% load inbox %}{% inbox_count %}""")
+
+    def test_content_processor_anon(self):
+        """Test message count for anonymous user."""
+        r = self.factory.get('/')
+        r.user = self.anonymous_user
+        self.assertEquals(inbox(r), {})
+
+    def test_context_processor_user_empty(self):
+        """Test message count for user with empty inbox."""
+        r = self.factory.get('/')
+        r.user = self.user
+        self.assertEquals(inbox(r), {'messages_inbox_count': 0})
+
+    def test_context_processor_user_count(self):
+        """Test message count for user with one unread message."""
+        r = self.factory.get('/')
+        r.user = self.user_2
+        self.assertEquals(inbox(r), {'messages_inbox_count': 1})
+
+    def test_template_tag_anon(self):
+        """Test message count for anonymous user."""
+        html = self.template.render(Context({'user': self.anonymous_user}))
+        self.assertEquals(html, "")
+
+    def test_template_tag_user_empty(self):
+        """Test message count for user with empty inbox."""
+        html = self.template.render(Context({'user': self.user}))
+        self.assertEquals(html, "0")
+
+    def test_template_tag_user_count(self):
+        """Test message count for user with one unread message."""
+        html = self.template.render(Context({'user': self.user_2}))
+        self.assertEquals(html, "1")

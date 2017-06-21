@@ -10,8 +10,8 @@ except ImportError:
     from django.db.models import get_model
 
 
-if "notification" in settings.INSTALLED_APPS:
-    from notification import models as notification
+if "pinax.notifications" in settings.INSTALLED_APPS:
+    from pinax.notifications import models as notification
 
     def create_notice_types(app, created_models, verbosity, **kwargs):
         notification.create_notice_type("messages_received", _("Message Received"), _("you have received a message"), default=2)

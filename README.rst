@@ -17,6 +17,7 @@ Currently django-messages comes with these translations:
 * el (thanks Markos Gogoulos)
 * es (thanks paz.lupita)
 * es_AR (thanks Juanjo-sfe)
+* eu (thanks urtzai)
 * fa
 * fr (thanks froland and dpaccoud)
 * it (thanks to Sergio Morstabilini)
@@ -32,6 +33,8 @@ Currently django-messages comes with these translations:
 Versions
 --------
 
++-------+-------------------------------------------------------------------+
+| 0.6.x | compatible with Django 1.7, 1.8, 1.9, 1.10 and with Python 3      |
 +-------+-------------------------------------------------------------------+
 | 0.5.x | compatible with Django 1.4, 1.5, 1.6 and 1.7; if you are          |
 |       | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
@@ -75,9 +78,9 @@ Dependencies
 ------------
 
 Django-messages has no external dependencies except for django. However, if
-django-notification and/or django-mailer are found, it will make use of them.
-Note: as of r65 django-messages will only use django-notification if
-'notification' is also added to the INSTALLED_APPS setting. This has been
+pinax-notifications and/or django-mailer are found, it will make use of them.
+Note: as of r65 django-messages will only use pinax-notifications if
+'pinax.notifications' is also added to the INSTALLED_APPS setting. This has been
 done to make situations possible where notification is on pythonpath but
 should not be used, or where notification is another python package, such as
 django-notification which has the same name.

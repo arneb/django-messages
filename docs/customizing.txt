@@ -33,7 +33,7 @@ Django-messages uses the following templates:
 * :file:`django_messages/view.html` - This template renders a single message 
   with all details.
 
-Additionally django-message provides a set of template for django-notification.
+Additionally django-message provides a set of template for pinax-notifications.
 These template can be found in :file:`django_messages/templates/notification/` 
 and can also be overwritten in one of your project's ``TEMPLATE_DIRS``.
 
