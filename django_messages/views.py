@@ -242,7 +242,9 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
     tenplate context, otherwise 'reply_form' will be None.
     """
     user = request.user
+    message_list = Message.objects.inbox_for(user)
     now = timezone.now()
+    mid = int(message_id)
     message = get_object_or_404(Message, id=message_id)
     if (message.sender != user) and (message.recipient != user):
         raise Http404
@@ -250,7 +252,7 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         message.read_at = now
         message.save()
 
-    context = {'message': message, 'reply_form': None}
+    context = {'message': message, 'mid': mid, 'message_list': message_list, 'reply_form': None}
     if message.recipient == user:
         form = form_class(initial={
             'body': quote_helper(message.sender, message.body),
