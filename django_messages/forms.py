@@ -46,7 +46,7 @@ class ComposeForm(forms.Form):
                 parent_msg.save()
             msg.save()
             message_list.append(msg)
-            UserOnBoardNotification.objects.create(user=recipient, title="Nachricht", notify_typ="info",
+            UserOnBoardNotification.objects.create(user=r, title="Nachricht", notify_typ="info",
                                                    notify_message="Hallo, " + str(
                                                        sender) + " hat Ihnen eine Nachricht zugesendet!")
             if notification:
