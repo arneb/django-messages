@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+from __future__ import (absolute_import, division, print_function,
+                        with_statement)
 import re
 import django
 from django.utils.text import wrap
@@ -13,6 +17,7 @@ if "mailer" in settings.INSTALLED_APPS:
 else:
     from django.core.mail import send_mail
 
+
 def format_quote(sender, body):
     """
     Wraps text at 55 chars and prepends each
@@ -27,6 +32,7 @@ def format_quote(sender, body):
         'sender': sender,
         'body': quote
     }
+
 
 def format_subject(subject):
     """
@@ -45,8 +51,8 @@ def format_subject(subject):
     elif m is not None:
         try:
             num = int(m.group(1))
-            prefix = u"[%d]" % (num+1)
-            subject = subject[6+len(str(num)):]
+            prefix = u"[%d]" % (num + 1)
+            subject = subject[6 + len(str(num)):]
         except:
             # if anything fails here, fall back to the old mechanism
             pass
@@ -56,11 +62,12 @@ def format_subject(subject):
         'prefix': prefix
     }
 
+
 def new_message_email(sender, instance, signal,
-        subject_prefix=_(u'New Message: %(subject)s'),
-        template_name="django_messages/new_message.html",
-        default_protocol=None,
-        *args, **kwargs):
+                      subject_prefix=_(u'New Message: %(subject)s'),
+                      template_name="django_messages/new_message.html",
+                      default_protocol=None,
+                      *args, **kwargs):
     """
     This function sends an email and is called via Django's signal framework.
     Optional arguments:
@@ -81,10 +88,10 @@ def new_message_email(sender, instance, signal,
             })
             if instance.recipient.email != "":
                 send_mail(subject, message, settings.DEFAULT_FROM_EMAIL,
-                    [instance.recipient.email,])
+                          [instance.recipient.email, ])
         except Exception as e:
-            #print e
-            pass #fail silently
+            # print e
+            pass  # fail silently
 
 
 def get_user_model():
