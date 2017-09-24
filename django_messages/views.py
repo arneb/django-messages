@@ -31,9 +31,11 @@ def inbox(request, template_name='django_messages/inbox.html'):
     Optional Arguments:
         ``template_name``: name of the template to use.
     """
+    page_menu_id = 1
     message_list = Message.objects.inbox_for(request.user)
     return render(request, template_name, {
         'message_list': message_list,
+        'page_menu_id': page_menu_id,
     })
 
 
@@ -44,9 +46,11 @@ def outbox(request, template_name='django_messages/outbox.html'):
     Optional arguments:
         ``template_name``: name of the template to use.
     """
+    page_menu_id = 2
     message_list = Message.objects.outbox_for(request.user)
     return render(request, template_name, {
         'message_list': message_list,
+        'page_menu_id': page_menu_id,
     })
 
 
@@ -59,9 +63,11 @@ def trash(request, template_name='django_messages/trash.html'):
     Hint: A Cron-Job could periodicly clean up old messages, which are deleted
     by sender and recipient.
     """
+    page_menu_id = 3
     message_list = Message.objects.trash_for(request.user)
     return render(request, template_name, {
         'message_list': message_list,
+        'page_menu_id': page_menu_id,
     })
 
 
@@ -79,6 +85,22 @@ def compose(request, recipient=None, form_class=ComposeForm,
         ``template_name``: the template to use
         ``success_url``: where to redirect after successfull submission
     """
+    profile_list = []
+    profiles_one = ProfileProfileConnection.objects.filter(sec_profile__username=request.user.username,
+                                                           rejected_connection=False,
+                                                           connected=True)
+    for profile in profiles_one:
+        profile_user = ProfileProfileConnection.objects.get(pk=str(profile)).first_profile.username
+        variable = User.objects.get(username=profile_user)
+        profile_list.append(variable)
+
+    profiles_two = ProfileProfileConnection.objects.filter(first_profile__username=request.user.username,
+                                                           rejected_connection=False,
+                                                           connected=True)
+    for profile in profiles_two:
+        profile_user = ProfileProfileConnection.objects.get(pk=str(profile)).sec_profile.username
+        variable = User.objects.get(username=profile_user)
+        profile_list.append(variable)
     if request.method == "POST":
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
@@ -98,6 +120,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
             form.fields['recipient'].initial = recipients
     return render(request, template_name, {
         'form': form,
+        'profile_list': profile_list,
     })
 
 
