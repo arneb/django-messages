@@ -121,7 +121,7 @@ def reply(request, message_id, form_class=ComposeForm,
         form = form_class(initial={
             'body': quote_helper(parent.sender, parent.body),
             'subject': subject_template % {'subject': parent.subject},
-            'recipient': [parent.sender,]
+            'recipient': [parent.recipient,]
             })
     return render(request, template_name, {
         'form': form,
