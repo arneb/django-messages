@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 
 from django_messages.models import Message
@@ -121,7 +121,7 @@ def reply(request, message_id, form_class=ComposeForm,
         form = form_class(initial={
             'body': quote_helper(parent.sender, parent.body),
             'subject': subject_template % {'subject': parent.subject},
-            'recipient': [parent.sender,]
+            'recipient': [parent.recipient]
             })
     return render(request, template_name, {
         'form': form,
