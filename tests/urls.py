@@ -1,6 +1,6 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 
 
 urlpatterns = [
-    url(r'^messages/', include('django_messages.urls')),
+    path(r'messages/', include('django_messages.urls')),
 ]
