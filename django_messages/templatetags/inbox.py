@@ -1,5 +1,6 @@
 from django.template import Library, Node, TemplateSyntaxError
 
+
 class InboxOutput(Node):
     def __init__(self, varname=None):
         self.varname = varname
@@ -15,6 +16,7 @@ class InboxOutput(Node):
             return ""
         else:
             return "%s" % (count)
+
 
 def do_print_inbox_count(parser, token):
     """
@@ -40,6 +42,7 @@ def do_print_inbox_count(parser, token):
         return InboxOutput(bits[2])
     else:
         return InboxOutput()
+
 
 register = Library()
 register.tag('inbox_count', do_print_inbox_count)

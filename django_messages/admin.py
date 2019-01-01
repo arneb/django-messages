@@ -14,6 +14,7 @@ else:
 
 from django_messages.models import Message
 
+
 class MessageAdminForm(forms.ModelForm):
     """
     Custom AdminForm to enable messages to groups and all users.

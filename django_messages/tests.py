@@ -155,8 +155,7 @@ class IntegrationTestCase(TestCase):
         self.assertEqual(len(response.context['message_list']), 1)
         pk = getattr(response.context['message_list'][0], 'pk')
         # reply to the first message
-        response = self.c.get(reverse('messages_reply',
-                              kwargs={'message_id': pk}))
+        response = self.c.get(reverse('messages_reply', kwargs={'message_id': pk}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.templates[0].name,
                          'django_messages/compose.html')
@@ -172,6 +171,7 @@ class IntegrationTestCase(TestCase):
 
 class FormatTestCase(TestCase):
     """ some tests for helper functions """
+
     def testSubject(self):
         """ test that reply counting works as expected """
         self.assertEqual(format_subject(u"foo bar"), u"Re: foo bar")
@@ -183,6 +183,7 @@ class FormatTestCase(TestCase):
 
 class InboxCountTestCase(TestCase):
     """Test inbox-count content processor and templatetag."""
+
     def setUp(self):
         self.factory = RequestFactory()
         self.anonymous_user = AnonymousUser()
