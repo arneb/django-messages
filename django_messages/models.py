@@ -53,6 +53,7 @@ class Message(models.Model):
     body = models.TextField(_("Body"))
     sender = models.ForeignKey(AUTH_USER_MODEL,
                                related_name='sent_messages',
+                               null=True, blank=True,
                                verbose_name=_("Sender"),
                                on_delete=models.SET_NULL)
     recipient = models.ForeignKey(AUTH_USER_MODEL,
