@@ -9,7 +9,8 @@ setup(
     author_email='mail@arnebrodowski.de',
     url='https://github.com/arneb/django-messages',
     install_requires=[
-        'Django<2'
+        'Django<2',
+        'django-widget-tweaks<1.5',
     ],
     packages=(
         'django_messages',

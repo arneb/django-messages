@@ -2,3 +2,5 @@
 MANIFEST
 dist
 .tox
+**/migrations/*.py
+!/migrations/__init__.py

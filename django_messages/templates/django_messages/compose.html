@@ -1,14 +1,50 @@
-{% extends "django_messages/base.html" %}
-{% load i18n %}
+{% extends "django_messages/inner.html" %}
+{% load i18n widget_tweaks %}
 
-{% block content %}
-<h1>{% trans "Compose Message"%}</h1>
-<form action="" method="post">
-{% csrf_token %}
-<table>
-{{ form.as_table }}
-</table>
-<input type="submit" value="{% trans "Send" %} &raquo;"/>
-</form>
+{% block messages_sidebar %}
+   {% include "django_messages/_navbar.html" %}
+{% endblock messages_sidebar %}
 
-{% endblock %}
+{% block messages_content %}
+    <div class="inbox-head">
+        <h3>{% trans "Compose Message"%}</h3>
+    </div>
+    <div class="inbox-body">
+        <form role="form" method="post">
+            {% csrf_token %}
+            {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+            {% endfor %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% for field in form.visible_fields %}
+                <div class="form-group row">
+                    {{ field.label_tag }}
+                    {% if form.is_bound %}
+                        {% if field.errors %}
+                            {% render_field field class="form-control is-invalid" %}
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field field class="form-control is-valid" %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field field class="form-control" %}
+                    {% endif %}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button class="btn btn-send" type="submit">{% trans "Send" %} &raquo;</button>
+        </form>
+    </div>
+{% endblock messages_content %}

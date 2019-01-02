@@ -10,6 +10,7 @@ from django.conf import settings
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
+from django_messages import settings as message_settings
 
 User = get_user_model()
 
@@ -29,6 +30,7 @@ def inbox(request, template_name='django_messages/inbox.html'):
     message_list = Message.objects.inbox_for(request.user)
     return render(request, template_name, {
         'message_list': message_list,
+        'BASE_TEMPLATE': message_settings.BASE_TEMPLATE,
     })
 
 
@@ -42,6 +44,7 @@ def outbox(request, template_name='django_messages/outbox.html'):
     message_list = Message.objects.outbox_for(request.user)
     return render(request, template_name, {
         'message_list': message_list,
+        'BASE_TEMPLATE': message_settings.BASE_TEMPLATE,
     })
 
 
@@ -57,6 +60,7 @@ def trash(request, template_name='django_messages/trash.html'):
     message_list = Message.objects.trash_for(request.user)
     return render(request, template_name, {
         'message_list': message_list,
+        'BASE_TEMPLATE': message_settings.BASE_TEMPLATE,
     })
 
 
@@ -94,6 +98,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
             form.fields['recipient'].initial = recipients
     return render(request, template_name, {
         'form': form,
+        'BASE_TEMPLATE': message_settings.BASE_TEMPLATE,
     })
 
 
@@ -130,6 +135,7 @@ def reply(request, message_id, form_class=ComposeForm,
             'recipient': [parent.sender, ]})
     return render(request, template_name, {
         'form': form,
+        'BASE_TEMPLATE': message_settings.BASE_TEMPLATE,
     })
 
 
@@ -220,7 +226,11 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         message.read_at = now
         message.save()
 
-    context = {'message': message, 'reply_form': None}
+    context = {
+        'message': message,
+        'reply_form': None,
+        'BASE_TEMPLATE': message_settings.BASE_TEMPLATE,
+    }
     if message.recipient == user:
         form = form_class(initial={
             'body': quote_helper(message.sender, message.body),

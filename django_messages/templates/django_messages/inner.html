@@ -1,0 +1,31 @@
+{% extends BASE_TEMPLATE|default:'django_messages/base.html' %}
+{% load i18n inbox %}
+
+{% block messages_inner %}
+  <div class="container">
+    <div class="mail-box">
+      <aside class="sm-side">
+        <div class="user-head">
+          <a class="inbox-avatar" href="javascript:;">
+            <img  width="64" hieght="60" src="{% get_gravatar user.email %}">
+          </a>
+          <div class="user-name">
+            <h5>{{ user.username }}</h5>
+            <span><a href="mailto:">{{ user.email }}</a></span>
+          </div>
+        </div>
+        <div class="inbox-body">
+          <a href="{% url 'messages_compose' %}" class="btn btn-compose">{% trans "Compose"  %}</a>
+        </div>
+        <ul class="inbox-nav inbox-divider">
+        {% block messages_sidebar %}
+        {% endblock messages_sidebar %}
+        </ul>
+      </aside>
+      <aside class="lg-side">
+      {% block messages_content %}
+      {% endblock messages_content %}
+      </aside>
+    </div>
+  </div>
+{% endblock messages_inner %}

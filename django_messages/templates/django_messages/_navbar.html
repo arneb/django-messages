@@ -1,0 +1,13 @@
+{% load i18n staticfiles inbox %}
+
+          <li class="{% if active_link == "inbox" %}active{% endif %}">
+            <a href="{% url 'messages_inbox' %}"><i class="fa fa-inbox"></i>&nbsp;{% trans "Inbox" %}
+                <span class="badge badge-info pull-right my-2 mr-2">{% inbox_count %}</span>
+            </a>
+          </li>
+          <li class="{% if active_link == "outbox" %}active{% endif %}">
+            <a href="{% url 'messages_outbox' %}"><i class="fa fa-envelope"></i>&nbsp;{% trans "Sent" %}</a>
+          </li>
+          <li class="{% if active_link == "trash" %}active{% endif %}">
+            <a href="{% url 'messages_trash' %}"><i class=" fa fa-trash"></i>&nbsp;{% trans "Trash" %}</a>
+          </li>
