@@ -21,6 +21,7 @@ setup(
         'django_messages': [
             'templates/django_messages/*',
             'templates/notification/*/*',
+            'static/django_messages/css/*',
             'locale/*/LC_MESSAGES/*',
         ]
     },
