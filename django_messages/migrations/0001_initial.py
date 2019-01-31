@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('recipient_deleted_at', models.DateTimeField(null=True, verbose_name='Recipient deleted at', blank=True)),
                 ('parent_msg', models.ForeignKey(related_name='next_messages', verbose_name='Parent message', blank=True, to='django_messages.Message', null=True, on_delete=models.SET_NULL)),
                 ('recipient', models.ForeignKey(related_name='received_messages', verbose_name='Recipient', blank=True, to=settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)),
-                ('sender', models.ForeignKey(related_name='sent_messages', verbose_name='Sender', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('sender', models.ForeignKey(related_name='sent_messages', verbose_name='Sender', to=settings.AUTH_USER_MODEL, on_delete=models.SET_NULL)),
             ],
             options={
                 'ordering': ['-sent_at'],
