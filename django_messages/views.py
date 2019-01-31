@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 
 from django_messages.models import Message
