@@ -2,3 +2,7 @@
 MANIFEST
 dist
 .tox
+
+venv/
+.idea/
+__pycache__/

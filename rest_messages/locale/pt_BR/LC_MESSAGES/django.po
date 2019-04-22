@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Diego Martins <conchas@gmail.com>, 2009.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-01 10:24+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:19 forms.py:20 models.py:52 templates/messages/outbox.html:8
+#: templates/messages/view.html:12
+msgid "Recipient"
+msgstr "Usuário"
+
+#: admin.py:21
+msgid "group"
+msgstr "grupo"
+
+#: admin.py:22
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Cria a mensagem para todos os usuários ou para um grupo de usuários."
+
+#: admin.py:29
+msgid "All users"
+msgstr "Todos os usuários"
+
+#: admin.py:44 models.py:88
+msgid "Message"
+msgstr "Mensagem"
+
+#: admin.py:51
+msgid "Date/time"
+msgstr "Data/Hora"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Os seguintes nome de usuário estão incorretos: %(users)s"
+
+#: forms.py:21 models.py:49 templates/messages/inbox.html:8
+#: templates/messages/outbox.html:8 templates/messages/trash.html:8
+#: templates/messages/view.html:6
+msgid "Subject"
+msgstr "Assunto"
+
+#: forms.py:22 models.py:50
+msgid "Body"
+msgstr "Mensagem"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Mensagem Recebida"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "Você recebeu uma mensagem"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Mensagem Enviada"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "Você enviou uma mensagem"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Mensagem Respondida"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "Você respondeu uma mensagem"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Resposta Recebida"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "Você recebeu uma resposta de uma mensagem"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Mensagem excluída"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "Você excluiu uma mensagem"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Mensagem Recuperada"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "Você recuperou uma mensagem"
+
+#: models.py:51 templates/messages/inbox.html:8
+#: templates/messages/trash.html:8 templates/messages/view.html:8
+msgid "Sender"
+msgstr "Remetente"
+
+#: models.py:53
+msgid "Parent message"
+msgstr "Mensagem pai"
+
+#: models.py:54
+msgid "sent at"
+msgstr "enviado à"
+
+#: models.py:55
+msgid "read at"
+msgstr "lido à"
+
+#: models.py:56
+msgid "replied at"
+msgstr "respondido à"
+
+#: models.py:57
+msgid "Sender deleted at"
+msgstr "Remetente excluiu à"
+
+#: models.py:58
+msgid "Recipient deleted at"
+msgstr "Destinatário excluiu à"
+
+#: models.py:89
+msgid "Messages"
+msgstr "Mensagens"
+
+#: utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Nova Mensagem: %(subject)s"
+
+#: views.py:78 views.py:112
+msgid "Message successfully sent."
+msgstr "Mensagem enviada com sucesso."
+
+#: views.py:118
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s escreveu:\n"
+"%(body)s"
+
+#: views.py:122
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Re: %(subject)s"
+
+#: views.py:158
+msgid "Message successfully deleted."
+msgstr "Mensagem excluida com sucesso."
+
+#: views.py:185
+msgid "Message successfully recovered."
+msgstr "Mensagem recuperada com sucesso."
+
+#: templates/messages/base.html:8 templates/messages/inbox.html:4
+#: templates/messages/new_message.html:10
+msgid "Inbox"
+msgstr "Caixa de Entrada"
+
+#: templates/messages/base.html:9 templates/messages/outbox.html:4
+msgid "Sent Messages"
+msgstr "Mensagens Enviadas"
+
+#: templates/messages/base.html:10
+msgid "New Message"
+msgstr "Nova Mensagem"
+
+#: templates/messages/base.html:11
+msgid "Trash"
+msgstr "Lixeira"
+
+#: templates/messages/compose.html:4
+msgid "Compose Message"
+msgstr "Escrever Mensagem"
+
+#: templates/messages/compose.html:9
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/messages/inbox.html:8
+msgid "Received"
+msgstr "Recebida"
+
+#: templates/messages/inbox.html:8 templates/messages/outbox.html:8
+#: templates/messages/trash.html:8
+msgid "Action"
+msgstr "Ação"
+
+#: templates/messages/inbox.html:20 templates/messages/outbox.html:17
+#: templates/messages/trash.html:17 templates/messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr "DATETIME_FORMAT"
+
+#: templates/messages/inbox.html:21 templates/messages/outbox.html:18
+msgid "delete"
+msgstr "excluir"
+
+#: templates/messages/inbox.html:27 templates/messages/outbox.html:24
+#: templates/messages/trash.html:24
+msgid "No messages."
+msgstr ""
+
+#: templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Ola %(recipient)s,\n"
+"\n"
+"Você recebeu uma mensagem privada de %(sender)s com\n"
+"o seguinte conteúdo:"
+
+#: templates/messages/new_message.html:9
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Enviado de %(site_url)s"
+
+#: templates/messages/new_message.html:11 templates/messages/view.html:18
+msgid "Reply"
+msgstr "Responder"
+
+#: templates/messages/outbox.html:8
+msgid "Sent"
+msgstr "Enviada"
+
+#: templates/messages/trash.html:4
+msgid "Deleted Messages"
+msgstr "Mensagens Excluidas"
+
+#: templates/messages/trash.html:8 templates/messages/view.html:10
+msgid "Date"
+msgstr "Data"
+
+#: templates/messages/trash.html:18
+msgid "undelete"
+msgstr "recuperar"
+
+#: templates/messages/trash.html:27
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Mensagens excluidas são removidas da lixeira em intervalos de tempo não "
+"regulares,não use a lixeira para armazenar mensagens por muito tempo."
+
+#: templates/messages/view.html:4
+msgid "View Message"
+msgstr "Ver Mensagem"
+
+#: templates/messages/view.html:20
+msgid "Delete"
+msgstr "Excluir"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Você excluiu a mensagem <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr ""
+"Você recebeu a mensagem <a href=\"%(message_url)s\">%(message)s</a> de %"
+"(message_sender)s."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Você recuperou a mensagem <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"Você respondeu a mensagem  <a href=\"%(message_url)s\">%(message_parent_msg)"
+"s</a> de %(message_recipient)s."
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr "%(message_sender)s lhe enviou uma resposta a %(message_parent_msg)s."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
+"(message_recipient)s."
+msgstr ""
+"Você enviou a mensagem <a href=\"%(message_url)s\">%(message)s</a> para %"
+"(message_recipient)s."

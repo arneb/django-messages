@@ -1,0 +1,367 @@
+# django-messages in Danish.
+# django-messages på Dansk.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Michael Lind Mortensen <illio@cs.au.dk>, 2009.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-11 12:31-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:13 forms.py:20 models.py:52 templates/messages/outbox.html:7
+#: templates/messages/view.html:12
+msgid "Recipient"
+msgstr "Modtager"
+
+#: admin.py:15
+msgid "group"
+msgstr "gruppe"
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Skaber beskeden for alle brugere eller en gruppe af brugere."
+
+#: admin.py:23
+msgid "All users"
+msgstr "Alle brugere"
+
+#: admin.py:38 models.py:88
+msgid "Message"
+msgstr "Beskeder"
+
+#: admin.py:45
+msgid "Date/time"
+msgstr "Dato/tid"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "De følgende brugernavne er forkerte: %(users)s"
+
+#: forms.py:21 models.py:49 templates/messages/inbox.html:7
+#: templates/messages/outbox.html:7 templates/messages/trash.html:7
+#: templates/messages/view.html:6
+msgid "Subject"
+msgstr "Emne"
+
+#: forms.py:22 models.py:50
+msgid "Body"
+msgstr "Indhold"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Besked Modtaget"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "du har modtaget en besked"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Besked Afsendt"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "du har sendt en besked"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Besked Besvaret"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "du har besvaret en besked"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Svar Modtaget"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "du har modtaget en besvarelse på en besked"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Besked Slettet"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "du har slettet en besked"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Besked Genskabt"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "du har genskabt en besked"
+
+#: models.py:51 templates/messages/inbox.html:7
+#: templates/messages/trash.html:7 templates/messages/view.html:8
+msgid "Sender"
+msgstr "Afsender"
+
+#: models.py:53
+msgid "Parent message"
+msgstr "Stambesked"
+
+#: models.py:54
+msgid "sent at"
+msgstr "sendt"
+
+#: models.py:55
+msgid "read at"
+msgstr "læst"
+
+#: models.py:56
+msgid "replied at"
+msgstr "besvaret"
+
+#: models.py:57
+msgid "Sender deleted at"
+msgstr "Afsender slettet"
+
+#: models.py:58
+msgid "Recipient deleted at"
+msgstr "Modtager slettet"
+
+#: models.py:89
+msgid "Messages"
+msgstr "Beskeder"
+
+#: utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Ny besked: %(subject)s"
+
+#: views.py:78 views.py:112
+msgid "Message successfully sent."
+msgstr "Besked sendt succesfuldt."
+
+#: views.py:118
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s skrev:\n"
+"%(body)s"
+
+#: views.py:122
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "SV: %(subject)s"
+
+#: views.py:158
+msgid "Message successfully deleted."
+msgstr "Besked slettet succesfuldt."
+
+#: views.py:185
+msgid "Message successfully recovered."
+msgstr "Besked genskabt succesfuldt."
+
+#: templates/messages/base.html:8 templates/messages/inbox.html:4
+#: templates/messages/new_message.html:10
+msgid "Inbox"
+msgstr "Indboks"
+
+#: templates/messages/base.html:9 templates/messages/outbox.html:4
+msgid "Sent Messages"
+msgstr "Sendte Beskeder"
+
+#: templates/messages/base.html:10
+msgid "New Message"
+msgstr "Ny Besked"
+
+#: templates/messages/base.html:11
+msgid "Trash"
+msgstr "Papirkurv"
+
+#: templates/messages/compose.html:4
+msgid "Compose Message"
+msgstr "Skriv Ny Besked"
+
+#: templates/messages/compose.html:9
+msgid "Send"
+msgstr "Send"
+
+#: templates/messages/inbox.html:7
+msgid "Received"
+msgstr "Modtaget"
+
+#: templates/messages/inbox.html:7 templates/messages/outbox.html:7
+#: templates/messages/trash.html:7
+msgid "Action"
+msgstr "Handling"
+
+#: templates/messages/inbox.html:19 templates/messages/outbox.html:16
+#: templates/messages/trash.html:16 templates/messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr "DATETIME_FORMAT"
+
+#: templates/messages/inbox.html:20 templates/messages/outbox.html:17
+msgid "delete"
+msgstr "slet"
+
+#: templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Goddag %(recipient)s,\n"
+"\n"
+"du har modtaget en privat besked fra %(sender)s med\n"
+"følgende indhold:"
+
+#: templates/messages/new_message.html:9
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Sendt fra %(site_url)s"
+
+#: templates/messages/new_message.html:11 templates/messages/view.html:18
+msgid "Reply"
+msgstr "Besvar"
+
+#: templates/messages/outbox.html:7
+msgid "Sent"
+msgstr "Sendt"
+
+#: templates/messages/trash.html:4
+msgid "Deleted Messages"
+msgstr "Slettede Beskeder"
+
+#: templates/messages/trash.html:7 templates/messages/view.html:10
+msgid "Date"
+msgstr "Dato"
+
+#: templates/messages/trash.html:17
+msgid "undelete"
+msgstr "genskab"
+
+#: templates/messages/trash.html:23
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Slettede beskeder fjernes fra papirkurven med jævne mellemrum. Lad være med "
+"at regne med denne funktion til langtidslagring."
+
+#: templates/messages/view.html:4
+msgid "View Message"
+msgstr "Læs Besked"
+
+#: templates/messages/view.html:20
+msgid "Delete"
+msgstr "Slet"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Du har slettet beskeden <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr ""
+"Du har modtaget beskeden <a href=\"%(message_url)s\">%(message)s</a> fra %"
+"(message_sender)s."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Du har genskabt beskeden <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"Du har besvaret <a href=\"%(message_url)s\">%(message_parent_msg)s</a> fra %"
+"(message_recipient)s."
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr ""
+"%(message_sender)s har sendt dig en besvarelse på %(message_parent_msg)s."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
+"(message_recipient)s."
+msgstr ""
+"Du har sendt beskeden <a href=\"%(message_url)s\">%(message)s</a> til %"
+"(message_recipient)s."
+
+#, fuzzy
+#~ msgid "You have deleted the message '%(message)s'."
+#~ msgstr "Du har slettet beskeden '%(message)s'."
+
+#, fuzzy
+#~ msgid ""
+#~ "%(message_sender)s has sent you a message:\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+#~ msgstr ""
+#~ "%(message_sender)s har sendt dig en besked:\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+
+#~ msgid "%(notice)s by %(message_sender)s"
+#~ msgstr "%(notice)s af %(message_sender)s"
+
+#, fuzzy
+#~ msgid "You have recovered the message '%(message)s'."
+#~ msgstr "Du har genskabt beskeden '%(message)s'."
+
+#, fuzzy
+#~ msgid ""
+#~ "You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
+#~ msgstr "Du har besvaret '%(message_parent_msg)s' fra %(message_recipient)s."
+
+#~ msgid ""
+#~ "%(message_sender)s replied to '%(message_parent_msg)s':\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+#~ msgstr ""
+#~ "%(message_sender)s besvarede '%(message_parent_msg)s':\n"
+#~ "\n"
+#~ "%(message)s\n"
+#~ "\n"
+#~ "%(message_body)s\n"
+#~ "\n"
+#~ "http://%(current_site)s%(message_url)s"
+
+#, fuzzy
+#~ msgid "You have sent the message '%(message)s' to %(message_recipient)s."
+#~ msgstr "Du har sendt beskeden '%(message)s' til %(message_recipient)s."

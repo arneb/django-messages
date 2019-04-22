@@ -1,0 +1,320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-11 12:31-0700\n"
+"PO-Revision-Date: 2015-03-24 10:53+0200\n"
+"Last-Translator: Saulius Zemaitaitis <saulius@zemaitaitis.lt>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:13 forms.py:20 models.py:52 templates/messages/outbox.html:7
+#: templates/messages/view.html:12
+msgid "Recipient"
+msgstr "Gavėjas"
+
+#: admin.py:15
+msgid "group"
+msgstr "Grupė"
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr ""
+"Sukuria žinutę visiems vartotojams arba grupei pasirinktinai "
+
+
+#: admin.py:23
+msgid "All users"
+msgstr "Visi vartotojai"
+
+#: admin.py:38 models.py:88
+msgid "Message"
+msgstr "Žinutė"
+
+#: admin.py:45
+msgid "Date/time"
+msgstr "Data/Laikas"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Šie vartotojų vardai yra neteisingi: %(users)s"
+
+#: forms.py:21 models.py:49 templates/messages/inbox.html:7
+#: templates/messages/outbox.html:7 templates/messages/trash.html:7
+#: templates/messages/view.html:6
+msgid "Subject"
+msgstr "Tema"
+
+#: forms.py:22 models.py:50
+msgid "Body"
+msgstr "Turinys"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Gauta žinutė"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "jūs gavote žinutę"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Žinutė Išsiųsta"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "jūs išsiuntėte žinutę"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Žinutė atsakyta"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "jūs atsakėte į žinutę"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Gautas atsakymas"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "jūs gavote atsakymą į žinutę"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Žinutė ištrinta"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "jūs ištrynėte žinutę"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Žinutė Atstatyta"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "jūs atstatėte ištrintą žinutę"
+
+#: models.py:51 templates/messages/inbox.html:7
+#: templates/messages/trash.html:7 templates/messages/view.html:8
+msgid "Sender"
+msgstr "Siuntėjas"
+
+#: models.py:53
+msgid "Parent message"
+msgstr "Pirminė žinutė"
+
+#: models.py:54
+msgid "sent at"
+msgstr "išsiųsta"
+
+#: models.py:55
+msgid "read at"
+msgstr "perskaityta"
+
+#: models.py:56
+msgid "replied at"
+msgstr "atsakyta"
+
+#: models.py:57
+msgid "Sender deleted at"
+msgstr "Siuntėjas ištrynė"
+
+#: models.py:58
+msgid "Recipient deleted at"
+msgstr "Gavėjas ištrynė"
+
+#: models.py:89
+msgid "Messages"
+msgstr "Žinutės"
+
+#: utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Nauja žinutė: %(subject)s"
+
+#: views.py:78 views.py:112
+msgid "Message successfully sent."
+msgstr "Žinutė sėkmingai išsiųsta."
+
+#: views.py:118
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s parašė:\n"
+"%(body)s"
+
+#: views.py:122
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Ats: %(subject)s"
+
+#: views.py:158
+msgid "Message successfully deleted."
+msgstr "Žinutė sėkmingai ištrinta."
+
+#: views.py:185
+msgid "Message successfully recovered."
+msgstr "Žinutė sėkmingai atstatyta."
+
+#: templates/messages/base.html:8 templates/messages/inbox.html:4
+#: templates/messages/new_message.html:10
+msgid "Inbox"
+msgstr "Gautos"
+
+#: templates/messages/base.html:9 templates/messages/outbox.html:4
+msgid "Sent Messages"
+msgstr "Išsiųstos žinutės"
+
+#: templates/messages/base.html:10
+msgid "New Message"
+msgstr "Nauja žinutė"
+
+#: templates/messages/base.html:11
+msgid "Trash"
+msgstr "Ištrintos"
+
+#: templates/messages/compose.html:4
+msgid "Compose Message"
+msgstr "Kurti žinutę"
+
+#: templates/messages/compose.html:9
+msgid "Send"
+msgstr "Siųsti"
+
+#: templates/messages/inbox.html:7
+msgid "Received"
+msgstr "Gauta"
+
+#: templates/messages/inbox.html:7 templates/messages/outbox.html:7
+#: templates/messages/trash.html:7
+msgid "Action"
+msgstr "Veiksmas"
+
+#: templates/messages/inbox.html:19 templates/messages/outbox.html:16
+#: templates/messages/trash.html:16 templates/messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr "Y j. N, H:i"
+
+#: templates/messages/inbox.html:20 templates/messages/outbox.html:17
+msgid "delete"
+msgstr "ištrinti"
+
+#: templates/messages/inbox.html:27 templates/messages/outbox.html:24
+#: templates/messages/trash.html:24
+msgid "No messages."
+msgstr "Žinučių nėra."
+
+#: templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"%(recipient)s,\n"
+"\n"
+"Gavote asmeninę žinutę nuo %(sender)s su\n"
+"šiuo turiniu:"
+
+#: templates/messages/new_message.html:9
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Siųsta iš %(site_url)s"
+
+#: templates/messages/new_message.html:11 templates/messages/view.html:18
+msgid "Reply"
+msgstr "Atsakyti"
+
+#: templates/messages/outbox.html:7
+msgid "Sent"
+msgstr "Išsiųsta"
+
+#: templates/messages/trash.html:4
+msgid "Deleted Messages"
+msgstr "Ištrintos žinutės"
+
+#: templates/messages/trash.html:7 templates/messages/view.html:10
+msgid "Date"
+msgstr "Data"
+
+#: templates/messages/trash.html:17
+msgid "undelete"
+msgstr "atstatyti"
+
+#: templates/messages/trash.html:23
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Ištrintos žinutės pašalinamos periodiškai, nelaikykite ilgalaikių žinučių "
+"šiukšliadėžėje."
+
+#: templates/messages/view.html:4
+msgid "View Message"
+msgstr "Peržiūrėti žinutę"
+
+#: templates/messages/view.html:20
+msgid "Delete"
+msgstr "Ištrinti"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr ""
+"Ištrynėte žinutę <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr ""
+"Gavote žinutę <a href=\"%(message_url)s\">%(message)s</a> nuo %"
+"(message_sender)s."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr ""
+"Atstatėte žinutę <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"Jūs atsakėte į žinutę <a href=\"%(message_url)s\">%(message_parent_msg)"
+"s</a> nuo %(message_recipient)s."
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr ""
+"%(message_sender)s atsiuntė atsakymą į %(message_parent_msg)s."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
+"(message_recipient)s."
+msgstr ""
+"Išsiuntėte žinutę <a href=\"%(message_url)s\">%(message)s</a> %"
+"(message_recipient)s."

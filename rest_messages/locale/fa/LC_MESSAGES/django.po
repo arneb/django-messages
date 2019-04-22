@@ -1,0 +1,357 @@
+# django-messages fari translations
+# Copyright (C) 2012 Hassan Zamani
+# This file is distributed under the same license as the djagno-messages package.
+# Hassan Zamani <hsn.zamani@gmail.com>, 2012.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-27 12:44+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"First-Translator: Mohammad Hamidi Esfahani"
+"Last-Translator: Hassan Zamani <hsn.zamani@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: admin.py:19 forms.py:20 models.py:52
+#: templates/django_messages/outbox.html:8
+#: templates/django_messages/view.html:12
+msgid "Recipient"
+msgstr "گیرنده"
+
+#: admin.py:21
+msgid "group"
+msgstr "گروه"
+
+#: admin.py:22
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "ارسال پیام به همه کاربران یا گروهی از آن‌ها."
+
+#: admin.py:29
+msgid "All users"
+msgstr "تمامی کاربران"
+
+#: admin.py:44 models.py:88
+msgid "Message"
+msgstr "پیام"
+
+#: admin.py:51
+msgid "Date/time"
+msgstr "تاریخ/ساعت"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "این کاربرها صحیح نمی‌باشند: %(users)s"
+
+#: forms.py:21 models.py:49 templates/django_messages/inbox.html:8
+#: templates/django_messages/outbox.html:8
+#: templates/django_messages/trash.html:8
+#: templates/django_messages/view.html:6
+msgid "Subject"
+msgstr "موضوع"
+
+#: forms.py:22 models.py:50
+msgid "Body"
+msgstr "متن"
+
+
+#: management.py:9
+msgid "Message Received"
+msgstr "پیام دریافت‌شد"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "شما یک پیام دریافت کرده‌اید"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "پیام ارسال‌شد"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "شما یک پیام ارسال کرده‌اید"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "پیام پاسخ داده‌شد"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "شما به یک پیام پاسخ دادید"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "پاسخ دریافت‌شد"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "شما پاسخی به یک پیام دریافت کرده‌اید"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "پیام حذف گردید"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "شما یک پیام حذف کردید"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "پیام بازیابی‌شد"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "شما یک پیام را بازیابی کردید"
+
+#: models.py:51 templates/django_messages/inbox.html:8
+#: templates/django_messages/trash.html:8
+#: templates/django_messages/view.html:8
+msgid "Sender"
+msgstr "فرستنده"
+
+#: models.py:53
+msgid "Parent message"
+msgstr "پیام مرجع"
+
+#: models.py:54
+msgid "sent at"
+msgstr "ارسال شده در"
+
+#: models.py:55
+msgid "read at"
+msgstr "خوانده شده در"
+
+#: models.py:56
+msgid "replied at"
+msgstr "پاسخ داده شده در"
+
+#: models.py:57
+msgid "Sender deleted at"
+msgstr "فرستنده حذف‌شده در"
+
+#: models.py:58
+msgid "Recipient deleted at"
+msgstr "گیرنده خذف‌شده در"
+
+#: models.py:89
+msgid "Messages"
+msgstr "پیام ها"
+
+#: utils.py:26
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s گفت:\n"
+"%(body)s"
+
+#: utils.py:54
+#, python-format
+msgid "Re%(prefix)s: %(subject)s"
+msgstr "پاسخ%(prefix)s: %(subject)s"
+
+#: utils.py:60
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "پیام جدید: %(subject)s"
+
+#: views.py:78 views.py:114
+msgid "Message successfully sent."
+msgstr "پیام با موفقیت ارسال‌شد."
+
+#: views.py:121
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "پاسخ: %(subject)s"
+
+#: views.py:157
+msgid "Message successfully deleted."
+msgstr "پیام با موفقیت حذف‌شد."
+
+#: views.py:184
+msgid "Message successfully recovered."
+msgstr "پیام با موفقیت بازیابی‌شد."
+
+#: templates/django_messages/base.html:8
+#: templates/django_messages/inbox.html:4
+#: templates/django_messages/new_message.html:10
+msgid "Inbox"
+msgstr "صندوق دریافتی"
+
+#: templates/django_messages/base.html:9
+#: templates/django_messages/outbox.html:4
+msgid "Sent Messages"
+msgstr "پیام‌های ارسال‌شده"
+
+#: templates/django_messages/base.html:10
+msgid "New Message"
+msgstr "پیام جدید"
+
+#: templates/django_messages/base.html:11
+msgid "Trash"
+msgstr "پیام‌های حذف‌شده"
+
+#: templates/django_messages/compose.html:4
+msgid "Compose Message"
+msgstr "ایجاد پیام جدید"
+
+#: templates/django_messages/compose.html:10
+msgid "Send"
+msgstr "بفرست"
+
+#: templates/django_messages/inbox.html:8
+msgid "Received"
+msgstr "دریافت‌شد"
+
+#: templates/django_messages/inbox.html:8
+#: templates/django_messages/outbox.html:8
+#: templates/django_messages/trash.html:8
+msgid "Action"
+msgstr "عمل"
+
+#: templates/django_messages/inbox.html:20
+#: templates/django_messages/outbox.html:17
+#: templates/django_messages/trash.html:17
+#: templates/django_messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/django_messages/inbox.html:21
+#: templates/django_messages/outbox.html:18
+msgid "delete"
+msgstr "حذف"
+
+#: templates/django_messages/inbox.html:27
+#: templates/django_messages/outbox.html:24
+#: templates/django_messages/trash.html:24
+msgid "No messages."
+msgstr "پیامی وجود ندارد."
+
+#: templates/django_messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr "سلام %(recipient)s,\n"
+"\n"
+"شما یک پیام خصوصی از %(sender)s دریافت کرده‌اید:"
+
+#: templates/django_messages/new_message.html:9
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "ارسال شده از %(site_url)s"
+
+#: templates/django_messages/new_message.html:11
+#: templates/django_messages/view.html:18
+msgid "Reply"
+msgstr "پاسخ"
+
+#: templates/django_messages/outbox.html:8
+msgid "Sent"
+msgstr "ارسال‌شد"
+
+#: templates/django_messages/trash.html:4
+msgid "Deleted Messages"
+msgstr "پیام های حذف‌شده"
+
+#: templates/django_messages/trash.html:8
+#: templates/django_messages/view.html:10
+msgid "Date"
+msgstr "تاریخ"
+
+#: templates/django_messages/trash.html:18
+msgid "undelete"
+msgstr "بازیابی"
+
+#: templates/django_messages/trash.html:27
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"پیام‌های حذف‌شده در بازه‌های زمانی مشخصی از اینجا حذف می‌شوند، بنابراین برای نگهداری طولانی مدت از این‌جا استفاده نکنید."
+
+#: templates/django_messages/view.html:4
+msgid "View Message"
+msgstr "نمایش پیام"
+
+#: templates/django_messages/view.html:20
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "شما پیام <a href=\"%(message_url)s\">%(message)s</a> را حذف کردید."
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr "شما پیام جدید <a href=\"%(message_url)s\">%(message)s</a> را از %(message_sender)s دریافت کردید."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "شما پیام <a href=\"%(message_url)s\">%(message)s</a> را بازیابی کردید."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr "شما به پیام <a href=\"%(message_url)s\">%(message_parent_msg)s</a> از %(message_recipient)s پاسخ‌دادید."
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr "%(message_sender)s پاسخی به %(message_parent_msg)s برای شما ارسال کرده."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to "
+"%(message_recipient)s."
+msgstr "شما پیام <a href=\"%(message_url)s\">%(message)s</a> را به %(message_recipient)s ارسال‌کردید."
+
+#~ msgid "context"
+#~ msgstr "متن پیام"
+
+#~ msgid "received at"
+#~ msgstr "دریافت شده در"
+
+#~ msgid "deleted by sender at"
+#~ msgstr "حذف شده توسط فرستنده در"
+
+#~ msgid "deleted by receiver at"
+#~ msgstr "حذف شده توسط گیرنده در"
+
+#~ msgid "Message revert successfully"
+#~ msgstr "پیام با موفقیت بازگردانی شد"
+
+#~ msgid "send message"
+#~ msgstr "ارسال پیام"
+
+#~ msgid "date"
+#~ msgstr "تاریخ"
+
+#~ msgid "revert"
+#~ msgstr "بازگردانی"
+
+#~ msgid "deleted Messages will remove from trash step by step"
+#~ msgstr "پیام های حذف شده در فواصل نامنظم از سطل زباله حذف می گردند"
+
+#~ msgid "not replied yet"
+#~ msgstr "هنوز پاسخ داده نشده است"

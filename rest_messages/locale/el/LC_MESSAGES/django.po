@@ -1,0 +1,291 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-11 12:31-0700\n"
+"PO-Revision-Date: 2009-09-08 15:50+0200\n"
+"Last-Translator: markos <mgogoulos@gmail.com>\n"
+"Language-Team: Markos Gogoulos <mgogoulos@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:13 forms.py:20 models.py:52 templates/messages/outbox.html:7
+#: templates/messages/view.html:12
+msgid "Recipient"
+msgstr "Αποδέκτης"
+
+#: admin.py:15
+msgid "group"
+msgstr "ομάδα"
+
+#: admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Δημιουργεί το μήνυμα προαιρετικά για όλους τους χρήστες ή για ομάδα χρηστών."
+
+#: admin.py:23
+msgid "All users"
+msgstr "Όλοι οι χρήστες"
+
+#: admin.py:38 models.py:88
+msgid "Message"
+msgstr "Μήνυμα"
+
+#: admin.py:45
+msgid "Date/time"
+msgstr "Ημερομηνία/Ώρα"
+
+#: fields.py:53
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Τα παρακάτω usernames δεν είναι σωστά: %(users)s"
+
+#: forms.py:21 models.py:49 templates/messages/inbox.html:7
+#: templates/messages/outbox.html:7 templates/messages/trash.html:7
+#: templates/messages/view.html:6
+msgid "Subject"
+msgstr "Θέμα"
+
+#: forms.py:22 models.py:50
+msgid "Body"
+msgstr "Κυρίως μέρος"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Το μήνυμα ελήφθη "
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "έχετε λάβει ένα μήνυμα"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Το μήνυμα εστάλει"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "έχετε στείλει ένα μήνυμα"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Το μήνυμα έχει απαντηθεί"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "έχετε απαντήσει σε ένα μήνυμα"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Η απάντηση ελήφθη"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "έχετε λάβει μια απάντηση σε ένα μήνυμα"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Το μήνυμα έχει διαγραφεί"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "διαγράψατε ένα μήνυμα"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Το μήνυμα έχει ανακληθεί"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "έχετε ανακτήσει ένα μήνυμα"
+
+#: models.py:51 templates/messages/inbox.html:7
+#: templates/messages/trash.html:7 templates/messages/view.html:8
+msgid "Sender"
+msgstr "Αποστολέας"
+
+#: models.py:53
+msgid "Parent message"
+msgstr "Μήνυμα Γονέας"
+
+#: models.py:54
+msgid "sent at"
+msgstr "εστάλει στις"
+
+#: models.py:55
+msgid "read at"
+msgstr "αναγνώστηκε στις"
+
+#: models.py:56
+msgid "replied at"
+msgstr "απαντήθηκε στις"
+
+#: models.py:57
+msgid "Sender deleted at"
+msgstr "Ο αποστολέας το διέγραψε στις"
+
+#: models.py:58
+msgid "Recipient deleted at"
+msgstr "Ο αποδέκτης το διέγραψε στις"
+
+#: models.py:89
+msgid "Messages"
+msgstr "Μηνύματα"
+
+#: utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "καινούργιο μήνυμα: %(subject)s"
+
+#: views.py:78 views.py:112
+msgid "Message successfully sent."
+msgstr "Το μήνυμα έχει αποσταλεί με επιτυχία."
+
+#: views.py:118
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s έγραψε:\n"
+"%(body)s"
+
+#: views.py:122
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Re: %(subject)s"
+
+#: views.py:158
+msgid "Message successfully deleted."
+msgstr "Το μήνυμα διεγράφει."
+
+#: views.py:185
+msgid "Message successfully recovered."
+msgstr "Το μήνυμα έχει ανακληθεί επιτυχημένα"
+
+#: templates/messages/base.html:8 templates/messages/inbox.html:4
+#: templates/messages/new_message.html:10
+msgid "Inbox"
+msgstr "Εισερχόμενα"
+
+#: templates/messages/base.html:9 templates/messages/outbox.html:4
+msgid "Sent Messages"
+msgstr "Σταλμένα μηνύματα"
+
+#: templates/messages/base.html:10
+msgid "New Message"
+msgstr "Νέο μήνυμα"
+
+#: templates/messages/base.html:11
+msgid "Trash"
+msgstr "Άχρηστα"
+
+#: templates/messages/compose.html:4
+msgid "Compose Message"
+msgstr "Συντάξτε μήνυμα"
+
+#: templates/messages/compose.html:9
+msgid "Send"
+msgstr "Στείλτε"
+
+#: templates/messages/inbox.html:7
+msgid "Received"
+msgstr "Ελήφθη"
+
+#: templates/messages/inbox.html:7 templates/messages/outbox.html:7
+#: templates/messages/trash.html:7
+msgid "Action"
+msgstr "Ενέργεια"
+
+#: templates/messages/inbox.html:19 templates/messages/outbox.html:16
+#: templates/messages/trash.html:16 templates/messages/view.html:11
+msgid "DATETIME_FORMAT"
+msgstr "DATETIME_FORMAT"
+
+#: templates/messages/inbox.html:20 templates/messages/outbox.html:17
+msgid "delete"
+msgstr "διαγράφω"
+
+#: templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Γειά χαρά %(recipient)s,\n"
+"\n"
+"έχετε λάβει ένα προσωπικό μήνυμα από τον/την %(sender)s με\n"
+"το ακόλουθο περιεχόμενο:"
+
+#: templates/messages/new_message.html:9
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Εστάλει απο %(site_url)s"
+
+#: templates/messages/new_message.html:11 templates/messages/view.html:18
+msgid "Reply"
+msgstr "Απαντήστε"
+
+#: templates/messages/outbox.html:7
+msgid "Sent"
+msgstr "Απεσταλμένα"
+
+#: templates/messages/trash.html:4
+msgid "Deleted Messages"
+msgstr "Διαγραμμένα μηνύματα"
+
+#: templates/messages/trash.html:7 templates/messages/view.html:10
+msgid "Date"
+msgstr "Ημερομηνία"
+
+#: templates/messages/trash.html:17
+msgid "undelete"
+msgstr "ξεδιαγράψτε"
+
+#: templates/messages/trash.html:23
+msgid "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage."
+msgstr "Τα διαγραμμένα μηνύματα απομακρύνονται απο τα Άχρηστα σε μη τακτά διαστήματα, μη βασίζεστε σε αυτά για μακροχρόνια αποθήκευση."
+
+#: templates/messages/view.html:4
+msgid "View Message"
+msgstr "Προβολή Μηνύματος"
+
+#: templates/messages/view.html:20
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid "You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Έχετε διαγράψει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid "You have received the message <a href=\"%(message_url)s\">%(message)s</a> from %(message_sender)s."
+msgstr "Έχετε λάβει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a> από τον/την %(message_sender)s."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid "You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Έχετε ανακτήσει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid "You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> from %(message_recipient)s."
+msgstr "Έχετε απαντήσει στο <a href=\"%(message_url)s\">%(message_parent_msg)s</a>από τον/την  %(message_recipient)s."
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr "Ο/η %(message_sender)s σας έστειλε μια απάντηση στο %(message_parent_msg)s."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid "You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %(message_recipient)s."
+msgstr "Έχετε στείλει το μήνυμα <a href=\"%(message_url)s\">%(message)s</a> στον/στην %(message_recipient)s."
