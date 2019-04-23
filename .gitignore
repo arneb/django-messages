@@ -1,8 +1,7 @@
 *.pyc
 MANIFEST
-dist
-.tox
-
+dist/
+drf_messages.egg-info
 venv/
 .idea/
 __pycache__/

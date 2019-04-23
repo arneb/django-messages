@@ -1,9 +1,7 @@
 include AUTHORS
 include LICENSE
 include INSTALL
-include UPGRADING
 include README.rst
-recursive-include django_messages/locale *.po *.mo
-recursive-include django_messages/templates *.html *.txt
+recursive-include drf_messages/locale *.po *.mo
 include docs/*
 exclude docs/conf.py

@@ -1,30 +1,23 @@
 from distutils.core import setup
 
+from setuptools import find_packages
+
 setup(
-    name='django-messages',
-    version=__import__('django_messages').__version__,
-    description='User-to-user messaging system for Django',
-    long_description=open('README.rst').read(),
-    author='Arne Brodowski',
+    name='drf-messages',
+    version=__import__('drf_messages').__version__,
+    description='User-to-user messaging system for DRF',
+    long_description=open('./README.rst').read(),
+    author='Khuram Javed',
     author_email='mail@arnebrodowski.de',
     url='https://github.com/arneb/django-messages',
-    install_requires=[
-        'Django'
-    ],
-    packages=(
-        'django_messages',
-        'django_messages.templatetags',
-        'django_messages.migrations',
-    ),
+    packages=find_packages(),
     package_data={
-        'django_messages': [
-            'templates/django_messages/*',
-            'templates/notification/*/*',
+        'drf_messages': [
             'locale/*/LC_MESSAGES/*',
         ]
     },
-    classifiers=(
-        'Development Status :: 4 - Beta',
+    classifiers=[
+        'Development Status :: 0.0.1',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
@@ -32,5 +25,5 @@ setup(
         'Programming Language :: Python',
         'Topic :: Utilities',
         'Framework :: Django',
-    ),
+    ], install_requires=['django', 'djangorestframework']
 )
