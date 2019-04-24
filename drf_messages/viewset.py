@@ -75,36 +75,19 @@ class MessageViewSet(viewsets.GenericViewSet):
     @decorators.action(methods=['post'], detail=True)
     def reply(self, request, pk):
         """
-        Prepares the ``serializer_class`` for writing a reply to a given message
-        (specified via ``message_id``).
+        processes a reply message to a given message (specified via ``message_id``).
         """
-        subject_template: str = _("Re: %(subject)s")
         message_user_model = self.get_message_user_model(request)
         parent = get_object_or_404(Message, pk=pk)
         if parent.sender != message_user_model and parent.recipient != message_user_model:
             raise Http404
 
-        if request.method == "POST":
-            serializer = ComposeSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save(sender=message_user_model, parent_msg=parent)
-                return Response({
-                    _("Message successfully sent.")
-                }, status=status.HTTP_201_CREATED)
-            else:
-                return Response({
-                    'error': serializer.errors
-                }, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            serializer = ComposeSerializer(initial={
-                'sender': parent.sender,
-                'body': parent.body,
-                'subject': subject_template % {'subject': parent.subject},
-                'recipient': [parent.sender, ]
-            })
+        serializer = ComposeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        message_instances = serializer.save(sender=message_user_model, parent_msg=parent)
         return Response({
-            'serializer': serializer,
-        })
+            'message': message_instances
+        }, status=status.HTTP_201_CREATED)
 
     @decorators.action(methods=['put'], detail=True)
     def delete(self, request, pk):
@@ -171,6 +154,11 @@ class MessageViewSet(viewsets.GenericViewSet):
 
         if (message.sender != message_user_model) and (message.recipient != message_user_model):
             raise Http404
+        if message.recipient == message_user_model and message.recipient_deleted_at is not None:
+            raise Http404
+        if message.sender == message_user_model and message.sender_deleted_at is not None:
+            raise Http404
+
         if message.read_at is None and message.recipient == message_user_model:
             message.read_at = now
             message.save()

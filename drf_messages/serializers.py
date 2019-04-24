@@ -37,6 +37,7 @@ class ComposeSerializer(serializers.ModelSerializer):
                 message.parent_msg = parent_msg
                 parent_msg.replied_at = now
                 parent_msg.save()
+            message.save()
             serialized_message = ReadMessageSerializer(message).data
             serialized_message_instances.append(serialized_message)
         return serialized_message_instances
