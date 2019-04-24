@@ -79,11 +79,6 @@ class Message(models.Model):
     def __str__(self):
         return self.subject
 
-    def save(self, **kwargs):
-        if not self.id:
-            self.sent_at = timezone.now()
-        super().save(**kwargs)
-
     class Meta:
         ordering = ['-sent_at']
         verbose_name = "Message"

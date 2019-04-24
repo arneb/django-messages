@@ -17,25 +17,29 @@ class ComposeSerializer(serializers.ModelSerializer):
         fields = ('id', 'subject', 'body', 'sender', 'recipient', 'sent_at', 'read_at', 'replied_at',
                   'sender_deleted_at', 'recipient_deleted_at', 'parent_msg')
 
-    def save(self, sender, parent_msg=None):
+    def create(self, validated_data):
         recipients = self.validated_data['recipient']
+        sender = self.validated_data['sender']
         subject = self.validated_data['subject']
         body = self.validated_data['body']
-        message_list = []
+        parent_msg = validated_data.get('parent_msg')
+        now = timezone.now()
+        serialized_message_instances = []
         for r in recipients:
-            msg = Message(
-                sender=sender,
+            message = Message(
+                sender_id=sender.id,
                 recipient_id=r,
                 subject=subject,
                 body=body,
+                sent_at=now
             )
             if parent_msg is not None:
-                msg.parent_msg = parent_msg
-                parent_msg.replied_at = timezone.now()
+                message.parent_msg = parent_msg
+                parent_msg.replied_at = now
                 parent_msg.save()
-            msg.save()
-            message_list.append(msg)
-        return message_list
+            serialized_message = ReadMessageSerializer(message).data
+            serialized_message_instances.append(serialized_message)
+        return serialized_message_instances
 
 
 class ReadMessageSerializer(serializers.ModelSerializer):

@@ -67,9 +67,9 @@ class MessageViewSet(viewsets.GenericViewSet):
         sender = self.get_message_user_model(request)
         serializer = ComposeSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(sender=sender)
+            message_instances = serializer.save(sender=sender)
             return Response({
-                'message': serializer.data
+                'message': message_instances
             }, status=status.HTTP_201_CREATED)
 
     @decorators.action(methods=['post'], detail=True)
@@ -196,7 +196,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         you can have the chance to handle that by giving the relationship name, of your message user model, by
         setting the relationship name to DRF_MESSAGE_RELATIONSHIP_ON_REQUEST_USER
 
-        :NOTE: message user in this case means the message consumer model.
+        :NOTE: 'message user model', in this case, means the 'message consumer model'.
         """
         relationship_on_request_dot_user = getattr(settings, 'DRF_MESSAGE_RELATIONSHIP_ON_REQUEST_USER', None)
         if relationship_on_request_dot_user is not None:
