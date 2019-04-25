@@ -25,7 +25,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         serialized_messages = self.serialized_messages(message_list)
 
         return Response({
-            'message_list': serialized_messages,
+            'messages_list': serialized_messages,
         }, status=status.HTTP_200_OK)
 
     @decorators.action(methods=['get'], detail=False)
@@ -38,7 +38,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         serialized_messages = self.serialized_messages(message_list)
 
         return Response({
-            'message_list': serialized_messages,
+            'messages_list': serialized_messages,
         }, status=status.HTTP_200_OK)
 
     @decorators.action(methods=['get'], detail=False)
@@ -52,7 +52,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         message_list = Message.objects.trash_for(message_user_model)
         serialized_messages = self.serialized_messages(message_list)
         return Response({
-            'message_list': serialized_messages,
+            'messages_list': serialized_messages,
         })
 
     @decorators.action(methods=['post'], detail=False)
@@ -69,7 +69,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         if serializer.is_valid(raise_exception=True):
             message_instances = serializer.save(sender=sender)
             return Response({
-                'message': message_instances
+                'messages_list': message_instances
             }, status=status.HTTP_201_CREATED)
 
     @decorators.action(methods=['post'], detail=True)

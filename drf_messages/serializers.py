@@ -18,10 +18,10 @@ class ComposeSerializer(serializers.ModelSerializer):
                   'sender_deleted_at', 'recipient_deleted_at', 'parent_msg')
 
     def create(self, validated_data):
-        recipients = self.validated_data['recipient']
-        sender = self.validated_data['sender']
-        subject = self.validated_data['subject']
-        body = self.validated_data['body']
+        recipients = validated_data['recipient']
+        sender = validated_data['sender']
+        subject = validated_data['subject']
+        body = validated_data['body']
         parent_msg = validated_data.get('parent_msg')
         now = timezone.now()
         serialized_message_instances = []
