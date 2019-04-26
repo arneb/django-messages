@@ -3,44 +3,42 @@ import uuid
 from django.conf import settings
 from django.db import models
 
-DRF_MESSAGE_USER_MODEL = getattr(settings, 'DRF_MESSAGE_USER_MODEL')
-
 
 class MessageManager(models.Manager):
 
-    def inbox_for(self, recipient):
+    def inbox_for(self, user):
         """
-        :param recipient: is the instance of the 'actual' message user model
+        :param user: is the instance of the 'actual' message user model
         :returns: all messages received by the given user and are not
         marked as deleted.
         """
         return self.filter(
-            recipient=recipient,
+            recipient=user,
             recipient_deleted_at__isnull=True,
         )
 
-    def outbox_for(self, sender):
+    def outbox_for(self, user):
         """
-        :param sender: is the instance of the 'actual' message user model
+        :param user: is the instance of the 'actual' message user model
         :returns: all messages sent by the given user and are not
         marked as deleted.
         """
         return self.filter(
-            sender=sender,
+            sender=user,
             sender_deleted_at__isnull=True,
         )
 
-    def trash_for(self, recipient_or_sender):
+    def trash_for(self, user):
         """
-        :param recipient_or_sender: is the instance of the 'actual' message user model
+        :param user: is the instance of the 'actual' message user model
         :returns: all messages that were either received or sent by the given
         user and are marked as deleted.
         """
         return self.filter(
-            recipient=recipient_or_sender,
+            recipient=user,
             recipient_deleted_at__isnull=False,
         ) | self.filter(
-            sender=recipient_or_sender,
+            sender=user,
             sender_deleted_at__isnull=False,
         )
 
@@ -52,8 +50,8 @@ class Message(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     subject = models.CharField(max_length=140)
     body = models.TextField()
-    sender = models.ForeignKey(DRF_MESSAGE_USER_MODEL, related_name='sent_messages', on_delete=models.SET_NULL, null=True)
-    recipient = models.ForeignKey(DRF_MESSAGE_USER_MODEL, related_name='received_messages', null=True, blank=True, on_delete=models.SET_NULL)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='sent_messages', on_delete=models.SET_NULL, null=True)
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='received_messages', null=True, blank=True, on_delete=models.SET_NULL)
     parent_msg = models.ForeignKey('self', related_name='next_messages', null=True, blank=True, on_delete=models.SET_NULL)
     sent_at = models.DateTimeField(null=True, blank=True)
     read_at = models.DateTimeField(null=True, blank=True)

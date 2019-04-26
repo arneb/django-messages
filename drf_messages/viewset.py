@@ -20,8 +20,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         """
         Displays a list of received messages for the current user.
         """
-        message_user_model = self.get_message_user_model(request)
-        message_list = Message.objects.inbox_for(message_user_model)
+        message_list = Message.objects.inbox_for(request.user)
         serialized_messages = self.serialized_messages(message_list)
 
         return Response({
@@ -33,8 +32,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         """
         Displays a list of sent messages by the current user.
         """
-        message_user_model = self.get_message_user_model(request)
-        message_list = Message.objects.outbox_for(message_user_model)
+        message_list = Message.objects.outbox_for(request.user)
         serialized_messages = self.serialized_messages(message_list)
 
         return Response({
@@ -48,8 +46,7 @@ class MessageViewSet(viewsets.GenericViewSet):
         Hint: A Cron-Job could periodically clean up old messages, which are deleted
         by sender and recipient.
         """
-        message_user_model = self.get_message_user_model(request)
-        message_list = Message.objects.trash_for(message_user_model)
+        message_list = Message.objects.trash_for(request.user)
         serialized_messages = self.serialized_messages(message_list)
         return Response({
             'messages_list': serialized_messages,
@@ -64,10 +61,9 @@ class MessageViewSet(viewsets.GenericViewSet):
                            who should receive the message, optionally multiple users
                            can be passed in a list
         """
-        sender = self.get_message_user_model(request)
         serializer = ComposeSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            message_instances = serializer.save(sender=sender)
+            message_instances = serializer.save(sender=request.user)
             return Response({
                 'messages_list': message_instances
             }, status=status.HTTP_201_CREATED)
@@ -77,14 +73,13 @@ class MessageViewSet(viewsets.GenericViewSet):
         """
         processes a reply message to a given message (specified via ``message_id``).
         """
-        message_user_model = self.get_message_user_model(request)
         parent = get_object_or_404(Message, pk=pk)
-        if parent.sender != message_user_model and parent.recipient != message_user_model:
+        if parent.sender != request.user and parent.recipient != request.user:
             raise Http404
 
         serializer = ComposeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        message_instances = serializer.save(sender=message_user_model, parent_msg=parent)
+        message_instances = serializer.save(sender=request.user, parent_msg=parent)
         return Response({
             'message': message_instances
         }, status=status.HTTP_201_CREATED)
@@ -99,15 +94,14 @@ class MessageViewSet(viewsets.GenericViewSet):
         deleted by both users.
         As a side effect, this makes it easy to implement a trash with undelete.
         """
-        message_user_model = self.get_message_user_model(request)
         now = timezone.now()
         message = get_object_or_404(Message, pk=pk)
 
         deleted = False
-        if message.sender == message_user_model:
+        if message.sender == request.user:
             message.sender_deleted_at = now
             deleted = True
-        if message.recipient == message_user_model:
+        if message.recipient == request.user:
             message.recipient_deleted_at = now
             deleted = True
         if deleted:
@@ -123,14 +117,13 @@ class MessageViewSet(viewsets.GenericViewSet):
         Recovers a message from trash. This is achieved by removing the
         ``(sender|recipient)_deleted_at`` from the model.
         """
-        message_user_model = self.get_message_user_model(request)
         message = get_object_or_404(Message, pk=pk)
         undeleted = False
 
-        if message.sender == message_user_model:
+        if message.sender == request.user:
             message.sender_deleted_at = None
             undeleted = True
-        if message.recipient == message_user_model:
+        if message.recipient == request.user:
             message.recipient_deleted_at = None
             undeleted = True
         if undeleted:
@@ -148,18 +141,17 @@ class MessageViewSet(viewsets.GenericViewSet):
         If the user is the recipient and the message is unread
         ``read_at`` is set to the current datetime.
         """
-        message_user_model = self.get_message_user_model(request)
         now = timezone.now()
         message = get_object_or_404(Message, pk=pk)
 
-        if (message.sender != message_user_model) and (message.recipient != message_user_model):
+        if (message.sender != request.user) and (message.recipient != request.user):
             raise Http404
-        if message.recipient == message_user_model and message.recipient_deleted_at is not None:
+        if message.recipient == request.user and message.recipient_deleted_at is not None:
             raise Http404
-        if message.sender == message_user_model and message.sender_deleted_at is not None:
+        if message.sender == request.user and message.sender_deleted_at is not None:
             raise Http404
 
-        if message.read_at is None and message.recipient == message_user_model:
+        if message.read_at is None and message.recipient == request.user:
             message.read_at = now
             message.save()
 
@@ -174,19 +166,3 @@ class MessageViewSet(viewsets.GenericViewSet):
             ser_message = ReadMessageSerializer(msg)
             serialized_messages_list.append(ser_message.data)
         return serialized_messages_list
-
-    @staticmethod
-    def get_message_user_model(request):
-        """
-        :param request:
-        :return: the 'actual' message user(consumer0 model. For Example, if you are using User model for the
-        authentication but staff or employee model for sending/receiving messages which is related to the user model,
-        you can have the chance to handle that by giving the relationship name, of your message user model, by
-        setting the relationship name to DRF_MESSAGE_RELATIONSHIP_ON_REQUEST_USER
-
-        :NOTE: 'message user model', in this case, means the 'message consumer model'.
-        """
-        relationship_on_request_dot_user = getattr(settings, 'DRF_MESSAGE_RELATIONSHIP_ON_REQUEST_USER', None)
-        if relationship_on_request_dot_user is not None:
-            return getattr(request.user, relationship_on_request_dot_user)
-        return request.user
