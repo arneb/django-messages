@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -8,7 +7,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import Message
 from .serializers import ComposeSerializer, ReadMessageSerializer
-AUTH_USER_MODEL = getattr(settings, 'DRF_MESSAGE_USER_MODEL', 'auth.User')
 
 
 class MessageViewSet(viewsets.GenericViewSet):
