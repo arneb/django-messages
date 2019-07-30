@@ -34,7 +34,7 @@ Versions
 --------
 
 +-------+-------------------------------------------------------------------+
-| 0.6.x | compatible with Django 1.7, 1.8, 1.9, 1.10 and with Python 3      |
+| 0.6.x | compatible with Django 1.7 - 1.11 and with Python 3               |
 +-------+-------------------------------------------------------------------+
 | 0.5.x | compatible with Django 1.4, 1.5, 1.6 and 1.7; if you are          |
 |       | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
