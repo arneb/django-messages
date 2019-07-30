@@ -1,4 +1,8 @@
 from django.conf import settings
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 from django.db import models
 from django.db.models import signals
 from django.utils import timezone
@@ -78,8 +82,7 @@ class Message(models.Model):
         return self.subject
 
     def get_absolute_url(self):
-        return ('messages_detail', [self.id])
-    # get_absolute_url = models.permalink(get_absolute_url)
+        return reverse('messages_detail', args=[self.id])
 
     def save(self, **kwargs):
         if not self.id:
