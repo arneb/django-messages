@@ -8,7 +8,8 @@ INSTALLED_APPS = [
     'django_messages'
 ]
 
-MIDDLEWARE_CLASSES = (
+# Django >= 2.0
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -16,6 +17,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+# Django < 2.0
+MIDDLEWARE_CLASSES = MIDDLEWARE
+
 
 SITE_ID = 1
 SECRET_KEY = '+zzix-&k$afk-k0d0s7v01w0&15z#ne$71qf28#e$$c*@g742z'

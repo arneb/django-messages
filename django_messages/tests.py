@@ -1,6 +1,10 @@
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
+
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
-from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
 from django.template import Template, Context
