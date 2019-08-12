@@ -1,0 +1,396 @@
+# django-messages in Catalan.
+# django-messages en Català.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Sergi Borruey Folch <borruey.sergi@gmail.com>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-12 00:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:21
+msgid "group"
+msgstr "grup"
+
+#: admin.py:22
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Crea el missatge opcionalment per a tots els usuaris o per un grup"
+
+#: admin.py:30
+msgid "All users"
+msgstr "Tots els usuaris"
+
+#: admin.py:48 models.py:91
+msgid "Message"
+msgstr "Missatge"
+
+#: admin.py:55
+msgid "Date/time"
+msgstr "Data"
+
+#: apps.py:6 models.py:92
+msgid "Messages"
+msgstr "Missatges"
+
+#: fields.py:56
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr ""
+
+#: forms.py:18 models.py:55 templates/django_messages/outbox.html:9
+#: templates/django_messages/view.html:13
+msgid "Recipient"
+msgstr "Destinatari"
+
+#: forms.py:19 models.py:52 templates/django_messages/inbox.html:9
+#: templates/django_messages/outbox.html:9
+#: templates/django_messages/trash.html:9 templates/django_messages/view.html:7
+msgid "Subject"
+msgstr "Assumpte"
+
+#: forms.py:20 models.py:53
+msgid "Body"
+msgstr "Cos"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Missatge Rebut"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "has rebut un missatge"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Missatge Enviat"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "has enviat un missatge"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Missatge Respost"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "has respost el missatge"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Resposta Rebuda"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "has rebut resposta a un missatge"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Missatge Borrat"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "has eliminat el missatge"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Missatge recuperat"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "has recuperat el missatge"
+
+#: models.py:54 templates/django_messages/inbox.html:9
+#: templates/django_messages/trash.html:9 templates/django_messages/view.html:9
+msgid "Sender"
+msgstr "Emissor"
+
+#: models.py:56
+msgid "Parent message"
+msgstr "Missatge pare"
+
+#: models.py:57
+msgid "sent at"
+msgstr "enviat"
+
+#: models.py:58
+msgid "read at"
+msgstr "llegit el"
+
+#: models.py:59
+msgid "replied at"
+msgstr "respost el"
+
+#: models.py:60
+msgid "Sender deleted at"
+msgstr "Emissor borrat"
+
+#: models.py:61
+msgid "Recipient deleted at"
+msgstr "Destinatari borrat"
+
+#: templates/django_messages/base.html:8 templates/django_messages/inbox.html:5
+#: templates/django_messages/new_message.html:12
+msgid "Inbox"
+msgstr "Safata d'entrada"
+
+#: templates/django_messages/base.html:9
+#: templates/django_messages/outbox.html:5
+msgid "Sent Messages"
+msgstr "Missatges enviats"
+
+#: templates/django_messages/base.html:10
+msgid "New Message"
+msgstr "Nou missatge"
+
+#: templates/django_messages/base.html:11
+msgid "Trash"
+msgstr "Paperera"
+
+#: templates/django_messages/compose.html:5
+msgid "Compose Message"
+msgstr "Redactar missatge"
+
+#: templates/django_messages/compose.html:11
+msgid "Send"
+msgstr "Enviat"
+
+#: templates/django_messages/inbox.html:9
+msgid "Received"
+msgstr "Rebut"
+
+#: templates/django_messages/inbox.html:9
+#: templates/django_messages/outbox.html:9
+#: templates/django_messages/trash.html:9
+msgid "Action"
+msgstr "Acció"
+
+#: templates/django_messages/inbox.html:21
+#: templates/django_messages/outbox.html:18
+#: templates/django_messages/trash.html:18
+#: templates/django_messages/view.html:12
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/django_messages/inbox.html:22
+#: templates/django_messages/outbox.html:19
+msgid "delete"
+msgstr "borrar"
+
+#: templates/django_messages/inbox.html:28
+#: templates/django_messages/outbox.html:25
+#: templates/django_messages/trash.html:25
+msgid "No messages."
+msgstr "no hi ha missatges"
+
+#: templates/django_messages/new_message.html:3
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Hola %(recipient)s,\n"
+"\n"
+"ha rebut un missatge de %(sender)s amb\n"
+"el següent contingut:"
+
+#: templates/django_messages/new_message.html:11
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Enviat des de %(site_url)s"
+
+#: templates/django_messages/new_message.html:13
+#: templates/django_messages/view.html:19
+msgid "Reply"
+msgstr "Respondre"
+
+#: templates/django_messages/outbox.html:9
+msgid "Sent"
+msgstr "Enviat"
+
+#: templates/django_messages/trash.html:5
+msgid "Deleted Messages"
+msgstr "Missatges Borrats"
+
+#: templates/django_messages/trash.html:9
+#: templates/django_messages/view.html:11
+msgid "Date"
+msgstr "Data"
+
+#: templates/django_messages/trash.html:19
+msgid "undelete"
+msgstr "recuperar"
+
+#: templates/django_messages/trash.html:28
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Els Missatges Borrats són eliminats de la Paperera a intervals irregulars,no "
+"et confiis en aquesta característica per a emmagatzament a llarg termini."
+
+#: templates/django_messages/view.html:5
+msgid "View Message"
+msgstr "Veure Missatge"
+
+#: templates/django_messages/view.html:21
+msgid "Delete"
+msgstr "Borrar"
+
+#: templates/notification/messages_deleted/full.txt:1
+#, python-format
+msgid "You have deleted the message '%(message)s'."
+msgstr "has borrat el missatge '%(message)s'."
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "has borrat el missatge <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_received/full.txt:1
+#, python-format
+msgid ""
+"%(message_sender)s has sent you a message:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+msgstr ""
+"%(message_sender)s t'ha enviat un missatge:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr ""
+"Has rebut el missatge <a href=\"%(message_url)s\">%(message)s</a> de "
+"%(message_sender)s."
+
+#: templates/notification/messages_received/short.txt:1
+#: templates/notification/messages_reply_received/short.txt:1
+#, python-format
+msgid "%(notice)s by %(message_sender)s"
+msgstr "%(notice)s de %(message_sender)s"
+
+#: templates/notification/messages_recovered/full.txt:1
+#, python-format
+msgid "You have recovered the message '%(message)s'."
+msgstr "Has recuperat el missatge '%(message)s'."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Has recuperat el missatge <a href=\"%(message_url)s\">%(message)s</a>."
+
+#: templates/notification/messages_replied/full.txt:1
+#, python-format
+msgid ""
+"You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
+msgstr "Has contestat a '%(message_parent_msg)s' de %(message_recipient)s."
+
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"Has contestat a <a href=\"%(message_url)s\">%(message_parent_msg)s</a> de "
+"%(message_recipient)s."
+
+#: templates/notification/messages_reply_received/full.txt:1
+#, python-format
+msgid ""
+"%(message_sender)s replied to '%(message_parent_msg)s':\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+msgstr ""
+"%(message_sender)s ha contestat '%(message_parent_msg)s':\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr "%(message_sender)s t'ha enviat una resposta a %(message_parent_msg)s."
+
+#: templates/notification/messages_sent/full.txt:1
+#, python-format
+msgid "You have sent the message '%(message)s' to %(message_recipient)s."
+msgstr "Has enviat el missatge '%(message)s' a %(message_recipient)s."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to "
+"%(message_recipient)s."
+msgstr ""
+"Has enviat el missatge <a href=\"%(message_url)s\">%(message)s</a> a "
+"%(message_recipient)s."
+
+#: utils.py:26
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s escrigué:\n"
+"%(body)s"
+
+#: utils.py:54
+#, python-format
+msgid "Re%(prefix)s: %(subject)s"
+msgstr "Re%(prefix)s: %(subject)s"
+
+#: utils.py:60
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Nou missatge: %(subject)s"
+
+#: views.py:79 views.py:116
+msgid "Message successfully sent."
+msgstr "Missatge enviat"
+
+#: views.py:98 views.py:194
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Re: %(subject)s"
+
+#: views.py:159
+msgid "Message successfully deleted."
+msgstr "Missatge borrat"
+
+#: views.py:186
+msgid "Message successfully recovered."
+msgstr "Missatge recuperat"
