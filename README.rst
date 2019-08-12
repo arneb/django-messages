@@ -9,41 +9,26 @@ there is an easy, url-based approach to preloading the compose-form with the
 recipient-user, which makes it extremly easy to put "send xyz a message" links
 on a profile-page.
 
-Currently django-messages comes with these translations:
-
-* ar (thanks to speedy)
-* da (thanks Michael Lind Mortensen)
-* de
-* el (thanks Markos Gogoulos)
-* es (thanks paz.lupita)
-* es_AR (thanks Juanjo-sfe)
-* eu (thanks urtzai)
-* fa
-* fr (thanks froland and dpaccoud)
-* it (thanks to Sergio Morstabilini)
-* lt
-* ko
-* nl (thanks krisje8)
-* pl (thanks maczewski)
-* pt_BR (thanks Diego Martins)
-* ru (thanks overkrik)
-* zh_CN (thanks Gene Wu)
+Currently django-messages comes with over 20 translations, see them here:
+https://github.com/arneb/django-messages/tree/master/django_messages/locale
 
 
 Versions
 --------
 
-+-------+-------------------------------------------------------------------+
-| 0.6.x | compatible with Django 1.7 - 1.11 and with Python 3               |
-+-------+-------------------------------------------------------------------+
-| 0.5.x | compatible with Django 1.4, 1.5, 1.6 and 1.7; if you are          |
-|       | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
-+-------+-------------------------------------------------------------------+
-| 0.4.x | compatible with Django 1.1 (may work with Django 1.0/1.2), no     |
-|       | longer maintained                                                 |
-+-------+-------------------------------------------------------------------+
-| 0.3   | compatible with Django 1.0, no longer maintained                  |
-+-------+-------------------------------------------------------------------+
++--------+-------------------------------------------------------------------+
+| master | compatible with Django 1.11 - 2.2                                 |
++--------+-------------------------------------------------------------------+
+| 0.6.x  | compatible with Django 1.7 - 1.11 and with Python 3               |
++--------+-------------------------------------------------------------------+
+| 0.5.x  | compatible with Django 1.4, 1.5, 1.6 and 1.7; if you are          |
+|        | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
++--------+-------------------------------------------------------------------+
+| 0.4.x  | compatible with Django 1.1 (may work with Django 1.0/1.2), no     |
+|        | longer maintained                                                 |
++--------+-------------------------------------------------------------------+
+| 0.3    | compatible with Django 1.0, no longer maintained                  |
++--------+-------------------------------------------------------------------+
 
 
 Documentation
