@@ -3,11 +3,14 @@ try:
 except ImportError:
     from django.urls import reverse
 
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
 from django.utils import timezone
+from django.utils.encoding import force_text
 from django.contrib.auth.models import AnonymousUser
 from django.template import Template, Context
+from django_messages.forms import ComposeForm
 from django_messages.models import Message
 from django_messages.utils import format_subject, format_quote
 from django_messages.context_processors import inbox
@@ -236,3 +239,38 @@ class InboxCountTestCase(TestCase):
         """Test message count for user with one unread message."""
         html = self.template.render(Context({'user': self.user_2}))
         self.assertEquals(html, "1")
+
+
+class RecipientFilterTestCase(TestCase):
+    def setUp(self):
+        self.user1 = User.objects.create_user(
+            'user1', 'user1@example.com', '123456')
+        self.user2 = User.objects.create_user(
+            'user2', 'user2@example.com', '123456')
+        self.user2.is_active = False
+        self.user2.save()
+        self.f = lambda u: u.is_active
+
+    def testRecipientFiterIsActive(self):
+        form = ComposeForm(
+            {"recipient": "user1", "subject": "S", "body": "B"},
+            recipient_filter=self.f
+        )
+        assert form.is_valid()
+        assert self.user1 in form.cleaned_data["recipient"]
+
+    def testRecipientFilterNotActive(self):
+        form = ComposeForm(
+            {"recipient": "user2", "subject": "S", "body": "B"},
+            recipient_filter=self.f
+        )
+        assert not form.is_valid()
+        assert self.user2.username in force_text(form.errors)
+
+    def testRecipientFilterMixed(self):
+        form = ComposeForm(
+            {"recipient": "user1,user2", "subject": "S", "body": "B"},
+            recipient_filter=self.f
+        )
+        assert not form.is_valid()
+        assert self.user2.username in force_text(form.errors)

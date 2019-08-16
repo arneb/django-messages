@@ -62,7 +62,8 @@ def trash(request, template_name='django_messages/trash.html'):
 
 @login_required
 def compose(request, recipient=None, form_class=ComposeForm,
-        template_name='django_messages/compose.html', success_url=None, recipient_filter=None):
+        template_name='django_messages/compose.html', success_url=None,
+        recipient_filter=None):
     """
     Displays and handles the ``form_class`` form to compose new messages.
     Required Arguments: None
@@ -73,6 +74,9 @@ def compose(request, recipient=None, form_class=ComposeForm,
         ``form_class``: the form-class to use
         ``template_name``: the template to use
         ``success_url``: where to redirect after successfull submission
+        ``recipient_filter``: a function which receives a user object and
+                              returns a boolean wether it is an allowed
+                              recipient or not
     """
     if request.method == "POST":
         sender = request.user
