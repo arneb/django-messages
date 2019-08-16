@@ -1,39 +1,62 @@
-===============
-django-messages
-===============
+==========================================
+A user-to-user messaging system for Django
+==========================================
 
-Django-messages is a Django app which provides a user-to-user messaging system.
-It enables your users to send private messages to each other. It provides a 
-basic set of functionality you would expect from such a system. Every user 
-has an inbox, an Outbox and a Trash. Messages can be composed and there is an 
-easy url-based approach to preloading the compose-form with the recipient user,
-which makes it extremly easy to put "send user a message" links on profile pages.
+Django-messages enables your users to send private messages to each other.
+It provides a basic set of functionality that you would expect from such a system.
+Every user has an Inbox, an Outbox and a Trash. Messages can be composed and
+there is an easy, url-based approach to preloading the compose-form with the
+recipient-user, which makes it extremly easy to put "send xyz a message" links
+on a profile-page.
 
-Currently django-messages comes with these translations:
+Currently django-messages comes with over 20 translations, see them here:
+https://github.com/arneb/django-messages/tree/master/django_messages/locale
 
-* ar
-* da
-* de
-* el
-* es
-* es_AR
-* fa
-* fr
-* it
-* lt
-* ko
-* nl
-* pl
-* pt_BR
-* ru
-* zh_CN
+
+Versions
+--------
+
++--------+-------------------------------------------------------------------+
+| master | compatible with Django 1.11 - 2.2                                 |
++--------+-------------------------------------------------------------------+
+| 0.6.x  | compatible with Django 1.7 - 1.11 and with Python 3               |
++--------+-------------------------------------------------------------------+
+| 0.5.x  | compatible with Django 1.4, 1.5, 1.6 and 1.7; if you are          |
+|        | upgrading from 0.4.x to trunk please read the UPGRADING docs.     |
++--------+-------------------------------------------------------------------+
+| 0.4.x  | compatible with Django 1.1 (may work with Django 1.0/1.2), no     |
+|        | longer maintained                                                 |
++--------+-------------------------------------------------------------------+
+| 0.3    | compatible with Django 1.0, no longer maintained                  |
++--------+-------------------------------------------------------------------+
+
+
+Install
+-------
+Download the tar archive, unpack and run python setup.py install or checkout
+the trunk and put the ``django_messages`` folder on your ``PYTHONPATH``.
+Released versions of django-messages are also available on pypi and can be
+installed with easy_install or pip.
+
+
+Usage
+-----
+
+Add ``django_messages`` to your ``INSTALLED_APPS`` setting and add an
+``include('django_messages.urls')`` at any point in your url-conf.
+
+The app includes some default templates, which are pretty simple. They
+extend a template called ``base.html`` and only emit stuff in the block
+``content`` and block ``sidebar``. You may want to use your own templates,
+but the included ones are good enough for testing and getting started.
+
 
 Contents
 --------
 
 .. toctree::
    :maxdepth: 2
-   
+
    install
    usage
    customizing
