@@ -95,6 +95,32 @@ class Message(models.Model):
         verbose_name_plural = _("Messages")
 
 
+@python_2_unicode_compatible
+class Attachment(models.Model):
+    """
+    A message attachment. You can configure where attachments are stored with
+    the ``DJANGO_MESSAGES_UPLOAD_TO`` setting, note that this setting is
+    relative to your ``MEDIA_ROOT`` setting.
+    """
+    file = models.FileField(
+        _('File'),
+        upload_to=getattr(settings, 'DJANGO_MESSAGES_UPLOAD_TO', 'attachments')
+    )
+    message = models.ForeignKey(
+        Message,
+        on_delete=models.CASCADE,
+        verbose_name=_('Message'),
+        related_name='attachments'
+    )
+
+    class Meta:
+        verbose_name = _("Attachment")
+        verbose_name_plural = _("Attachments")
+
+    def __str__(self):
+        return self.file.name if self.file else ''
+
+
 def inbox_count_for(user):
     """
     returns the number of unread messages for the given user but does not

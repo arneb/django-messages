@@ -95,3 +95,11 @@ If you do want to disable django-messages from sending either a
 not installed' then set the following in your django settings::
 
     DJANGO_MESSAGES_NOTIFY = False
+
+By default, message attachments are stored in a "attachments" folder relative
+to your project ``MEDIA_ROOT``, you can change this folder with the
+``DJANGO_MESSAGES_UPLOAD_TO`` setting, for example::
+
+    DJANGO_MESSAGES_UPLOAD_TO = "subfolder/message_attachments"
+
+    DJANGO_MESSAGES_NOTIFY = False

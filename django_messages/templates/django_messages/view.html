@@ -13,7 +13,15 @@
     <dt>{% trans "Recipient" %}</dt>
     <dd>{{ message.recipient }}</dd>
 </dl>
-{{ message.body|linebreaksbr }}<br /><br />
+{{ message.body|linebreaksbr }}
+{% if message.attachments.count %}
+<h2>{% trans "Attachments" %}</h2>
+<ul>
+    {% for attachment in message.attachments.all %}<li><a href="{{ attachment.file.url }}" target="_blank">{{ attachment }}</a></li>{% endfor %}
+</ul>
+{% else %}
+<br /><br />
+{% endif %}
 
 {% ifequal message.recipient.pk user.pk %}
 <a href="{% url 'messages_reply' message.id %}">{% trans "Reply" %}</a>
