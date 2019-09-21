@@ -20,6 +20,7 @@ class ComposeForm(forms.Form):
     body = forms.CharField(label=_(u"Body"),
         widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
     attachments = forms.FileField(
+        label=_('Attachments'),
         widget=forms.ClearableFileInput(attrs={'multiple': True}),
         required=False
     )
