@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 00:29+0200\n"
+"POT-Creation-Date: 2019-09-21 12:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "Crea el missatge opcionalment per a tots els usuaris o per un grup"
 msgid "All users"
 msgstr "Tots els usuaris"
 
-#: admin.py:48 models.py:91
+#: admin.py:48 models.py:94 models.py:112
 msgid "Message"
 msgstr "Missatge"
 
@@ -39,7 +39,7 @@ msgstr "Missatge"
 msgid "Date/time"
 msgstr "Data"
 
-#: apps.py:6 models.py:92
+#: apps.py:6 models.py:95
 msgid "Messages"
 msgstr "Missatges"
 
@@ -48,18 +48,18 @@ msgstr "Missatges"
 msgid "The following usernames are incorrect: %(users)s"
 msgstr ""
 
-#: forms.py:18 models.py:55 templates/django_messages/outbox.html:9
+#: forms.py:18 models.py:59 templates/django_messages/outbox.html:9
 #: templates/django_messages/view.html:13
 msgid "Recipient"
 msgstr "Destinatari"
 
-#: forms.py:19 models.py:52 templates/django_messages/inbox.html:9
+#: forms.py:19 models.py:56 templates/django_messages/inbox.html:9
 #: templates/django_messages/outbox.html:9
 #: templates/django_messages/trash.html:9 templates/django_messages/view.html:7
 msgid "Subject"
 msgstr "Assumpte"
 
-#: forms.py:20 models.py:53
+#: forms.py:20 models.py:57
 msgid "Body"
 msgstr "Cos"
 
@@ -111,34 +111,46 @@ msgstr "Missatge recuperat"
 msgid "you have undeleted a message"
 msgstr "has recuperat el missatge"
 
-#: models.py:54 templates/django_messages/inbox.html:9
+#: models.py:58 templates/django_messages/inbox.html:9
 #: templates/django_messages/trash.html:9 templates/django_messages/view.html:9
 msgid "Sender"
 msgstr "Emissor"
 
-#: models.py:56
+#: models.py:60
 msgid "Parent message"
 msgstr "Missatge pare"
 
-#: models.py:57
+#: models.py:61
 msgid "sent at"
 msgstr "enviat"
 
-#: models.py:58
+#: models.py:62
 msgid "read at"
 msgstr "llegit el"
 
-#: models.py:59
+#: models.py:63
 msgid "replied at"
 msgstr "respost el"
 
-#: models.py:60
+#: models.py:64
 msgid "Sender deleted at"
 msgstr "Emissor borrat"
 
-#: models.py:61
+#: models.py:65
 msgid "Recipient deleted at"
 msgstr "Destinatari borrat"
+
+#: models.py:106
+msgid "File"
+msgstr ""
+
+#: models.py:117
+msgid "Attachment"
+msgstr ""
+
+#: models.py:118 templates/django_messages/view.html:18
+msgid "Attachments"
+msgstr ""
 
 #: templates/django_messages/base.html:8 templates/django_messages/inbox.html:5
 #: templates/django_messages/new_message.html:12
@@ -213,7 +225,7 @@ msgid "Sent from %(site_url)s"
 msgstr "Enviat des de %(site_url)s"
 
 #: templates/django_messages/new_message.html:13
-#: templates/django_messages/view.html:19
+#: templates/django_messages/view.html:27
 msgid "Reply"
 msgstr "Respondre"
 
@@ -246,7 +258,7 @@ msgstr ""
 msgid "View Message"
 msgstr "Veure Missatge"
 
-#: templates/django_messages/view.html:21
+#: templates/django_messages/view.html:29
 msgid "Delete"
 msgstr "Borrar"
 
@@ -359,7 +371,7 @@ msgstr ""
 "Has enviat el missatge <a href=\"%(message_url)s\">%(message)s</a> a "
 "%(message_recipient)s."
 
-#: utils.py:26
+#: utils.py:25
 #, python-format
 msgid ""
 "%(sender)s wrote:\n"
@@ -368,29 +380,29 @@ msgstr ""
 "%(sender)s escrigué:\n"
 "%(body)s"
 
-#: utils.py:54
+#: utils.py:53
 #, python-format
 msgid "Re%(prefix)s: %(subject)s"
 msgstr "Re%(prefix)s: %(subject)s"
 
-#: utils.py:60
+#: utils.py:59
 #, python-format
 msgid "New Message: %(subject)s"
 msgstr "Nou missatge: %(subject)s"
 
-#: views.py:79 views.py:116
+#: views.py:92 views.py:133
 msgid "Message successfully sent."
 msgstr "Missatge enviat"
 
-#: views.py:98 views.py:194
+#: views.py:111 views.py:211
 #, python-format
 msgid "Re: %(subject)s"
 msgstr "Re: %(subject)s"
 
-#: views.py:159
+#: views.py:176
 msgid "Message successfully deleted."
 msgstr "Missatge borrat"
 
-#: views.py:186
+#: views.py:203
 msgid "Message successfully recovered."
 msgstr "Missatge recuperat"
