@@ -142,15 +142,15 @@ msgstr "Destinataire effacé à"
 
 #: models.py:106
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
 #: models.py:117
 msgid "Attachment"
-msgstr ""
+msgstr "Pièce jointe"
 
 #: models.py:118 templates/django_messages/view.html:18
 msgid "Attachments"
-msgstr ""
+msgstr "Pièces jointes"
 
 #: templates/django_messages/base.html:8 templates/django_messages/inbox.html:5
 #: templates/django_messages/new_message.html:12
