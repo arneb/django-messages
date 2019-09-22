@@ -2,7 +2,6 @@ import re
 import django
 from django.utils.text import wrap
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.contrib.sites.models import Site
 from django.template.loader import render_to_string
 from django.conf import settings
 
@@ -73,6 +72,7 @@ def new_message_email(sender, instance, signal,
 
     if 'created' in kwargs and kwargs['created']:
         try:
+            from django.contrib.sites.models import Site
             current_domain = Site.objects.get_current().domain
             subject = subject_prefix % {'subject': instance.subject}
             message = render_to_string(template_name, {
