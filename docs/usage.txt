@@ -102,4 +102,18 @@ to your project ``MEDIA_ROOT``, you can change this folder with the
 
     DJANGO_MESSAGES_UPLOAD_TO = "subfolder/message_attachments"
 
-    DJANGO_MESSAGES_NOTIFY = False
+.. danger::
+    Storing attachments in the default MEDIA_ROOT directory is not secure
+    because, if not secured properly, everyone can access the files just by
+    knowing its URL.
+
+    It is highly recommanded that you define a secure storage backend for
+    messages attachment (see below).
+
+If you want to use a custom backend for attachments, you can use the
+following settings variables::
+
+    DJANGO_MESSAGES_STORAGE_BACKEND = 'some.module.backends.MyCustomBackend'
+    DJANGO_MESSAGES_STORAGE_BACKEND_KWARGS = {
+        'foo': 'bar',
+    }

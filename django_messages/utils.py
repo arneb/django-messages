@@ -1,5 +1,11 @@
 import re
 import django
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+try:
+    from django.utils.importlib import import_module
+except ImportError:
+    from importlib import import_module
 from django.utils.text import wrap
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.template.loader import render_to_string
@@ -101,3 +107,33 @@ def get_username_field():
         return get_user_model().USERNAME_FIELD
     else:
         return 'username'
+
+
+def get_storage_backend():
+    """
+    Return an instance of ``django.core.files.storage.Storage``.
+
+    The instance is built from ``DJANGO_MESSAGES_STORAGE_BACKEND``
+    string variable and ``DJANGO_MESSAGES_STORAGE_BACKEND_KWARGS``
+    dictionary variable.
+    """
+    path = getattr(settings, 'DJANGO_MESSAGES_STORAGE_BACKEND', None)
+
+    if path is None:
+        return None
+    try:
+        mod_name, klass_name = path.rsplit('.', 1)
+        mod = import_module(mod_name)
+    except AttributeError as e:
+        raise ImproperlyConfigured(
+            'Error importing storage backend %s: "%s"' % (mod_name, e)
+        )
+    try:
+        klass = getattr(mod, klass_name)
+    except AttributeError:
+        raise ImproperlyConfigured(
+            'Module "%s" does not define a "%s" class' %
+            (mod_name, klass_name)
+        )
+    kwargs = getattr(settings, 'DJANGO_MESSAGES_STORAGE_BACKEND_KWARGS', {})
+    return klass(**kwargs)

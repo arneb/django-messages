@@ -9,6 +9,9 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from django_messages.utils import get_storage_backend
+
+
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
@@ -104,7 +107,8 @@ class Attachment(models.Model):
     """
     file = models.FileField(
         _('File'),
-        upload_to=getattr(settings, 'DJANGO_MESSAGES_UPLOAD_TO', 'attachments')
+        upload_to=getattr(settings, 'DJANGO_MESSAGES_UPLOAD_TO', 'attachments'),
+        storage=get_storage_backend()
     )
     message = models.ForeignKey(
         Message,
