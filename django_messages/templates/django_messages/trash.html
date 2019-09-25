@@ -21,6 +21,10 @@
 {% endfor %}
     </tbody>
 </table>
+{% if message_list.has_other_pages %}
+<br/>
+{% include "django_messages/_pagination.html" %}
+{% endif %}
 {% else %}
 <p>{% trans "No messages." %}</p>
 {% endif %}

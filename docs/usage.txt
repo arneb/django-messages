@@ -90,6 +90,14 @@ And now every Template Context will contain a variable named
 Settings Options
 ----------------
 
+By default, message list is not paginated, you can enable pagination by
+adding the following to your ``settings.py``::
+
+    DJANGO_MESSAGES_PAGE_LENGTH = 50  # or whatever number you want
+
+To disable pagination remove the setting variable or set it to -1.
+
+
 If you do want to disable django-messages from sending either a
 'pinax-notifications' notice or an email (fallback if 'pinax-notifications
 not installed' then set the following in your django settings::
