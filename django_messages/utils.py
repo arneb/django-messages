@@ -4,7 +4,7 @@ from django.utils.text import wrap
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, InvalidPage
 
 # favour django-mailer but fall back to django.core.mail
 
@@ -113,4 +113,8 @@ def paginate_queryset(request, qs):
         # Disable pagination
         return qs
     paginator = Paginator(qs, PAGE_LENGTH)
-    return paginator.get_page(request.GET.get('page', 1))
+    page_num = request.GET.get('page', 1)
+    try:
+        return paginator.page(page_num)
+    except InvalidPage:
+        return paginator.page(1)
