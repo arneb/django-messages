@@ -83,9 +83,12 @@ def compose(request, recipient=None, form_class=ComposeForm,
     """
     if request.method == "POST":
         sender = request.user
-        form = form_class(request.POST, recipient_filter=recipient_filter)
+        form = form_class(request.POST, request.FILES, recipient_filter=recipient_filter)
         if form.is_valid():
-            form.save(sender=request.user)
+            form.save(
+                sender=request.user,
+                files=request.FILES.getlist('attachments')
+            )
             messages.info(request, _(u"Message successfully sent."))
             if success_url is None:
                 success_url = reverse('messages_inbox')
@@ -120,9 +123,13 @@ def reply(request, message_id, form_class=ComposeForm,
 
     if request.method == "POST":
         sender = request.user
-        form = form_class(request.POST, recipient_filter=recipient_filter)
+        form = form_class(request.POST, request.FILES, recipient_filter=recipient_filter)
         if form.is_valid():
-            form.save(sender=request.user, parent_msg=parent)
+            form.save(
+                sender=request.user,
+                parent_msg=parent,
+                files=request.FILES.getlist('attachments')
+            )
             messages.info(request, _(u"Message successfully sent."))
             if success_url is None:
                 success_url = reverse('messages_inbox')

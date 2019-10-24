@@ -8,7 +8,7 @@ if "pinax.notifications" in settings.INSTALLED_APPS and getattr(settings, 'DJANG
 else:
     notification = None
 
-from django_messages.models import Message
+from django_messages.models import Message, Attachment
 from django_messages.fields import CommaSeparatedUserField
 
 class ComposeForm(forms.Form):
@@ -19,6 +19,11 @@ class ComposeForm(forms.Form):
     subject = forms.CharField(label=_(u"Subject"), max_length=140)
     body = forms.CharField(label=_(u"Body"),
         widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
+    attachments = forms.FileField(
+        label=_('Attachments'),
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        required=False
+    )
 
 
     def __init__(self, *args, **kwargs):
@@ -28,7 +33,7 @@ class ComposeForm(forms.Form):
             self.fields['recipient']._recipient_filter = recipient_filter
 
 
-    def save(self, sender, parent_msg=None):
+    def save(self, sender, parent_msg=None, files=[]):
         recipients = self.cleaned_data['recipient']
         subject = self.cleaned_data['subject']
         body = self.cleaned_data['body']
@@ -45,6 +50,9 @@ class ComposeForm(forms.Form):
                 parent_msg.replied_at = timezone.now()
                 parent_msg.save()
             msg.save()
+            for f in files:
+                attachment = Attachment(file=f, message=msg)
+                attachment.save()
             message_list.append(msg)
             if notification:
                 if parent_msg is not None:

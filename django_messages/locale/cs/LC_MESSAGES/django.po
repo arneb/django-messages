@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-01 12:29+0100\n"
+"POT-Creation-Date: 2019-09-21 12:19+0200\n"
 "PO-Revision-Date: 2015-01-01 12:29+0100\n"
 "Last-Translator: Radim Sückr <radim.suckr@gmail.com>\n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgstr "Volitelně vytváří zprávu pro všechny uživatele nebo skupinu uživ
 msgid "All users"
 msgstr "Všichni uživatelé"
 
-#: admin.py:48 models.py:91
+#: admin.py:48 models.py:94 models.py:112
 msgid "Message"
 msgstr "Zpráva"
 
@@ -36,7 +36,7 @@ msgstr "Zpráva"
 msgid "Date/time"
 msgstr "Datum/čas"
 
-#: apps.py:6 models.py:92
+#: apps.py:6 models.py:95
 msgid "Messages"
 msgstr "Zprávy"
 
@@ -45,19 +45,18 @@ msgstr "Zprávy"
 msgid "The following usernames are incorrect: %(users)s"
 msgstr "Následující uživatelská jména nejsou správně: %(users)s"
 
-#: forms.py:18 models.py:55 templates/django_messages/outbox.html:10
-#: templates/django_messages/view.html:14
+#: forms.py:18 models.py:59 templates/django_messages/outbox.html:9
+#: templates/django_messages/view.html:13
 msgid "Recipient"
 msgstr "Příjemce"
 
-#: forms.py:19 models.py:52 templates/django_messages/inbox.html:10
-#: templates/django_messages/outbox.html:10
-#: templates/django_messages/trash.html:10
-#: templates/django_messages/view.html:8
+#: forms.py:19 models.py:56 templates/django_messages/inbox.html:9
+#: templates/django_messages/outbox.html:9
+#: templates/django_messages/trash.html:9 templates/django_messages/view.html:7
 msgid "Subject"
 msgstr "Předmět"
 
-#: forms.py:20 models.py:53
+#: forms.py:20 models.py:57
 msgid "Body"
 msgstr "Obsah"
 
@@ -109,43 +108,54 @@ msgstr "Zpráva obnovena"
 msgid "you have undeleted a message"
 msgstr "obnovili jste smazanou zprávu"
 
-#: models.py:54 templates/django_messages/inbox.html:10
-#: templates/django_messages/trash.html:10
-#: templates/django_messages/view.html:10
+#: models.py:58 templates/django_messages/inbox.html:9
+#: templates/django_messages/trash.html:9 templates/django_messages/view.html:9
 msgid "Sender"
 msgstr "Odesílatel"
 
-#: models.py:56
+#: models.py:60
 msgid "Parent message"
 msgstr "Předchozí zpráva"
 
-#: models.py:57
+#: models.py:61
 msgid "sent at"
 msgstr "odesláno"
 
-#: models.py:58
+#: models.py:62
 msgid "read at"
 msgstr "přečteno"
 
-#: models.py:59
+#: models.py:63
 msgid "replied at"
 msgstr "zodpovězeno"
 
-#: models.py:60
+#: models.py:64
 msgid "Sender deleted at"
 msgstr "Odesílatel smazal zprávu"
 
-#: models.py:61
+#: models.py:65
 msgid "Recipient deleted at"
 msgstr "Příjemce smazal zprávu"
 
-#: templates/django_messages/base.html:8 templates/django_messages/inbox.html:6
-#: templates/django_messages/new_message.html:13
+#: models.py:106
+msgid "File"
+msgstr ""
+
+#: models.py:117
+msgid "Attachment"
+msgstr ""
+
+#: models.py:118 templates/django_messages/view.html:18
+msgid "Attachments"
+msgstr ""
+
+#: templates/django_messages/base.html:8 templates/django_messages/inbox.html:5
+#: templates/django_messages/new_message.html:12
 msgid "Inbox"
 msgstr "Příchozí zprávy"
 
 #: templates/django_messages/base.html:9
-#: templates/django_messages/outbox.html:6
+#: templates/django_messages/outbox.html:5
 msgid "Sent Messages"
 msgstr "Odchozí zprávy"
 
@@ -157,43 +167,43 @@ msgstr "Nová zpráva"
 msgid "Trash"
 msgstr "Koš"
 
-#: templates/django_messages/compose.html:4
+#: templates/django_messages/compose.html:5
 msgid "Compose Message"
 msgstr "Napsat zprávu"
 
-#: templates/django_messages/compose.html:10
+#: templates/django_messages/compose.html:11
 msgid "Send"
 msgstr "Odeslat"
 
-#: templates/django_messages/inbox.html:10
+#: templates/django_messages/inbox.html:9
 msgid "Received"
 msgstr "Přijato"
 
-#: templates/django_messages/inbox.html:10
-#: templates/django_messages/outbox.html:10
-#: templates/django_messages/trash.html:10
+#: templates/django_messages/inbox.html:9
+#: templates/django_messages/outbox.html:9
+#: templates/django_messages/trash.html:9
 msgid "Action"
 msgstr "Akce"
 
-#: templates/django_messages/inbox.html:22
-#: templates/django_messages/outbox.html:19
-#: templates/django_messages/trash.html:19
-#: templates/django_messages/view.html:13
+#: templates/django_messages/inbox.html:21
+#: templates/django_messages/outbox.html:18
+#: templates/django_messages/trash.html:18
+#: templates/django_messages/view.html:12
 msgid "DATETIME_FORMAT"
 msgstr "j. E Y, H:i"
 
-#: templates/django_messages/inbox.html:23
-#: templates/django_messages/outbox.html:20
+#: templates/django_messages/inbox.html:22
+#: templates/django_messages/outbox.html:19
 msgid "delete"
 msgstr "smazat"
 
-#: templates/django_messages/inbox.html:29
-#: templates/django_messages/outbox.html:26
-#: templates/django_messages/trash.html:26
+#: templates/django_messages/inbox.html:28
+#: templates/django_messages/outbox.html:25
+#: templates/django_messages/trash.html:25
 msgid "No messages."
 msgstr "Žádné zprávy."
 
-#: templates/django_messages/new_message.html:4
+#: templates/django_messages/new_message.html:3
 #, python-format
 msgid ""
 "Hello %(recipient)s,\n"
@@ -206,34 +216,34 @@ msgstr ""
 "máte novou soukromou zprávu od %(sender)s\n"
 "s následujícím obsahem:"
 
-#: templates/django_messages/new_message.html:12
+#: templates/django_messages/new_message.html:11
 #, python-format
 msgid "Sent from %(site_url)s"
 msgstr "Odesláno z %(site_url)s"
 
-#: templates/django_messages/new_message.html:14
-#: templates/django_messages/view.html:20
+#: templates/django_messages/new_message.html:13
+#: templates/django_messages/view.html:27
 msgid "Reply"
 msgstr "Odpovědět"
 
-#: templates/django_messages/outbox.html:10
+#: templates/django_messages/outbox.html:9
 msgid "Sent"
 msgstr "Odesláno"
 
-#: templates/django_messages/trash.html:6
+#: templates/django_messages/trash.html:5
 msgid "Deleted Messages"
 msgstr "Smazané zprávy"
 
-#: templates/django_messages/trash.html:10
-#: templates/django_messages/view.html:12
+#: templates/django_messages/trash.html:9
+#: templates/django_messages/view.html:11
 msgid "Date"
 msgstr "Datum"
 
-#: templates/django_messages/trash.html:20
+#: templates/django_messages/trash.html:19
 msgid "undelete"
 msgstr "obnovit"
 
-#: templates/django_messages/trash.html:29
+#: templates/django_messages/trash.html:28
 msgid ""
 "Deleted Messages are removed from the trash at unregular intervals, don't "
 "rely on this feature for long-time storage."
@@ -241,11 +251,11 @@ msgstr ""
 "Smazané zprávy jsou z koše odstraňovány v nepravidelných intervalech, "
 "nespoléhejte se na koš jako dlouhodobé úložiště."
 
-#: templates/django_messages/view.html:6
+#: templates/django_messages/view.html:5
 msgid "View Message"
 msgstr "Zobrazit zprávu"
 
-#: templates/django_messages/view.html:22
+#: templates/django_messages/view.html:29
 msgid "Delete"
 msgstr "Smazat"
 
@@ -258,8 +268,7 @@ msgstr "Smazali jste zprávu '%(message)s'."
 #, python-format
 msgid ""
 "You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
-msgstr ""
-"Smazali jste zprávu <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Smazali jste zprávu <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_received/full.txt:1
 #, python-format
@@ -286,8 +295,8 @@ msgid ""
 "You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
 "from %(message_sender)s."
 msgstr ""
-"Přišla vám zpráva <a href=\"%(message_url)s\">%(message)s</a> "
-"od %(message_sender)s."
+"Přišla vám zpráva <a href=\"%(message_url)s\">%(message)s</a> od "
+"%(message_sender)s."
 
 #: templates/notification/messages_received/short.txt:1
 #: templates/notification/messages_reply_received/short.txt:1
@@ -304,15 +313,13 @@ msgstr "Obnovili jste zprávu '%(message)s'."
 #, python-format
 msgid ""
 "You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
-msgstr ""
-"Obnovili jste zprávu <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Obnovili jste zprávu <a href=\"%(message_url)s\">%(message)s</a>."
 
 #: templates/notification/messages_replied/full.txt:1
 #, python-format
 msgid ""
 "You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
-msgstr ""
-"Odpověděli jste na '%(message_parent_msg)s' od %(message_recipient)s."
+msgstr "Odpověděli jste na '%(message_parent_msg)s' od %(message_recipient)s."
 
 #: templates/notification/messages_replied/notice.html:2
 #, python-format
@@ -320,8 +327,8 @@ msgid ""
 "You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
 "from %(message_recipient)s."
 msgstr ""
-"Odpověděli jste na <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
-"od %(message_recipient)s."
+"Odpověděli jste na <a href=\"%(message_url)s\">%(message_parent_msg)s</a> od "
+"%(message_recipient)s."
 
 #: templates/notification/messages_reply_received/full.txt:1
 #, python-format
@@ -361,7 +368,7 @@ msgstr ""
 "Odeslali jste zprávu <a href=\"%(message_url)s\">%(message)s</a> uživateli "
 "%(message_recipient)s."
 
-#: utils.py:26
+#: utils.py:25
 #, python-format
 msgid ""
 "%(sender)s wrote:\n"
@@ -370,29 +377,29 @@ msgstr ""
 "%(sender)s napsal:\n"
 "%(body)s"
 
-#: utils.py:54
+#: utils.py:53
 #, python-format
 msgid "Re%(prefix)s: %(subject)s"
 msgstr "Re%(prefix)s: %(subject)s"
 
-#: utils.py:60
+#: utils.py:59
 #, python-format
 msgid "New Message: %(subject)s"
 msgstr "Nová zpráva: %(subject)s"
 
-#: views.py:79 views.py:116
+#: views.py:92 views.py:133
 msgid "Message successfully sent."
 msgstr "Zpráva úspěšně odeslána."
 
-#: views.py:98 views.py:194
+#: views.py:111 views.py:211
 #, python-format
 msgid "Re: %(subject)s"
 msgstr "Re: %(subject)s"
 
-#: views.py:159
+#: views.py:176
 msgid "Message successfully deleted."
 msgstr "Zpráva úspěšně smazána."
 
-#: views.py:186
+#: views.py:203
 msgid "Message successfully recovered."
 msgstr "Zpráva úspěšně obnovena."

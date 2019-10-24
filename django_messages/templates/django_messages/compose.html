@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1>{% trans "Compose Message"%}</h1>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 <table>
 {{ form.as_table }}
