@@ -14,6 +14,10 @@ from django.conf import settings
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
+try:
+    from urllib import unquote
+except ImportError:
+    from urllib.parse import unquote
 
 User = get_user_model()
 
@@ -95,6 +99,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
     else:
         form = form_class(initial={"subject": request.GET.get("subject", "")})
         if recipient is not None:
+            recipient = unquote(recipient)
             recipients = [u for u in User.objects.filter(**{'%s__in' % get_username_field(): [r.strip() for r in recipient.split('+')]})]
             form.fields['recipient'].initial = recipients
     return render(request, template_name, {
