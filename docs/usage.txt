@@ -50,6 +50,15 @@ the name ``base.html`` exists which defines a block ``content`` and a block
 concerns, it's very easy to provide your own templates. Please see the
 :ref:`customization docs <ref-messages-customization>` fore more details.
 
+the user needs to add 'base.html' template to his template dir 
+(where contains all other templates like login.html, home.html, etc.)
+on the 'base.html', in my case when I replaced  {% extends "base.html" %} for
+{% extends "home.html" %} I was having some problems when submitting the form
+in /messages/compose which caused some problems to retrieve the /inbox properly
+so I decided to delete that first line {% extends .... %} and everything worked
+smoothly.
+
+
 
 Templatetags and Context-Processors
 -----------------------------------
