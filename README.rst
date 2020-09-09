@@ -51,7 +51,7 @@ Usage
 -----
 
 Add ``django_messages`` to your ``INSTALLED_APPS`` setting and add an
-``include('django_messages.urls')`` at any point in your url-conf.
+``path('', include('django_messages.urls'))`` at any point in your url-conf.
 
 The app includes some default templates, which are pretty simple. They
 extend a template called ``base.html`` and only emit stuff in the block
