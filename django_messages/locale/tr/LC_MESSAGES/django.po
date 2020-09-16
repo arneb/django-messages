@@ -1,0 +1,393 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: messages\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-10 00:25+0300\n"
+"PO-Revision-Date: 2020-09-10 01:00+0300\n"
+"Last-Translator: Bilal Tonga <bilaltonga@gmail.com>\n"
+"Language-Team: Creworker <help@creworker.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Turkish\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin.py:21
+msgid "group"
+msgstr "grup"
+
+#: admin.py:22
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Mesajı kullanıcı için veya grup için oluşturur."
+
+#: admin.py:30
+msgid "All users"
+msgstr "Tüm Kullanıcılar"
+
+#: admin.py:48 models.py:94
+msgid "Message"
+msgstr "Mesaj"
+
+#: admin.py:55
+msgid "Date/time"
+msgstr "Tarih/Saat"
+
+#: apps.py:6 models.py:95
+msgid "Messages"
+msgstr "Mesajlar"
+
+#: fields.py:56
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Verilen kullanıcı adları yanlış: %(users)s"
+
+#: forms.py:18 models.py:59 templates/django_messages/outbox.html:9
+#: templates/django_messages/view.html:13
+msgid "Recipient"
+msgstr "Alıcı"
+
+#: forms.py:19 models.py:56 templates/django_messages/inbox.html:9
+#: templates/django_messages/outbox.html:9
+#: templates/django_messages/trash.html:9 templates/django_messages/view.html:7
+msgid "Subject"
+msgstr "Konu"
+
+#: forms.py:20 models.py:57
+msgid "Body"
+msgstr "Metin"
+
+#: management.py:9
+msgid "Message Received"
+msgstr "Mesaj Alındı"
+
+#: management.py:9
+msgid "you have received a message"
+msgstr "yeni bir mesajınız var"
+
+#: management.py:10
+msgid "Message Sent"
+msgstr "Mesaj Gönderildi"
+
+#: management.py:10
+msgid "you have sent a message"
+msgstr "mesaj gönderdiniz"
+
+#: management.py:11
+msgid "Message Replied"
+msgstr "Mesaj Cevaplandı"
+
+#: management.py:11
+msgid "you have replied to a message"
+msgstr "mesaja cevap verdiniz"
+
+#: management.py:12
+msgid "Reply Received"
+msgstr "Cevap Alındı"
+
+#: management.py:12
+msgid "you have received a reply to a message"
+msgstr "mesaja cevap aldınız"
+
+#: management.py:13
+msgid "Message Deleted"
+msgstr "Mesaj Silindi"
+
+#: management.py:13
+msgid "you have deleted a message"
+msgstr "bir mesaj sildiniz"
+
+#: management.py:14
+msgid "Message Recovered"
+msgstr "Mesaj Kurtarıldı"
+
+#: management.py:14
+msgid "you have undeleted a message"
+msgstr "mesajı silme işlemini iptal ettiniz"
+
+#: models.py:58 templates/django_messages/inbox.html:9
+#: templates/django_messages/trash.html:9 templates/django_messages/view.html:9
+msgid "Sender"
+msgstr "Gönderici"
+
+#: models.py:60
+msgid "Parent message"
+msgstr "Ana Mesaj"
+
+#: models.py:61
+msgid "sent at"
+msgstr "gönderildi"
+
+#: models.py:62
+msgid "read at"
+msgstr "okundu"
+
+#: models.py:63
+msgid "replied at"
+msgstr "cevaplandı"
+
+#: models.py:64
+msgid "Sender deleted at"
+msgstr "Gönderici sildi"
+
+#: models.py:65
+msgid "Recipient deleted at"
+msgstr "Alıcı sildi"
+
+#: templates/django_messages/base.html:8 templates/django_messages/inbox.html:5
+#: templates/django_messages/new_message.html:12
+msgid "Inbox"
+msgstr "Gelen Kutusu"
+
+#: templates/django_messages/base.html:9
+#: templates/django_messages/outbox.html:5
+msgid "Sent Messages"
+msgstr "Gönderilenler"
+
+#: templates/django_messages/base.html:10
+msgid "New Message"
+msgstr "Yeni Mesaj"
+
+#: templates/django_messages/base.html:11
+msgid "Trash"
+msgstr "Çöp kutusu"
+
+#: templates/django_messages/compose.html:5
+msgid "Compose Message"
+msgstr "Yeni Mesaj"
+
+#: templates/django_messages/compose.html:11
+msgid "Send"
+msgstr "Gönder"
+
+#: templates/django_messages/inbox.html:9
+msgid "Received"
+msgstr "Alındı"
+
+#: templates/django_messages/inbox.html:9
+#: templates/django_messages/outbox.html:9
+#: templates/django_messages/trash.html:9
+msgid "Action"
+msgstr "Eylem"
+
+#: templates/django_messages/inbox.html:21
+#: templates/django_messages/outbox.html:18
+#: templates/django_messages/trash.html:18
+#: templates/django_messages/view.html:12
+msgid "DATETIME_FORMAT"
+msgstr "TARIHZAMAN_FORMATI"
+
+#: templates/django_messages/inbox.html:22
+#: templates/django_messages/outbox.html:19
+msgid "delete"
+msgstr "sil"
+
+#: templates/django_messages/inbox.html:28
+#: templates/django_messages/outbox.html:25
+#: templates/django_messages/trash.html:25
+msgid "No messages."
+msgstr "Yeni mesaj yok."
+
+#: templates/django_messages/new_message.html:3
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+"Merhaba %(recipient)s,\n"
+"\n"
+"%(sender)s'den yeni bir özel mesaj aldınız\n"
+"mesaj içeriği:"
+
+#: templates/django_messages/new_message.html:11
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "%(site_url)s'den gönderildi"
+
+#: templates/django_messages/new_message.html:13
+#: templates/django_messages/view.html:19
+msgid "Reply"
+msgstr "Cevapla"
+
+#: templates/django_messages/outbox.html:9
+msgid "Sent"
+msgstr "Gönderildi"
+
+#: templates/django_messages/trash.html:5
+msgid "Deleted Messages"
+msgstr "Silinen Mesajlar"
+
+#: templates/django_messages/trash.html:9
+#: templates/django_messages/view.html:11
+msgid "Date"
+msgstr "Tarih"
+
+#: templates/django_messages/trash.html:19
+msgid "undelete"
+msgstr "silmeyi iptal et"
+
+#: templates/django_messages/trash.html:28
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Silinmiş Mesajlar çöp kutusundan rastgele zamanlarda silinir, "
+"bu özelliğe uzun süreli depolama için güvenmeyin."
+
+#: templates/django_messages/view.html:5
+msgid "View Message"
+msgstr "Mesajı Görüntüle"
+
+#: templates/django_messages/view.html:21
+msgid "Delete"
+msgstr "Sil"
+
+#: templates/notification/messages_deleted/full.txt:1
+#, python-format
+msgid "You have deleted the message '%(message)s'."
+msgstr "'%(message)s' sildiniz."
+
+#: templates/notification/messages_deleted/notice.html:1
+#, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr ""
+"<a href=\"%(message_url)s\">%(message)s</a> mesajı sildiniz."
+
+#: templates/notification/messages_received/full.txt:1
+#, python-format
+msgid ""
+"%(message_sender)s has sent you a message:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+msgstr ""
+"%(message_sender) size bir mesaj gönderdi:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+#: templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr "%(message_sender)s 'den yeni bir mesaj aldınız. <a href=\"%(message_url)s\">%(message)s</a> "
+
+#: templates/notification/messages_received/short.txt:1
+#: templates/notification/messages_reply_received/short.txt:1
+#, python-format
+msgid "%(notice)s by %(message_sender)s"
+msgstr "%(message_sender)s 'den %(notice)s"
+
+#: templates/notification/messages_recovered/full.txt:1
+#, python-format
+msgid "You have recovered the message '%(message)s'."
+msgstr "'%(message)s' mesajını kurtardınız."
+
+#: templates/notification/messages_recovered/notice.html:1
+#, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr ""
+"<a href=\"%(message_url)s\">%(message)s</a> mesajını kurtardınız."
+#: templates/notification/messages_replied/full.txt:1
+#, python-format
+msgid ""
+"You have replied to '%(message_parent_msg)s' from %(message_recipient)s."
+msgstr ""
+"%(message_recipient)s 'in '%(message_parent_msg)s' mesajına cevap verdiniz."
+#: templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+"<a href=\"%(message_url)s\">%(message_parent_msg)s</a> mesaja cevap verdiniz."
+"gönderici %(message_recipient)s."
+
+#: templates/notification/messages_reply_received/full.txt:1
+#, python-format
+msgid ""
+"%(message_sender)s replied to '%(message_parent_msg)s':\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+msgstr ""
+"%(message_sender)s mesajı cevapladı '%(message_parent_msg)s':\n"
+"\n"
+"%(message)s\n"
+"\n"
+"%(message_body)s\n"
+"\n"
+"http://%(current_site)s%(message_url)s"
+#: templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr "%(message_sender)s  kullanıcısı %(message_parent_msg)s mesajına cevap verdi."
+
+#: templates/notification/messages_sent/full.txt:1
+#, python-format
+msgid "You have sent the message '%(message)s' to %(message_recipient)s."
+msgstr "%(message_recipient)s kullanıcısına '%(message)s' mesajını gönderdiniz."
+
+#: templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to "
+"%(message_recipient)s."
+msgstr ""
+"<a href=\"%(message_url)s\">%(message)s</a> mesajını gönderdiniz "
+"alıcı: %(message_recipient)s."
+
+#: utils.py:25
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s yazdı:\n"
+"%(body)s"
+
+#: utils.py:53
+#, python-format
+msgid "Re%(prefix)s: %(subject)s"
+msgstr "Re%(prefix)s: %(subject)s"
+
+#: utils.py:59
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Yeni Mesaj: %(subject)s"
+
+#: views.py:89 views.py:126
+msgid "Message successfully sent."
+msgstr "Mesaj başarıyla gönderildi."
+
+#: views.py:108 views.py:204
+#, python-format
+msgid "Re: %(subject)s"
+msgstr "Re: %(subject)s"
+
+#: views.py:169
+msgid "Message successfully deleted."
+msgstr "Mesaj başarıyla silindi."
+
+#: views.py:196
+msgid "Message successfully recovered."
+msgstr "Mesaj başarıyla kurtarıldı."

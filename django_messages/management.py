@@ -13,6 +13,6 @@ if "pinax.notifications" in settings.INSTALLED_APPS and getattr(settings, 'DJANG
         notification.create_notice_type("messages_deleted", _("Message Deleted"), _("you have deleted a message"), default=1)
         notification.create_notice_type("messages_recovered", _("Message Recovered"), _("you have undeleted a message"), default=1)
 
-    signals.post_syncdb.connect(create_notice_types, sender=notification)
+    signals.post_migrate.connect(create_notice_types, sender=notification)
 else:
     print("Skipping creation of NoticeTypes as notification app not found")
