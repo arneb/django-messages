@@ -6,7 +6,6 @@ except ImportError:
 from django.db import models
 from django.db.models import signals
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
@@ -48,7 +47,6 @@ class MessageManager(models.Manager):
         )
 
 
-@python_2_unicode_compatible
 class Message(models.Model):
     """
     A private message from user to user
