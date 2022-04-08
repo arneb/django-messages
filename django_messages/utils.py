@@ -1,7 +1,6 @@
 import re
 import django
 from django.utils.text import wrap
-from django.utils.translation import ugettext, ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.conf import settings
 
@@ -56,7 +55,7 @@ def format_subject(subject):
     }
 
 def new_message_email(sender, instance, signal,
-        subject_prefix=_(u'New Message: %(subject)s'),
+        subject_prefix=u'New Message: %(subject)s',
         template_name="django_messages/new_message.html",
         default_protocol=None,
         *args, **kwargs):
