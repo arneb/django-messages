@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.utils.translation import ugettext as _
 from django.utils import timezone
 try:
     from django.core.urlresolvers import reverse
@@ -86,7 +85,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user)
-            messages.info(request, _(u"Message successfully sent."))
+            messages.info(request, "Message successfully sent.")
             if success_url is None:
                 success_url = reverse('messages_inbox')
             if 'next' in request.GET:
@@ -105,7 +104,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
 def reply(request, message_id, form_class=ComposeForm,
         template_name='django_messages/compose.html', success_url=None,
         recipient_filter=None, quote_helper=format_quote,
-        subject_template=_(u"Re: %(subject)s"),):
+        subject_template="Re: %(subject)s",):
     """
     Prepares the ``form_class`` form for writing a reply to a given message
     (specified via ``message_id``). Uses the ``format_quote`` helper from
@@ -123,7 +122,7 @@ def reply(request, message_id, form_class=ComposeForm,
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
             form.save(sender=request.user, parent_msg=parent)
-            messages.info(request, _(u"Message successfully sent."))
+            messages.info(request, "Message successfully sent.")
             if success_url is None:
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
@@ -166,7 +165,7 @@ def delete(request, message_id, success_url=None):
         deleted = True
     if deleted:
         message.save()
-        messages.info(request, _(u"Message successfully deleted."))
+        messages.info(request, "Message successfully deleted.")
         if notification:
             notification.send([user], "messages_deleted", {'message': message,})
         return HttpResponseRedirect(success_url)
@@ -193,7 +192,7 @@ def undelete(request, message_id, success_url=None):
         undeleted = True
     if undeleted:
         message.save()
-        messages.info(request, _(u"Message successfully recovered."))
+        messages.info(request, "Message successfully recovered.")
         if notification:
             notification.send([user], "messages_recovered", {'message': message,})
         return HttpResponseRedirect(success_url)
@@ -201,7 +200,7 @@ def undelete(request, message_id, success_url=None):
 
 @login_required
 def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
-        subject_template=_(u"Re: %(subject)s"),
+        subject_template="Re: %(subject)s",
         template_name='django_messages/view.html'):
     """
     Shows a single message.``message_id`` argument is required.
