@@ -6,7 +6,6 @@ except ImportError:
 from django.db import models
 from django.db.models import signals
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -46,21 +45,21 @@ class MessageManager(models.Manager):
             sender_deleted_at__isnull=False,
         )
 
-    
+
 class Message(models.Model):
     """
     A private message from user to user
     """
-    subject = models.CharField(_("Subject"), max_length=140)
-    body = models.TextField(_("Body"))
-    sender = models.ForeignKey(AUTH_USER_MODEL, related_name='sent_messages', verbose_name=_("Sender"), on_delete=models.PROTECT)
-    recipient = models.ForeignKey(AUTH_USER_MODEL, related_name='received_messages', null=True, blank=True, verbose_name=_("Recipient"), on_delete=models.SET_NULL)
-    parent_msg = models.ForeignKey('self', related_name='next_messages', null=True, blank=True, verbose_name=_("Parent message"), on_delete=models.SET_NULL)
-    sent_at = models.DateTimeField(_("sent at"), null=True, blank=True)
-    read_at = models.DateTimeField(_("read at"), null=True, blank=True)
-    replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
-    sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
-    recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
+    subject = models.CharField("Subject", max_length=140)
+    body = models.TextField("Body")
+    sender = models.ForeignKey(AUTH_USER_MODEL, related_name='sent_messages', verbose_name="Sender", on_delete=models.PROTECT)
+    recipient = models.ForeignKey(AUTH_USER_MODEL, related_name='received_messages', null=True, blank=True, verbose_name="Recipient", on_delete=models.SET_NULL)
+    parent_msg = models.ForeignKey('self', related_name='next_messages', null=True, blank=True, verbose_name="Parent message", on_delete=models.SET_NULL)
+    sent_at = models.DateTimeField("sent at", null=True, blank=True)
+    read_at = models.DateTimeField("read at", null=True, blank=True)
+    replied_at = models.DateTimeField("replied at", null=True, blank=True)
+    sender_deleted_at = models.DateTimeField("Sender deleted at", null=True, blank=True)
+    recipient_deleted_at = models.DateTimeField("Recipient deleted at", null=True, blank=True)
 
     objects = MessageManager()
 
@@ -89,8 +88,8 @@ class Message(models.Model):
 
     class Meta:
         ordering = ['-sent_at']
-        verbose_name = _("Message")
-        verbose_name_plural = _("Messages")
+        verbose_name = "Message"
+        verbose_name_plural = "Messages"
 
 
 def inbox_count_for(user):
