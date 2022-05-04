@@ -1,6 +1,5 @@
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
 if "pinax.notifications" in settings.INSTALLED_APPS and getattr(settings, 'DJANGO_MESSAGES_NOTIFY', True):
@@ -15,9 +14,9 @@ class ComposeForm(forms.Form):
     """
     A simple default form for private messages.
     """
-    recipient = CommaSeparatedUserField(label=_(u"Recipient"))
-    subject = forms.CharField(label=_(u"Subject"), max_length=140)
-    body = forms.CharField(label=_(u"Body"),
+    recipient = CommaSeparatedUserField(label="Recipient")
+    subject = forms.CharField(label="Subject", max_length=140)
+    body = forms.CharField(label="Body",
         widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
 
 
