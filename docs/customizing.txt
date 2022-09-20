@@ -5,36 +5,36 @@ Customizing django-messages
 ===========================
 
 There are multiple levels at which you can customize django-messages without
-altering the code directly.
+altering the code directly. 
 
 
 Templates
 ---------
 
-Django-messages comes with a set of built-in templates which you can use.
+Django-messages comes with a set of built-in templates which you can use. 
 If these templates don't fit your project you can override any or all of them
 by putting files with the same filenames in one the directories listes in
 ``TEMPLATES_DIRS`` in your ``settings.py``.
 
 Django-messages uses the following templates:
 
-* :file:`django_messages/base.html` - A base template from which all the
-  following templates inherit. Maybe it's enough to customize this template
+* :file:`django_messages/base.html` - A base template from which all the 
+  following templates inherit. Maybe it's enough to customize this template 
   for your project.
-* :file:`django_messages/compose.html` - This template is rendered, when a
+* :file:`django_messages/compose.html` - This template is rendered, when a 
   user composes a new messages.
 * :file:`django_messages/inbox.html` - This template lists the users inbox.
-* :file:`django_messages/new_messages.html` - This template is used to
-  construct the notification mail sent to a user, whenever a new message is
+* :file:`django_messages/new_messages.html` - This template is used to 
+  construct the notification mail sent to a user, whenever a new message is 
   received.
-* :file:`django_messages/outbox.html` - This template lists the users outbox
+* :file:`django_messages/outbox.html` - This template lists the users outbox 
   aka sent messages.
 * :file:`django_messages/trash.html` - This template lists the users trash.
-* :file:`django_messages/view.html` - This template renders a single message
+* :file:`django_messages/view.html` - This template renders a single message 
   with all details.
 
 Additionally django-message provides a set of template for pinax-notifications.
-These template can be found in :file:`django_messages/templates/notification/`
+These template can be found in :file:`django_messages/templates/notification/` 
 and can also be overwritten in one of your project's ``TEMPLATE_DIRS``.
 
 
@@ -51,7 +51,7 @@ in your root url-conf, you shouldn't include ``django_messages.urls``.
 
 Three common customizations are described in more detail below.
 
-
+ 
 Modifying template names
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -61,21 +61,21 @@ a `template_name` keyword argument to the views. Every view which renders a
 template accepts this keyword-argument.
 
 If you want to change the template the ``inbox`` view uses to ``my_inbox.html``
-instead of the default ``django_messages/inbox.html`` you can use this line
+instead of the default ``django_messages/inbox.html`` you can use this line 
 in your own url-conf::
 
-    url(r'^inbox/$',
-        inbox,
-        {'template_name': 'my_inbox.html',},
+    url(r'^inbox/$', 
+        inbox, 
+        {'template_name': 'my_inbox.html',}, 
         name='messages_inbox'),
-
+    
 
 Modifying form classes
 ~~~~~~~~~~~~~~~~~~~~~~
 
 If you want to use your own form for composing messages, for example to add
-new features, you can simply pass the form-class to the views via kwargs.
-Every view which renders a form accepts a `form_class` keyword argument to
+new features, you can simply pass the form-class to the views via kwargs. 
+Every view which renders a form accepts a `form_class` keyword argument to 
 specify the form-class.
 
 If you want to use Your own ``MyComposeForm`` you can pass it to the view by
@@ -83,9 +83,9 @@ using a line like the following in your own url-conf::
 
     from somewhere import MyComposeForm
     ...
-    url(r'^compose/$',
-        compose,
-        {'form_class': MyComposeForm,},
+    url(r'^compose/$', 
+        compose, 
+        {'form_class': MyComposeForm,}, 
         name='messages_compose'),
 
 
@@ -101,26 +101,8 @@ If you don't want to append the next target to the url, or want to change
 the redirecting behaviour of other views, you can pass a ``success_url``
 parameter in your own url-conf, for example like this::
 
-    url(r'^delete/(?P<message_id>[\d]+)/$',
-        delete,
-        {'success_url': '/profile/',},
+    url(r'^delete/(?P<message_id>[\d]+)/$', 
+        delete, 
+        {'success_url': '/profile/',}, 
         name='messages_delete'),
 
-
-Adding recipient filter
-~~~~~~~~~~~~~~~~~~~~~~~
-
-To restrict allowed recipients a ``recipient_filter`` function can be added
-to the compose view.
-
-The following filter function makes sure messages can only be sent to active
-users::
-
-    lambda u: u.is_active
-
-To use this filter, integrate it into your url-conf::
-
-    url(r'^compose/$',
-        compose,
-        {'recipient_filter': lambda u: u.is_active},
-        name='messages_compose'),

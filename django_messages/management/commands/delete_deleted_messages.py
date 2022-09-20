@@ -11,17 +11,18 @@ class Command(BaseCommand):
         'and recipient. You must provide the minimum age in days.'
     )
 
-    def add_arguments(self, parser):
-        parser.add_argument('age', type=int)
-
     def handle(self, *args, **options):
-        if not options['age']:
+        if len(args) == 0:
             raise CommandError('You must provide the minimum age in days.')
+        elif len(args) > 1:
+            raise CommandError(
+                'This management command accepts only one argument.'
+            )
 
         try:
-            age_in_days = options['age']
+            age_in_days = int(args[0])
         except ValueError:
-            raise CommandError('"%s" is not an integer.' % options['age'])
+            raise CommandError('"%s" is not an integer.' % args[0])
 
         the_date = timezone.now() - datetime.timedelta(days=age_in_days)
 

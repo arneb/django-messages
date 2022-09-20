@@ -15,12 +15,12 @@ User = get_user_model()
 class CommaSeparatedUserInput(widgets.Input):
     input_type = 'text'
 
-    def render(self, name, value, **kwargs):
+    def render(self, name, value, attrs=None):
         if value is None:
             value = ''
         elif isinstance(value, (list, tuple)):
             value = (', '.join([getattr(user, get_username_field()) for user in value]))
-        return super(CommaSeparatedUserInput, self).render(name, value, **kwargs)
+        return super(CommaSeparatedUserInput, self).render(name, value, attrs)
 
 
 
