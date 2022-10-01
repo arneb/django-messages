@@ -23,7 +23,7 @@ setup(
             'locale/*/LC_MESSAGES/*',
         ]
     },
-    classifiers=(
+    classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
@@ -32,5 +32,5 @@ setup(
         'Programming Language :: Python',
         'Topic :: Utilities',
         'Framework :: Django',
-    ),
+    ],
 )
