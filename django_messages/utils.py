@@ -1,10 +1,13 @@
 import re
 import django
 from django.utils.text import wrap
-from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.sites.models import Site
 from django.template.loader import render_to_string
 from django.conf import settings
+try:
+    from django.utils.translation import ugettext, ugettext_lazy as _
+except:
+    from django.utils.translation import gettext, gettext_lazy as _
 
 # favour django-mailer but fall back to django.core.mail
 

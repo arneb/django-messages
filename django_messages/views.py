@@ -3,10 +3,13 @@ from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.utils.translation import ugettext as _
 from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
+try:
+    from django.utils.translation import ugettext_lazy as _
+except:
+    from django.utils.translation import gettext_lazy as _
 
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
